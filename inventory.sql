@@ -39,7 +39,6 @@ CREATE TABLE Sucursales
 
 	PRIMARY KEY (idSucursal,idResponsable),	
 	FOREIGN KEY (idResponsable) REFERENCES Responsables (idResponsable)
-
 );
 
 CREATE TABLE TipoProducto
