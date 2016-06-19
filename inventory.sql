@@ -29,6 +29,13 @@ CREATE TABLE Responsables
 	PRIMARY KEY (idResponsable)
 );
 
+INSERT INTO Responsables (dni, nombres, apellidos, direccion, telefono, activo) VALUES ('11223344','ERICK', 'ALFARO', 'AV. PERU 111', '500005',1);
+INSERT INTO Responsables (dni, nombres, apellidos, direccion, telefono, activo) VALUES ('11223344','JORGE', 'ARIAS', 'AV. ESPAÑA 222', '900009',1);
+INSERT INTO Responsables (dni, nombres, apellidos, direccion, telefono, activo) VALUES ('55664488','JUAN', 'PEREZ', 'AV. AMERICA 333', '400004',1);
+INSERT INTO Responsables (dni, nombres, apellidos, direccion, telefono, activo) VALUES ('22003399','MARIA', 'UGARTE', 'AV. VALLEJO 444', '700007',1);
+INSERT INTO Responsables (dni, nombres, apellidos, direccion, telefono, activo) VALUES ('99775588','SOFIA', 'RODRIGUEZ', 'AV. SANTA 555', '800008',1);
+INSERT INTO Responsables (dni, nombres, apellidos, direccion, telefono, activo) VALUES ('55442200','KATY', 'SANCHEZ', 'AV. PUMACAHUA 666', '300003',1);
+
 CREATE TABLE Sucursales
 (
 	idSucursal		INT AUTO_INCREMENT,
@@ -40,6 +47,13 @@ CREATE TABLE Sucursales
 	PRIMARY KEY (idSucursal,idResponsable),	
 	FOREIGN KEY (idResponsable) REFERENCES Responsables (idResponsable)
 );
+
+INSERT INTO Sucursales (idResponsable, nombre, direccion, telefono) VALUES (1, 'ALICEL 1', 'JR. BOLIVAR', '100001');
+INSERT INTO Sucursales (idResponsable, nombre, direccion, telefono) VALUES (2, 'ALICEL 2', 'JR. BOLIVAR', '200002');
+INSERT INTO Sucursales (idResponsable, nombre, direccion, telefono) VALUES (3, 'ENTEL', 'JR. BOLIVAR', '300003');
+INSERT INTO Sucursales (idResponsable, nombre, direccion, telefono) VALUES (4, 'PIZARRO', 'JR. BOLIVAR', '400004');
+INSERT INTO Sucursales (idResponsable, nombre, direccion, telefono) VALUES (5, 'ALMAGRO', 'JR. BOLIVAR', '500005');
+INSERT INTO Sucursales (idResponsable, nombre, direccion, telefono) VALUES (6, 'AS MOVILES', 'JR. BOLIVAR', '600006');
 
 CREATE TABLE TipoProducto
 (
@@ -58,7 +72,7 @@ CREATE TABLE Productos
 (
 	idProducto		INT AUTO_INCREMENT,
 	idTipoProducto 	INT NOT NULL,
-	idSucursal 		INT NOT NULL,
+	idSucursal 		INT NOT NULL DEFAULT 1,
 	estado 			CHAR (1) NOT NULL DEFAULT 'A',
 	fechaIngreso	DATE NOT NULL,
 	activo 			BIT (1) NOT NULL,
@@ -151,15 +165,13 @@ CREATE TABLE Accesorios
 CREATE TABLE Movimiento
 (
   	numMovimiento INT AUTO_INCREMENT,
-  	idResponsable INT NOT NULL,
-  	destino       INT NOT  NULL,
+  	idSucursal	  INT NOT NULL,  
   	fechaEnvio    DATE NOT NULL, 	
   	cantidadTotal INT NOT NULL,
   	activo		  BIT (1) NOT NULL,
 
-  PRIMARY KEY (numMovimiento),
-  FOREIGN KEY (idResponsable) REFERENCES Responsables (idResponsable),
-  FOREIGN KEY (destino) REFERENCES Sucursales (idSucursal)
+  PRIMARY KEY (numMovimiento),  
+  FOREIGN KEY (idSucursal) REFERENCES Sucursales (idSucursal)
 );
 
 CREATE TABLE DetalleMovimiento

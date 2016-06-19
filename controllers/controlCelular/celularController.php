@@ -7,8 +7,8 @@ $param['opcion'] = '';
 $param['codigo'] = '';
 $param['imei'] = '';
 $param['serie'] = '';
-$param['descripcion'] = '';
-$param['cantidad'] = '';
+$param['marca'] = '';
+$param['modelo'] = '';
 
 if (isset($_POST['opcion'])) {
     $param['opcion'] = $_POST['opcion'];
@@ -26,12 +26,12 @@ if (isset($_POST['serie'])) {
     $param['serie'] = $_POST['serie'];
 }
 
-if (isset($_POST['descripcion'])) {
-    $param['descripcion'] = $_POST['descripcion'];
+if (isset($_POST['marca'])) {
+    $param['marca'] = $_POST['marca'];
 }
 
-if (isset($_POST['cantidad'])) {
-    $param['cantidad'] = $_POST['cantidad'];
+if (isset($_POST['modelo'])) {
+    $param['modelo'] = $_POST['modelo'];
 }
 
 $Celular = new CelularModel();

@@ -7,8 +7,8 @@ window.onload = function(){
         mostrarCelulares();
         document.getElementById('imei').value= '';
         document.getElementById('serie').value= '';
-        document.getElementById('descripcion').value= '';
-        document.getElementById('cantidad').value= '';                
+        document.getElementById('marca').value= '';
+        document.getElementById('modelo').value= '';                
     });  
 }
 
@@ -17,8 +17,8 @@ $(function() {
         $('#cabeceraRegistro').html(".:: Nuevo Celular ::.");
         document.getElementById('imei').value= '';
         document.getElementById('serie').value= '';
-        document.getElementById('descripcion').value= '';
-        document.getElementById('cantidad').value= '';
+        document.getElementById('marca').value= '';
+        document.getElementById('modelo').value= '';
         document.getElementById('operacion').value= 'Registrar';        
         $('#modalCelular').modal({
             show:true,
@@ -31,20 +31,20 @@ $(function() {
         var operacion = document.getElementById('operacion').value;
 
         if (operacion == 'Registrar') {     
-            var opcion = 'registrar_celular';
+            var opcion = 'registrar_celular';                       
             var imei = document.getElementById('imei').value;
             var serie = document.getElementById('serie').value;
-            var descripcion = document.getElementById('descripcion').value;
-            var cantidad = document.getElementById('cantidad').value;   
+            var marca = document.getElementById('marca').value;
+            var modelo = document.getElementById('modelo').value;   
 
-            if(imei == '' || serie == '' || descripcion == '' || cantidad == ''){
+            if(imei == '' || serie == '' || marca == '' || modelo == ''){
                 nota("error","Complete los campos obligatorios. (*)",2000);   
                 return;                                          
             }
             else
             {
-                if (cantidad <= 0){       
-                    nota("error","La cantidad debe ser mayor que cero.",2000);   
+                if (modelo <= 0){       
+                    nota("error","La modelo debe ser mayor que cero.",2000);   
                     return;                        
                 }
                 else
@@ -52,14 +52,14 @@ $(function() {
                     $.ajax({
                         type: 'POST',
                         data:'opcion='+opcion+'&imei='+imei+'&serie=' +serie+
-                            '&descripcion='+descripcion+'&cantidad=' +cantidad,
+                            '&marca='+marca+'&modelo=' +modelo,
                         url: '../controllers/controlCelular/celularController.php',
                         success: function(data){
                             nota("success","Celular registrado correctamente.",2000);
                             document.getElementById('imei').value= '';
                             document.getElementById('serie').value= '';
-                            document.getElementById('descripcion').value= '';
-                            document.getElementById('cantidad').value= '';                                     
+                            document.getElementById('marca').value= '';
+                            document.getElementById('modelo').value= '';                                     
                             $('#modalCelular').modal('hide');
                             mostrarCelulares();
                         },
@@ -76,20 +76,20 @@ $(function() {
                 var codigo = document.getElementById('codigo').value;
                 var imei = document.getElementById('imei').value;
                 var serie = document.getElementById('serie').value;
-                var descripcion = document.getElementById('descripcion').value;
-                var cantidad = document.getElementById('cantidad').value;     
+                var marca = document.getElementById('marca').value;
+                var modelo = document.getElementById('modelo').value;     
 
                 $.ajax({
                     type: 'POST',
                     data:'opcion='+opcion+'&codigo='+codigo+'&imei='+imei+'&serie=' +serie+
-                            '&descripcion='+descripcion+'&cantidad=' +cantidad,
+                            '&marca='+marca+'&modelo=' +modelo,
                     url: '../controllers/controlCelular/celularController.php',
                     success: function(data){                        
                         nota("success","Celular actualizado correctamente.",2000);
                         document.getElementById('imei').value= '';
                         document.getElementById('serie').value= '';
-                        document.getElementById('descripcion').value= '';
-                        document.getElementById('cantidad').value= ''; 
+                        document.getElementById('marca').value= '';
+                        document.getElementById('modelo').value= ''; 
                         document.getElementById('operacion').value= 'Registrar'; 
                         $('#modalCelular').modal('hide');
                         mostrarCelulares();
@@ -146,9 +146,8 @@ function editar(codigo){
             $("#codigo").val(objeto[0]);            
             $("#imei").val(objeto[1]);
             $("#serie").val(objeto[2]);
-            $("#descripcion").val(objeto[3]);
-            $("#cantidad").val(objeto[4]);  
-
+            $("#marca").val(objeto[3]);
+            $("#modelo").val(objeto[4]); 
         },
         error: function(data){
 

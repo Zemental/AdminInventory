@@ -33,12 +33,12 @@ class CelularModel {
    
     function prepararConsultaGestionarCelulares($opcion) {
         $consultaSql = "call sp_control_celular(";
-        $consultaSql.="'".$opcion . "',";
+        $consultaSql.="'".$opcion . "',";        
         $consultaSql.="'".$this->param['codigo'] . "',";
         $consultaSql.="'".$this->param['imei'] . "',";
         $consultaSql.="'".$this->param['serie'] . "',";
-        $consultaSql.="'".$this->param['descripcion'] . "',";        
-        $consultaSql.="'".$this->param['cantidad'] . "')";
+        $consultaSql.="'".$this->param['marca'] . "',";        
+        $consultaSql.="'".$this->param['modelo'] . "')";
         //echo $consultaSql;
         $this->result = mysqli_query($this->conexion,$consultaSql);
     }    
@@ -50,12 +50,13 @@ class CelularModel {
         while($row = mysqli_fetch_row($this->result)){            
             $item++;
             echo '<tr>
-                    <td style="font-size: 12px; height: 10px; width: 3%; text-align: center;">'.$item.'</td>';
-            echo '<td style="font-size: 12px; height: 10px; width: 12%; text-align: center;">'.utf8_encode($row[1]).'</td>
-                    <td style="font-size: 12px; height: 10px; width: 13%;">'.utf8_encode($row[2]).'</td>
-                    <td style="font-size: 12px; height: 10px; width: 20%;">'.utf8_encode($row[3]).'</td>
-                    <td style="font-size: 12px; height: 10px; width: 3%; text-align: center;">'.$row[4].' uni.</td>';  
-            if ($row[5] == 'A') {
+                    <td style="font-size: 12px; height: 10px; width: 3%;">'.$item.'</td>';
+            echo '<td style="font-size: 12px; height: 10px; width: 12%;">'.utf8_encode($row[2]).'</td>
+                    <td style="font-size: 12px; height: 10px; width: 13%;">'.utf8_encode($row[3]).'</td>
+                    <td style="font-size: 12px; height: 10px; width: 10%;">'.utf8_encode($row[4]).'</td>  
+                    <td style="font-size: 12px; height: 10px; width: 15%;">'.utf8_encode($row[5]).'</td>                  
+                    <td style="font-size: 12px; height: 10px; width: 7%;">'.utf8_encode($row[6]).'</td>';  
+            /*if ($row[7] == 'A') {
                 echo '<td style="font-size: 12px; height: 10px; width: 8%; text-align: center;">
                             <div id="estado" class="text-center">
                                 <span class="label label-success">ALMACEN</span>
@@ -79,9 +80,9 @@ class CelularModel {
                             </div>
                         </td>';    
                     }
-            }
+            }*/
 
-            echo '<td style="font-size: 11px; height: 10px; width: 10%; text-align: center;">
+            echo '<td style="font-size: 11px; height: 10px; width: 8%; text-align: center;">
                             <div class="hidden-sm hidden-xs action-buttons">                                
                                 <a href="#" style="margin-right:10px;" title="Editar">
                                     <span class="green">
