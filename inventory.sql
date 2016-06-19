@@ -209,5 +209,5 @@ CREATE TABLE DetalleVenta
 
 	PRIMARY KEY (numDetalle),
 	FOREIGN KEY (numVenta) REFERENCES Venta (numVenta),
-	FOREIGN KEY (idProducto) REFERENCES Productos (idProducto),
+	FOREIGN KEY (idProducto) REFERENCES Productos (idProducto)
 );
