@@ -82,9 +82,7 @@ CREATE TABLE Productos
 	FOREIGN KEY (idTipoProducto) REFERENCES TipoProducto (idTipoProducto)
 );
 
-
 -- A:ALMACEN, M:MOSTRADOR, V:VENDIDO
-
 
 CREATE TABLE Celulares
 (
