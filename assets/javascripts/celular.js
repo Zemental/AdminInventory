@@ -156,6 +156,32 @@ function editar(codigo){
 
 }
 
+function eliminar(codigo, estado){
+    var respuesta = confirm('¿Desea eliminar el equipo celular?');
+    if (respuesta == true) {
+        //alert('Acepto');
+        var opcion = 'eliminar_celular';
+        $.ajax({
+            type: 'POST',
+            data:'opcion='+opcion+'&codigo='+codigo+'&estado='+estado,
+            url: '../controllers/controlCelular/celularController.php',
+            success: function(data){
+                alert('Celular fue dado de baja');
+                mostrarCelulares();
+            },
+            error: function(data){
+                $('#cuerpoCelulares').html(respuesta);
+            }
+        });
+    } else {
+        if (respuesta == false) {
+            mostrarCelulares();
+        }
+
+    }
+
+}
+
 function nota(op,msg,time){
     if(time == undefined)time = 2000;
     var n = noty({text:msg,maxVisible: 1,type:op,killer:true,timeout:time,layout: 'top'});
