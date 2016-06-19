@@ -183,43 +183,33 @@
     <div id="content-wrapper">
         <div class="page-header">
             <div class="row">
-                <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-mobile page-header-icon"></i>&nbsp;&nbsp;Inventario de Celulares</h1>
+                <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-mobile page-header-icon"></i>&nbsp;&nbsp;Envios Realizados</h1>
             </div>
-        </div>
-
-        <script>
-            init.push(function () {
-                $('#tablaCelulares').dataTable();
-                $('#tablaCelulares_wrapper .table-caption').text('Listado General de Celulares');
-                $('#tablaCelulares_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
-                mostrarCelulares();
-            });
-        </script>
+        </div>       
               
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">                          
-                    <a href="#" id="nuevoCelular" class="btn btn-primary btn-labeled" style="width:15%;">
+                    <a href="envioSucursales.php" class="btn btn-primary btn-labeled" style="width:15%;">
                         <span class="btn-label icon fa fa-plus"></span>
-                            Nuevo Celular
+                            Nuevo Envio
                     </a>                           
                 </span>
             </div>
             <div class="panel-body">
                 <div class="table-primary">
-                    <table class="table table-striped table-bordered" id="tablaCelulares">
+                    <table class="table table-striped table-bordered" id="tablaEnvios">
                         <thead>
                             <tr>
-                                <th style="width:3%;">N°</th>
-                                <th style="width:12%;">IMEI</th>
-                                <th style="width:13%;">SERIE</th>
-                                <th style="width:10%;">MARCA</th>
-                                <th style="width:15%;">MODELO</th>
-                                <th class="text-center" style="width:7%;">UBICACION</th>
-                                <th style="width:8%;">OPERACIONES</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">N° DE MOVIMIENTO</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">FECHA DE ENVIO</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">SUCURSAL</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">RESPONSABLE</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">CANTIDAD</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">OPERACIONES</th>
                             </tr>
                         </thead>
-                        <tbody id="cuerpoCelulares">
+                        <tbody id="cuerpoEnvios">
 
                         </tbody>
                     </table>
@@ -290,13 +280,16 @@
 <!-- Pixel Admin's javascripts -->
 <script src="../assets/javascripts/bootstrap.min.js"></script>
 <script src="../assets/javascripts/pixel-admin.min.js"></script>
-<script src="../assets/javascripts/celular.js"></script>
+<script src="../assets/javascripts/envioSucursales.js"></script>
 <script src="../assets/javascripts/jquery.noty.js"></script>
 
 
 <script type="text/javascript">
     init.push(function () {
-        // Javascript code here
+        $('#tablaEnvios').dataTable();
+        $('#tablaEnvios_wrapper .table-caption').text('Listado General de Envios Realizados');
+        $('#tablaEnvioss_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
+        mostrarEnvios();
     });
     window.PixelAdmin.start(init);
 </script>
