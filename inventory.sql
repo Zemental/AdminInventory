@@ -82,6 +82,9 @@ CREATE TABLE Productos
 	FOREIGN KEY (idTipoProducto) REFERENCES TipoProducto (idTipoProducto)
 );
 
+
+-- Agregando comentario :)
+
 CREATE TABLE Celulares
 (
 	idCelular 		INT AUTO_INCREMENT,	
