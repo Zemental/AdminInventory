@@ -1,17 +1,20 @@
-DROP DATABASE IF EXISTS inventory;
-CREATE DATABASE inventory;
-USE inventory;
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+CREATE DATABASE IF NOT EXISTS `inventory` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `inventory`;
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_control_celular`(IN `opcion` VARCHAR(65), IN `codigo` INT, IN `imei` VARCHAR(65), IN `serie` VARCHAR(65), IN `marca` VARCHAR(65), IN `modelo` VARCHAR(65))
     NO SQL
 BEGIN
 	IF opcion = 'opc_mostrar_celulares' THEN
-    	SELECT P.idProducto, C.idCelular, C.imei, C.serie, C.marca, 
+    	SELECT C.idProducto, C.idCelular, C.imei, C.serie, C.marca, 
         	C.modelo, S.nombre, P.estado, P.activo
         	FROM Productos P 
             INNER JOIN Celulares C ON P.idProducto = C.idProducto
@@ -25,6 +28,20 @@ BEGIN
         
         INSERT INTO Celulares (idProducto, imei, serie, marca, modelo) VALUES 			(@PRODUCTO, imei, serie, marca, modelo);
         
+    END IF;
+    
+    IF opcion = 'opc_datos_celular' THEN
+    	SELECT P.idProducto, C.imei, C.serie, C.marca, C.modelo
+        	FROM Productos P
+            INNER JOIN Celulares C ON P.idProducto = C.idProducto
+            WHERE C.idProducto = codigo;
+    END IF;
+    
+    IF opcion = 'opc_editar_celular' THEN
+    	UPDATE Celulares C
+        	SET C.imei = imei, C.serie = serie, C.marca = marca, 
+        	C.modelo = modelo
+        	WHERE C.idProducto = codigo;
     END IF;
 
 END$$
@@ -51,7 +68,12 @@ CREATE TABLE IF NOT EXISTS `celulares` (
   `modelo` varchar(65) NOT NULL,
   PRIMARY KEY (`idCelular`,`imei`),
   KEY `idProducto` (`idProducto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+INSERT INTO `celulares` (`idCelular`, `idProducto`, `imei`, `serie`, `marca`, `modelo`) VALUES
+(1, 1, 'COD001', 'SER001', 'SAMSUMG', 'SAMSUMG GALAXY J2'),
+(2, 2, 'COD002', 'SER002', 'HUAWEI', 'HUAWEI P9 PLUS'),
+(3, 3, 'COD003', 'SER003', 'SONY', 'SONY XPERIA Z5');
 
 CREATE TABLE IF NOT EXISTS `chips` (
   `idChip` int(11) NOT NULL AUTO_INCREMENT,
@@ -64,18 +86,24 @@ CREATE TABLE IF NOT EXISTS `chips` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `detallemovimiento` (
-  `numMovimiento` int(11) NOT NULL AUTO_INCREMENT,
+  `numDetalle` int(11) NOT NULL AUTO_INCREMENT,
+  `numMovimiento` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL,
-  PRIMARY KEY (`numMovimiento`)
+  PRIMARY KEY (`numDetalle`),
+  KEY `numMovimiento` (`numMovimiento`),
+  KEY `idProducto` (`idProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `detalleventa` (
+  `numDetalle` int(11) NOT NULL AUTO_INCREMENT,
   `numVenta` varchar(15) NOT NULL,
   `idProducto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `precio` decimal(4,2) NOT NULL,
-  PRIMARY KEY (`numVenta`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`numDetalle`),
+  KEY `numVenta` (`numVenta`),
+  KEY `idProducto` (`idProducto`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `movimiento` (
   `numMovimiento` int(11) NOT NULL AUTO_INCREMENT,
@@ -97,7 +125,12 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`idProducto`),
   KEY `idSucursal` (`idSucursal`),
   KEY `idTipoProducto` (`idTipoProducto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+INSERT INTO `productos` (`idProducto`, `idTipoProducto`, `idSucursal`, `estado`, `fechaIngreso`, `activo`) VALUES
+(1, 1, 1, 'A', '2016-06-19', b'1'),
+(2, 1, 1, 'A', '2016-06-19', b'1'),
+(3, 1, 1, 'A', '2016-06-19', b'1');
 
 CREATE TABLE IF NOT EXISTS `protectores` (
   `idProtector` int(11) NOT NULL AUTO_INCREMENT,
@@ -219,10 +252,12 @@ ALTER TABLE `chips`
   ADD CONSTRAINT `chips_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProducto`);
 
 ALTER TABLE `detallemovimiento`
-  ADD CONSTRAINT `detallemovimiento_ibfk_1` FOREIGN KEY (`numMovimiento`) REFERENCES `movimiento` (`numMovimiento`);
+  ADD CONSTRAINT `detallemovimiento_ibfk_1` FOREIGN KEY (`numMovimiento`) REFERENCES `movimiento` (`numMovimiento`),
+  ADD CONSTRAINT `detallemovimiento_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProducto`);
 
 ALTER TABLE `detalleventa`
-  ADD CONSTRAINT `detalleventa_ibfk_1` FOREIGN KEY (`numVenta`) REFERENCES `venta` (`numVenta`);
+  ADD CONSTRAINT `detalleventa_ibfk_1` FOREIGN KEY (`numVenta`) REFERENCES `venta` (`numVenta`),
+  ADD CONSTRAINT `detalleventa_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProducto`);
 
 ALTER TABLE `movimiento`
   ADD CONSTRAINT `movimiento_ibfk_1` FOREIGN KEY (`idSucursal`) REFERENCES `sucursales` (`idSucursal`);
@@ -239,3 +274,7 @@ ALTER TABLE `sucursales`
 
 ALTER TABLE `venta`
   ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`idSucursal`) REFERENCES `sucursales` (`idSucursal`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

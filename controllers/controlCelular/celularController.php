@@ -9,6 +9,7 @@ $param['imei'] = '';
 $param['serie'] = '';
 $param['marca'] = '';
 $param['modelo'] = '';
+$param['estado'] = '';
 
 if (isset($_POST['opcion'])) {
     $param['opcion'] = $_POST['opcion'];
@@ -32,6 +33,10 @@ if (isset($_POST['marca'])) {
 
 if (isset($_POST['modelo'])) {
     $param['modelo'] = $_POST['modelo'];
+}
+
+if (isset($_POST['estado'])) {
+    $param['estado'] = $_POST['estado'];
 }
 
 $Celular = new CelularModel();
