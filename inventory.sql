@@ -177,11 +177,13 @@ CREATE TABLE Movimiento
 
 CREATE TABLE DetalleMovimiento
 (
-	numMovimiento INT AUTO_INCREMENT,	
+	numDetalle	  INT AUTO_INCREMENT,	
+	numMovimiento INT NOT NULL,	
 	idProducto 	  INT NOT NULL,
 
-	PRIMARY KEY (numMovimiento),
-	FOREIGN KEY (numMovimiento) REFERENCES Movimiento (numMovimiento)
+	PRIMARY KEY (numDetalle),
+	FOREIGN KEY (numMovimiento) REFERENCES Movimiento (numMovimiento),
+	FOREIGN KEY (idProducto) REFERENCES Productos (idProducto)
 );
 
 CREATE TABLE Venta
@@ -199,11 +201,13 @@ CREATE TABLE Venta
 
 CREATE TABLE DetalleVenta
 (
+	numDetalle  INT AUTO_INCREMENT,
 	numVenta  	VARCHAR (15) NOT NULL,
 	idProducto 	INT NOT NULL,
 	cantidad	INT NOT NULL,
 	precio 		DECIMAL (4,2) NOT NULL,
 
-	PRIMARY KEY (numVenta),
-	FOREIGN KEY (numVenta) REFERENCES Venta (numVenta)
+	PRIMARY KEY (numDetalle),
+	FOREIGN KEY (numVenta) REFERENCES Venta (numVenta),
+	FOREIGN KEY (idProducto) REFERENCES Productos (idProducto),
 );

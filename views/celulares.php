@@ -144,13 +144,24 @@
                             <a tabindex="-1" href="asmoviles.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">AS MOVILES</span></a>
                         </li>
                     </ul>
-                </li>               
+                </li>      
+                <li class="mm-dropdown">
+                    <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestionar Movimientos</span></a>
+                    <ul>
+                        <li>
+                            <a tabindex="-1" href="envioSucursales.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Envíos a Sucursales</span></a>
+                        </li>
+                        <li>
+                            <a tabindex="-1" href="ventasRealizadas.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Ventas Realizadas</span></a>
+                        </li>                        
+                    </ul>
+                </li>         
                 
                 <li class="mm-dropdown">
                     <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestionar Reportes</span></a>
                     <ul>
                         <li>
-                            <a tabindex="-1" href="envioSucursales.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Envíos a Sucursales</span></a>
+                            <a tabindex="-1" href="envioMercaderia.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Envíos de Mercadería</span></a>
                         </li>
                         <li>
                             <a tabindex="-1" href="mercaderiaVendida.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Mercadería vendida</span></a>
