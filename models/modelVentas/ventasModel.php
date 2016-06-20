@@ -92,7 +92,8 @@ class VentasModel {
         $consultaSql.= "'".$producto."',";
         $consultaSql.= "'".$cantidad."',";
         $consultaSql.= "'".$precio."',";
-        $consultaSql.= "'".$importe."')";
+        $consultaSql.= "'".$importe."',";
+        $consultaSql.="'".$this->param['param_numerodoc'] . "')";
         //echo $consultaSql;
         $this->result = mysqli_query($this->conexion,$consultaSql);    
     }  

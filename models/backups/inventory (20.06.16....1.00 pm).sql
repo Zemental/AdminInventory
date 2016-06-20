@@ -194,12 +194,11 @@ BEGIN
     END IF;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_gestion_detalle_venta`(IN `opcion` VARCHAR(100), IN `producto` INT, IN `cantidad` INT, IN `precio` DOUBLE, IN `importe` DOUBLE)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_gestion_detalle_venta`(IN `opcion` VARCHAR(100), IN `producto` INT, IN `cantidad` INT, IN `precio` DOUBLE, IN `importe` DOUBLE, IN `numeroDoc` INT)
     NO SQL
 BEGIN
   IF opcion = 'opc_grabar_detalle_venta' THEN
-      SET @VENTA = (SELECT MAX(numVenta) AS id FROM venta);
-      INSERT INTO detalleventa (numVenta, idProducto, cantidad, precio, importe) VALUES (@VENTA, producto,cantidad,precio,importe);
+      INSERT INTO detalleventa (numVenta, idProducto, cantidad, precio, importe) VALUES (numeroDoc, producto,cantidad,precio,importe);
     END IF;
     IF opcion = 'opc_modificar_estado_producto' THEN
       UPDATE productos SET estado = 'V' WHERE idProducto = producto;
@@ -368,7 +367,7 @@ CREATE TABLE IF NOT EXISTS `detalleventa` (
   `numVenta` varchar(15) NOT NULL,
   `idProducto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `precio` decimal(4,2) NOT NULL,
+  `precio` double DEFAULT NULL,
   `importe` double DEFAULT NULL,
   PRIMARY KEY (`numDetalle`),
   KEY `numVenta` (`numVenta`),
