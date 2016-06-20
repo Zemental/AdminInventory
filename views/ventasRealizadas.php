@@ -394,8 +394,8 @@
                         </div>                                        
                     </div>
                 </div>
-                <button type="button" class="btn btn-danger btn-md ace-icon fa fa-plus" onclick="mostrar();">
-                </button> 
+                <!--button type="button" class="btn btn-danger btn-md ace-icon fa fa-plus" onclick="mostrar();">
+                </button--> 
                 <button type="button" class="btn btn-primary btn-md ace-icon fa fa-plus col-md-offset-5" id="registrarVentas"> REGISTRAR
                 </button>
                 <button type="button" class="btn btn-danger btn-md ace-icon fa fa-plus" id="cancelar"> CANCELAR
