@@ -43,12 +43,7 @@ $(function() {
             }
             else
             {
-                if (modelo <= 0){       
-                    nota("error","La modelo debe ser mayor que cero.",2000);   
-                    return;                        
-                }
-                else
-                {
+                
                     $.ajax({
                         type: 'POST',
                         data:'opcion='+opcion+'&imei='+imei+'&serie=' +serie+
@@ -67,7 +62,7 @@ $(function() {
                             nota("error","Ocurrió un error inesperado.",2000);
                         }
                     });  
-                }                
+                               
             }           
 
         } else {

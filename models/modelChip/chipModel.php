@@ -14,7 +14,7 @@ class ChipModel {
     function gestionar($param) {
         $this->param = $param;
         switch ($this->param['opcion']) {
-            case 'mostrar_chip':
+            case 'mostrar_chips':
                 echo $this->mostrarChips();
                 break;            
             case 'registrar_chip':
@@ -46,26 +46,26 @@ class ChipModel {
         $this->result = mysqli_query($this->conexion,$consultaSql);
     }    
 
-    function mostrarChip() {
+    function mostrarChips() {
         $this->prepararConsultaGestionarChips('opc_mostrar_chips');
         $this->cerrarAbrir();     
         $item = 0;  
         while($row = mysqli_fetch_row($this->result)){            
             $item++;
-            if ($row[8] == 1){
+            if ($row[7] == 1){
                 echo '<tr>
                     <td style="text-align:center; font-size: 12px; height: 10px; width: 3%; background:#CCFF99;">'.$item.'</td>';
                 echo '<td style="font-size: 12px; height: 10px; width: 12%;">'.utf8_encode($row[2]).'</td>
                     <td style="font-size: 12px; height: 10px; width: 13%;">'.utf8_encode($row[3]).'</td>
                     <td style="font-size: 12px; height: 10px; width: 10%;">'.utf8_encode($row[4]).'</td>                                     
-                    <td style="font-size: 12px; height: 10px; width: 7%;">'.utf8_encode($row[6]).'</td>';      
+                    <td style="font-size: 12px; height: 10px; width: 7%;">'.utf8_encode($row[5]).'</td>';      
             } else {
                 echo '<tr>
                     <td style="text-align:center; font-size: 12px; height: 10px; width: 3%; background:#FF9999;">'.$item.'</td>';
                 echo '<td style="font-size: 12px; height: 10px; width: 12%;">'.utf8_encode($row[2]).'</td>
                     <td style="font-size: 12px; height: 10px; width: 13%;">'.utf8_encode($row[3]).'</td>
                     <td style="font-size: 12px; height: 10px; width: 10%;">'.utf8_encode($row[4]).'</td>                               
-                    <td style="font-size: 12px; height: 10px; width: 7%;">'.utf8_encode($row[6]).'</td>';  
+                    <td style="font-size: 12px; height: 10px; width: 7%;">'.utf8_encode($row[5]).'</td>';  
             }
             
             /*if ($row[7] == 'A') {
@@ -101,7 +101,7 @@ class ChipModel {
                                 <i class="ace-icon fa fa-pencil bigger-120" onclick="editar('.$row[0].');"></i>
                             </span>
                         </a>';
-            if ($row[8] == 1){
+            if ($row[7] == 1){
                 echo    '<a href="#" style="margin-right:10px;" class="tooltip-error" data-rel="tooltip" title="Eliminar">
                             <span class="red">
                                 <i class="ace-icon fa fa-trash-o bigger-120" onclick="eliminar('.$row[0].',0);"></i>
@@ -167,13 +167,13 @@ class ChipModel {
     
 
     function editarChip() {
-        $this->prepararConsultaGestionarChip('opc_editar_chip');
+        $this->prepararConsultaGestionarChips('opc_editar_chip');
         $this->cerrarAbrir();
         echo 1;
     }
 
     function eliminarChip() {
-        $this->prepararConsultaGestionarChip('opc_eliminar_chip');
+        $this->prepararConsultaGestionarChips('opc_eliminar_chip');
         $this->cerrarAbrir();
         echo 1;
     }
