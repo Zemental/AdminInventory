@@ -13,7 +13,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Celulares | SGI Admin</title>
+    <title>Chips | SGI Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- Open Sans font from Google CDN -->
@@ -108,10 +108,10 @@
                 <li class="mm-dropdown">
                     <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestionar Inventario</span></a>
                     <ul>
-                        <li class="active">
+                        <li>
                             <a tabindex="-1" href="celulares.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Celulares</span></a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a tabindex="-1" href="chips.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Chips</span></a>
                         </li>
                         <li>
@@ -149,7 +149,7 @@
                     <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestionar Movimientos</span></a>
                     <ul>
                         <li>
-                            <a tabindex="-1" href="envios.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Envíos a Sucursales</span></a>
+                            <a tabindex="-1" href="envioSucursales.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Envíos a Sucursales</span></a>
                         </li>
                         <li>
                             <a tabindex="-1" href="ventasRealizadas.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Ventas Realizadas</span></a>
@@ -183,43 +183,42 @@
     <div id="content-wrapper">
         <div class="page-header">
             <div class="row">
-                <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-mobile page-header-icon"></i>&nbsp;&nbsp;Inventario de Celulares</h1>
+                <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-mobile page-header-icon"></i>&nbsp;&nbsp;Inventario de Chips</h1>
             </div>
         </div>
 
         <script>
             init.push(function () {
-                $('#tablaCelulares').dataTable();
-                $('#tablaCelulares_wrapper .table-caption').text('Listado General de Celulares');
-                $('#tablaCelulares_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
-                mostrarCelulares();
+                $('#tablaChips').dataTable();
+                $('#tablaChips_wrapper .table-caption').text('Listado General de Chips');
+                $('#tablaChips_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
+                mostrarChips();
             });
         </script>
               
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">                          
-                    <a href="#" id="nuevoCelular" class="btn btn-primary btn-labeled" style="width:15%;">
+                    <a href="#" id="nuevoChip" class="btn btn-primary btn-labeled" style="width:15%;">
                         <span class="btn-label icon fa fa-plus"></span>
-                            Nuevo Celular
+                            Nuevo Chip
                     </a>                           
                 </span>
             </div>
             <div class="panel-body">
                 <div class="table-primary">
-                    <table class="table table-striped table-bordered" id="tablaCelulares">
+                    <table class="table table-striped table-bordered" id="tablaChips">
                         <thead>
                             <tr>
                                 <th style="width:3%;">N°</th>
-                                <th style="width:12%;">IMEI</th>
-                                <th style="width:13%;">SERIE</th>
-                                <th style="width:10%;">MARCA</th>
-                                <th style="width:15%;">MODELO</th>
+                                <th style="width:12%;">ICC</th>
+                                <th style="width:13%;">NUMERO</th>
+                                <th style="width:10%;">OPERADORA</th>                                
                                 <th class="text-center" style="width:7%;">UBICACION</th>
                                 <th style="width:8%;">OPERACIONES</th>
                             </tr>
                         </thead>
-                        <tbody id="cuerpoCelulares">
+                        <tbody id="cuerpoChips">
 
                         </tbody>
                     </table>
@@ -227,7 +226,7 @@
             </div>
         </div>
     </div>
-     <div class="modal fade" id="modalCelular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal fade" id="modalChip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" >
                 <div class="modal-content">
                     <div class="modal-header">
@@ -235,19 +234,19 @@
                         <h4 class="modal-title text-center" id="cabeceraRegistro"><b></b></h4>
                     </div>
                     <div class="modal-body">
-                        <form action=""  method="POST" class="panel form-horizontal" id="formCelular">                            
+                        <form action=""  method="POST" class="panel form-horizontal" id="formChip">                            
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
-                                            <label class="control-label">Código imie*</label>
-                                            <input type="text" id="imei" name="imei" class="form-control" autocomplete="off" placeholder="Código imei" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <label class="control-label">Código icc*</label>
+                                            <input type="text" id="icc" name="icc" class="form-control" autocomplete="off" placeholder="Código icc" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                         </div>
                                     </div><!-- col-sm-6 -->
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
-                                            <label class="control-label">Nro. Serie*</label>
-                                            <input type="text" id="serie" name="serie" class="form-control" autocomplete="off" placeholder="Nro. Serie" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <label class="control-label">Número*</label>
+                                            <input type="text" id="numero" name="numero" class="form-control" autocomplete="off" placeholder="Número" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                         </div>
                                     </div><!-- col-sm-6 -->
                                 </div><!-- row -->
@@ -255,23 +254,24 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
-                                            <label class="control-label">Marca*</label>
-                                            <input type="text" id="marca" name="marca" class="form-control" placeholder="Ejm: SAMSUMG" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <label class="control-label">Operadora*</label>
+                                            <select id="operadora" name="operadora" class="form-control">
+                                                <option value="">Seleccione...</option>
+                                                <option value="MOVISTAR">MOVISTAR</option>
+                                                <option value="CLARO">CLARO</option>
+                                                <option value="BITEL">BITEL</option>
+                                                <option value="ENTEL">ENTEL</option>
+                                                <option value="OTRO">OTRO</option>
+                                            </select>                                            
                                         </div>
-                                    </div><!-- col-sm-6 -->
-                                    <div class="col-sm-6">
-                                        <div class="form-group no-margin-hr">
-                                            <label class="control-label">Modelo*</label>
-                                            <input type="text" id="modelo" name="modelo" class="form-control" placeholder="Ejm: SAMSUMG GALAXY J2" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div><!-- col-sm-6 -->
+                                    </div><!-- col-sm-6 -->                                    
                                 </div><!-- row -->
                             </div>
                             <input  type="hidden" id="operacion" name="operacion" value="Registrar"/>
                             <input  type="hidden" id="codigo" name="codigo"/>
                             <div class="panel-footer text-right">
-                                <button class="btn btn-primary" id="registrarCelular">Guardar</button>
-                                <button class="btn btn-default" data-dismiss="modal" id="cancelarCelular">Cancelar</button>
+                                <button class="btn btn-primary" id="registrarChip">Guardar</button>
+                                <button class="btn btn-default" data-dismiss="modal" id="cancelarChip">Cancelar</button>
                             </div>
                         </form>
                     </div>
@@ -290,7 +290,7 @@
 <!-- Pixel Admin's javascripts -->
 <script src="../assets/javascripts/bootstrap.min.js"></script>
 <script src="../assets/javascripts/pixel-admin.min.js"></script>
-<script src="../assets/javascripts/celular.js"></script>
+<script src="../assets/javascripts/chip.js"></script>
 <script src="../assets/javascripts/jquery.noty.js"></script>
 
 

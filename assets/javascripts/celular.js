@@ -157,7 +157,12 @@ function editar(codigo){
 }
 
 function eliminar(codigo, estado){
-    var respuesta = confirm('¿Desea eliminar el equipo celular?');
+    if (estado == 0){
+        var respuesta = confirm('¿Desea ELIMINAR el equipo celular?');
+    } else {
+        var respuesta = confirm('¿Desea ACTIVAR el equipo celular?');
+    }
+    
     if (respuesta == true) {
         //alert('Acepto');
         var opcion = 'eliminar_celular';
@@ -165,8 +170,7 @@ function eliminar(codigo, estado){
             type: 'POST',
             data:'opcion='+opcion+'&codigo='+codigo+'&estado='+estado,
             url: '../controllers/controlCelular/celularController.php',
-            success: function(data){
-                alert('Celular fue dado de baja');
+            success: function(data){                
                 mostrarCelulares();
             },
             error: function(data){
