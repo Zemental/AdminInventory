@@ -125,12 +125,13 @@ CREATE TABLE Protectores
 (
 	idProtector 	INT AUTO_INCREMENT,
 	idProducto 		INT NOT NULL,
-	tipo 			VARCHAR (30) NOT NULL,
+	idTipoProtector	INT NOT NULL,
 	modeloCelular	VARCHAR (65) NOT NULL,
 	cantidad 		INT NOT NULL,
 
 	PRIMARY KEY (idProtector),
-	FOREIGN KEY (idProducto) REFERENCES Productos (idProducto)
+	FOREIGN KEY (idProducto) REFERENCES Productos (idProducto),
+	FOREIGN KEY (idTipoProtector) REFERENCES TipoProtector (idTipoProtector)
 );
 
 CREATE TABLE TipoAccesorio
@@ -149,15 +150,16 @@ INSERT INTO TipoAccesorio (nombre) VALUES ('CABLE DE DATOS');
 
 CREATE TABLE Accesorios
 (
-	idAccesorio INT AUTO_INCREMENT,
-	idProducto 	INT NOT NULL,
-	tipo 		VARCHAR (30) NOT NULL,
-	codigo	    VARCHAR (30) NOT NULL,
-	descripcion	VARCHAR (65) NULL,
-	cantidad 	INT NOT NULL,	
+	idAccesorio 	INT AUTO_INCREMENT,
+	idProducto 		INT NOT NULL,
+	idTipoAccesorio	INT NOT NULL,
+	codigo	    	VARCHAR (30) NOT NULL,
+	descripcion		VARCHAR (65) NULL,
+	cantidad 		INT NOT NULL,	
 
 	PRIMARY KEY (idAccesorio),
-	FOREIGN KEY (idProducto) REFERENCES Productos (idProducto)
+	FOREIGN KEY (idProducto) REFERENCES Productos (idProducto),
+	FOREIGN KEY (idTipoAccesorio) REFERENCES TipoAccesorio (idTipoAccesorio),
 );
 
 CREATE TABLE Movimiento
@@ -176,6 +178,7 @@ CREATE TABLE DetalleMovimiento
 (
 	numDetalle	  INT AUTO_INCREMENT,	
 	numMovimiento INT NOT NULL,	
+	cantidad 	  INT NULL,
 	idProducto 	  INT NOT NULL,
 
 	PRIMARY KEY (numDetalle),

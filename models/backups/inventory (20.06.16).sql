@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-06-2016 a las 01:39:13
+-- Tiempo de generación: 20-06-2016 a las 06:29:41
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -11,14 +11,11 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
 -- Base de datos: `inventory`
 --
+CREATE DATABASE IF NOT EXISTS `inventory` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `inventory`;
 
 DELIMITER $$
 --
@@ -32,54 +29,148 @@ BEGIN
     END IF;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_control_celular`(IN `opcion` VARCHAR(65), IN `codigo` INT, IN `imei` VARCHAR(65), IN `serie` VARCHAR(65), IN `marca` VARCHAR(65), IN `modelo` VARCHAR(65))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_control_accesorio`(IN `opcion` VARCHAR(65), IN `codigo` INT, IN `tipo` INT, IN `codigoAccesorio` VARCHAR(65), IN `descripcion` VARCHAR(65), IN `cantidad` INT, IN `estado` INT)
     NO SQL
 BEGIN
-  IF opcion = 'opc_mostrar_celulares' THEN
-      SELECT C.idProducto, C.idCelular, C.imei, C.serie, C.marca, 
-          C.modelo, S.nombre, P.estado, P.activo
-          FROM Productos P 
+	IF opcion = 'opc_mostrar_accesorios' THEN
+    	SELECT A.idProducto, A.idAccesorio, TA.nombre, A.codigo, 						A.descripcion, A.cantidad, S.nombre, P.estado, P.activo
+        	FROM Productos P 
+            INNER JOIN Accesorios A ON P.idProducto = A.idProducto
+            INNER JOIN TipoAccesorio TA ON A.idTipoAccesorio = 						TA.idTipoAccesorio
+            INNER JOIN Sucursales S ON P.idSucursal = S.idSucursal;
+    END IF;
+    
+    IF opcion = 'opc_registrar_accesorio' THEN    	
+    	
+    		INSERT INTO Productos (idTipoProducto, fechaIngreso, activo) 				VALUES (3, now(), 1);
+        
+        	SET @PRODUCTO = (SELECT MAX(idProducto) FROM Productos);
+        
+        	INSERT INTO Accesorios (idProducto, idTipoAccesorio, codigo, 				descripcion, cantidad) VALUES(@PRODUCTO, tipo, 								codigoAccesorio, descripcion, cantidad);       
+        
+    END IF;
+    
+    IF opcion = 'opc_datos_accesorio' THEN
+    	SELECT P.idProducto, TA.nombre, A.codigo, A.descripcion, A.cantidad
+        	FROM Productos P
+            INNER JOIN Accesorios A ON P.idProducto = A.idProducto
+           	INNER JOIN TipoAccesorio TA ON A.idTipoAccesorio = 						TA.idTipoAccesorio
+            WHERE A.idProducto = codigo;
+    END IF;
+    
+    IF opcion = 'opc_editar_accesorio' THEN
+    	UPDATE Accesorios A
+        	SET A.idTipoAccesorio = tipo, A.codigo = codigoAccesorio, 	
+            A.descripcion = descripcion, A.cantidad = cantidad
+        	WHERE A.idProducto = codigo;
+    END IF;
+    
+    IF opcion = 'opc_eliminar_accesorio' THEN
+    	UPDATE Productos
+        	SET activo = estado
+            WHERE idProducto = codigo;
+    END IF;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_control_celular`(IN `opcion` VARCHAR(65), IN `codigo` INT, IN `imei` VARCHAR(65), IN `serie` VARCHAR(65), IN `marca` VARCHAR(65), IN `modelo` VARCHAR(65), IN `estado` INT)
+    NO SQL
+BEGIN
+	IF opcion = 'opc_mostrar_celulares' THEN
+    	SELECT C.idProducto, C.idCelular, C.imei, C.serie, C.marca, 
+        	C.modelo, S.nombre, P.estado, P.activo
+        	FROM Productos P 
             INNER JOIN Celulares C ON P.idProducto = C.idProducto
             INNER JOIN Sucursales S ON P.idSucursal = S.idSucursal;
     END IF;
     
-    IF opcion = 'opc_registrar_celular' THEN
-      INSERT INTO Productos (idTipoProducto, fechaIngreso, activo) VALUES       (1, now(), 1);
+    IF opcion = 'opc_registrar_celular' THEN    	
+    	
+    		INSERT INTO Productos (idTipoProducto, fechaIngreso, activo) 				VALUES (1, now(), 1);
         
-        SET @PRODUCTO = (SELECT MAX(idProducto) FROM Productos);
+        	SET @PRODUCTO = (SELECT MAX(idProducto) FROM Productos);
         
-        INSERT INTO Celulares (idProducto, imei, serie, marca, modelo) VALUES       (@PRODUCTO, imei, serie, marca, modelo);
+        	INSERT INTO Celulares (idProducto, imei, serie, marca, modelo) 					VALUES(@PRODUCTO, imei, serie, marca, modelo);       
         
     END IF;
     
     IF opcion = 'opc_datos_celular' THEN
-      SELECT P.idProducto, C.imei, C.serie, C.marca, C.modelo
-          FROM Productos P
+    	SELECT P.idProducto, C.imei, C.serie, C.marca, C.modelo
+        	FROM Productos P
             INNER JOIN Celulares C ON P.idProducto = C.idProducto
             WHERE C.idProducto = codigo;
     END IF;
     
     IF opcion = 'opc_editar_celular' THEN
-      UPDATE Celulares C
-          SET C.imei = imei, C.serie = serie, C.marca = marca, 
-          C.modelo = modelo
-          WHERE C.idProducto = codigo;
+    	UPDATE Celulares C
+        	SET C.imei = imei, C.serie = serie, C.marca = marca, 
+        	C.modelo = modelo
+        	WHERE C.idProducto = codigo;
+    END IF;
+    
+    IF opcion = 'opc_eliminar_celular' THEN
+    	UPDATE Productos
+        	SET activo = estado
+            WHERE idProducto = codigo;
     END IF;
 
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_control_chip`(IN `opcion` VARCHAR(65), IN `codigo` INT, IN `icc` VARCHAR(65), IN `numero` VARCHAR(65), IN `operadora` VARCHAR(65), IN `estado` INT)
+    NO SQL
+BEGIN
+	IF opcion = 'opc_mostrar_chips' THEN
+    	SELECT CH.idProducto, CH.idChip, CH.icc, CH.numero, CH.operadora, 
+        	S.nombre, P.estado, P.activo
+        	FROM Productos P 
+            INNER JOIN Chips CH ON P.idProducto = CH.idProducto
+            INNER JOIN Sucursales S ON P.idSucursal = S.idSucursal;
+    END IF;
+    
+    IF opcion = 'opc_registrar_chip' THEN    	
+    	
+    		INSERT INTO Productos (idTipoProducto, fechaIngreso, activo) 				VALUES (2, now(), 1);
+        
+        	SET @PRODUCTO = (SELECT MAX(idProducto) FROM Productos);
+        
+        	INSERT INTO Chips (idProducto, icc, numero, operadora) 					VALUES(@PRODUCTO, icc, numero, operadora);       
+        
+    END IF;
+    
+    IF opcion = 'opc_datos_chip' THEN
+    	SELECT P.idProducto, CH.icc, CH.numero, CH.operadora
+        	FROM Productos P
+            INNER JOIN Chips CH ON P.idProducto = CH.idProducto
+            WHERE CH.idProducto = codigo;
+    END IF;
+    
+    IF opcion = 'opc_editar_chip' THEN
+    	UPDATE Chips CH
+        	SET CH.icc = icc, CH.numero = numero, CH.operadora = operadora 
+        	WHERE CH.idProducto = codigo;
+    END IF;
+    
+    IF opcion = 'opc_eliminar_chip' THEN
+    	UPDATE Productos
+        	SET activo = estado
+            WHERE idProducto = codigo;
+    END IF;
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_gestionar_envio`(IN `opcion` VARCHAR(100), IN `sucursal` INT, IN `cantidad` INT)
     NO SQL
 BEGIN
-	IF opcion = 'opc_registro_envio' THEN
-    	INSERT INTO movimiento (idsucursal, fechaEnvio, cantidadTotal, activo) VALUES (sucursal,now(),cantidad,1);
+  IF opcion = 'opc_registro_envio' THEN
+      INSERT INTO movimiento (idsucursal, fechaEnvio, cantidadTotal, activo) VALUES (sucursal,now(),cantidad,1);
     END IF;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_gestion_detalle_envio`(IN `opcion` VARCHAR(100), IN `producto` INT, IN `cantidad` INT)
     NO SQL
 BEGIN
-	IF opcion = 'opc_grabar_detalle_envio' THEN
-    	SET @ENVIO = (SELECT MAX(numMovimiento) AS id FROM movimiento);
+  IF opcion = 'opc_grabar_detalle_envio' THEN
+      SET @ENVIO = (SELECT MAX(numMovimiento) AS id FROM movimiento);
         INSERT INTO detallemovimiento(numMovimiento,idProducto,cantidad) VALUES (@ENVIO, producto, cantidad);
     END IF;
 END$$
@@ -87,20 +178,20 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_mostrar_productos`(IN `opcion` VARCHAR(200))
     NO SQL
 BEGIN
-	IF opcion = 'opc_mostrar_celulares' THEN
-    	SELECT idCelular, imei, serie, marca, modelo FROM celulares;
+  IF opcion = 'opc_mostrar_celulares' THEN
+      SELECT idCelular, imei, serie, marca, modelo FROM celulares;
     END IF;
     IF opcion = 'opc_mostrar_chip' THEN
-    	SELECT idChip, icc, numero, descripcion FROM chips;
+      SELECT idChip, icc, numero, operadora FROM chips;
     END IF;
     IF opcion = 'opc_mostrar_protector' THEN
-    	SELECT PR.idProtector, TP.nombre, PR.modeloCelular, PR.cantidad FROM protectores PR INNER JOIN tipoprotector TP ON TP.idTipoProtector = PR.tipo;
+      SELECT PR.idProtector, TP.nombre, PR.modeloCelular, PR.cantidad FROM protectores PR INNER JOIN tipoprotector TP ON TP.idTipoProtector = PR.tipo;
     END IF;
     IF opcion = 'opc_mostrar_accesorio' THEN
-    	SELECT A.idAccesorio, TA.nombre, A.codigo, A.descripcion, A.cantidad FROM accesorios A INNER JOIN tipoaccesorio TA ON TA.idTipoAccesorio = A.tipo;
+      SELECT A.idAccesorio, TA.nombre, A.codigo, A.descripcion, A.cantidad FROM accesorios A INNER JOIN tipoaccesorio TA ON TA.idTipoAccesorio = A.tipo;
     END IF;
     IF opcion = 'opc_mostrar_envios' THEN
-    	SELECT M.numMovimiento, M.fechaEnvio, S.nombre, CONCAT(R.nombres,' ',R.apellidos),M.cantidadTotal FROM movimiento M 
+      SELECT M.numMovimiento, M.fechaEnvio, S.nombre, CONCAT(R.nombres,' ',R.apellidos),M.cantidadTotal FROM movimiento M 
 INNER JOIN sucursales S ON S.idSucursal = M.idSucursal
 INNER JOIN responsables R ON R.idResponsable = S.idResponsable;
     END IF;
@@ -109,17 +200,17 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_seleccion_productos`(IN `opcion` VARCHAR(200), IN `id` INT)
     NO SQL
 BEGIN
-	IF opcion = 'opc_seleccion_celular' THEN
-    	SELECT idProducto, modelo, imei, serie FROM celulares WHERE idCelular = id;
+  IF opcion = 'opc_seleccion_celular' THEN
+      SELECT idProducto, modelo, imei, serie FROM celulares WHERE idCelular = id;
     END IF;
     IF opcion = 'opc_seleccion_chip' THEN
-    	SELECT idProducto, icc, numero, descripcion FROM chips WHERE idChip = id;
+      SELECT idProducto, icc, numero, operadora FROM chips WHERE idChip = id;
     END IF;
     IF opcion = 'opc_seleccion_protector' THEN
-    	SELECT PR.idProducto, TP.nombre, PR.modeloCelular FROM protectores PR INNER JOIN tipoprotector TP ON TP.idTipoProtector = PR.tipo WHERE idProtector = id;
+      SELECT PR.idProducto, TP.nombre, PR.modeloCelular FROM protectores PR INNER JOIN tipoprotector TP ON TP.idTipoProtector = PR.tipo WHERE idProtector = id;
     END IF;  
     IF opcion = 'opc_seleccion_accesorio' THEN
-    	SELECT A.idProducto, CONCAT(TA.nombre,' - ',A.descripcion), A.codigo FROM accesorios A INNER JOIN tipoaccesorio TA ON TA.idTipoAccesorio = A.tipo WHERE idAccesorio = id;
+      SELECT A.idProducto, CONCAT(TA.nombre,' - ',A.descripcion), A.codigo FROM accesorios A INNER JOIN tipoaccesorio TA ON TA.idTipoAccesorio = A.tipo WHERE idAccesorio = id;
 
     END IF;
 END$$
@@ -135,20 +226,21 @@ DELIMITER ;
 CREATE TABLE IF NOT EXISTS `accesorios` (
   `idAccesorio` int(11) NOT NULL AUTO_INCREMENT,
   `idProducto` int(11) NOT NULL,
-  `tipo` varchar(30) NOT NULL,
+  `idTipoAccesorio` int(11) NOT NULL,
   `codigo` varchar(30) NOT NULL,
   `descripcion` varchar(65) DEFAULT NULL,
   `cantidad` int(11) NOT NULL,
   PRIMARY KEY (`idAccesorio`),
-  KEY `idProducto` (`idProducto`)
+  KEY `idProducto` (`idProducto`),
+  KEY `idTipoAccesorio` (`idTipoAccesorio`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcado de datos para la tabla `accesorios`
 --
 
-INSERT INTO `accesorios` (`idAccesorio`, `idProducto`, `tipo`, `codigo`, `descripcion`, `cantidad`) VALUES
-(1, 4, '1', 'ERW', 'SDFSDGFG', 10);
+INSERT INTO `accesorios` (`idAccesorio`, `idProducto`, `idTipoAccesorio`, `codigo`, `descripcion`, `cantidad`) VALUES
+(1, 6, 0, 'AUD001', 'AUDIFONOS BEATS', 15);
 
 -- --------------------------------------------------------
 
@@ -165,14 +257,17 @@ CREATE TABLE IF NOT EXISTS `celulares` (
   `modelo` varchar(65) NOT NULL,
   PRIMARY KEY (`idCelular`,`imei`),
   KEY `idProducto` (`idProducto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `celulares`
 --
 
 INSERT INTO `celulares` (`idCelular`, `idProducto`, `imei`, `serie`, `marca`, `modelo`) VALUES
-(1, 1, 'WER', 'QWERER', 'SANSUNG', 'SANSUNG J7');
+(1, 1, 'COD001', 'SER001', 'SAMSUMG', 'SAMSUMG GALAXY J2'),
+(2, 2, 'COD002', 'SER002', 'HUAWEI', 'HUAWEI P9 PLUS'),
+(3, 3, 'COD003', 'SER003', 'SONY', 'SONY XPERIA Z9'),
+(4, 4, 'COD004', 'SER004', 'SAMSUMG ', 'SAMSUMG GALAXY S5');
 
 -- --------------------------------------------------------
 
@@ -185,17 +280,17 @@ CREATE TABLE IF NOT EXISTS `chips` (
   `idProducto` int(11) NOT NULL,
   `icc` varchar(65) NOT NULL,
   `numero` varchar(65) NOT NULL,
-  `descripcion` text NOT NULL,
+  `operadora` varchar(65) NOT NULL,
   PRIMARY KEY (`idChip`,`icc`),
   KEY `idProducto` (`idProducto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcado de datos para la tabla `chips`
 --
 
-INSERT INTO `chips` (`idChip`, `idProducto`, `icc`, `numero`, `descripcion`) VALUES
-(3, 2, 'WE', '32432545', 'MOVISTAR');
+INSERT INTO `chips` (`idChip`, `idProducto`, `icc`, `numero`, `operadora`) VALUES
+(1, 5, 'ICC001', '938254410', 'MOVISTAR');
 
 -- --------------------------------------------------------
 
@@ -211,8 +306,7 @@ CREATE TABLE IF NOT EXISTS `detallemovimiento` (
   PRIMARY KEY (`numDetalle`),
   KEY `numMovimiento` (`numMovimiento`),
   KEY `idProducto` (`idProducto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -245,8 +339,7 @@ CREATE TABLE IF NOT EXISTS `movimiento` (
   `activo` bit(1) NOT NULL,
   PRIMARY KEY (`numMovimiento`),
   KEY `idSucursal` (`idSucursal`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -264,8 +357,19 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`idProducto`),
   KEY `idSucursal` (`idSucursal`),
   KEY `idTipoProducto` (`idTipoProducto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`idProducto`, `idTipoProducto`, `idSucursal`, `estado`, `fechaIngreso`, `activo`) VALUES
+(1, 1, 1, 'A', '2016-06-19', b'1'),
+(2, 1, 1, 'A', '2016-06-19', b'1'),
+(3, 1, 1, 'A', '2016-06-19', b'1'),
+(4, 1, 1, 'A', '2016-06-19', b'1'),
+(5, 2, 1, 'A', '2016-06-19', b'1'),
+(6, 3, 1, 'A', '2016-06-19', b'1');
 
 -- --------------------------------------------------------
 
@@ -276,19 +380,13 @@ CREATE TABLE IF NOT EXISTS `productos` (
 CREATE TABLE IF NOT EXISTS `protectores` (
   `idProtector` int(11) NOT NULL AUTO_INCREMENT,
   `idProducto` int(11) NOT NULL,
-  `tipo` varchar(30) NOT NULL,
+  `idTipoProtector` int(11) NOT NULL,
   `modeloCelular` varchar(65) NOT NULL,
   `cantidad` int(11) NOT NULL,
   PRIMARY KEY (`idProtector`),
-  KEY `idProducto` (`idProducto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Volcado de datos para la tabla `protectores`
---
-
-INSERT INTO `protectores` (`idProtector`, `idProducto`, `tipo`, `modeloCelular`, `cantidad`) VALUES
-(1, 3, '1', 'SAMSUMG', 20);
+  KEY `idProducto` (`idProducto`),
+  KEY `idTipoProtector` (`idTipoProtector`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -521,7 +619,3 @@ ALTER TABLE `sucursales`
 --
 ALTER TABLE `venta`
   ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`idSucursal`) REFERENCES `sucursales` (`idSucursal`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

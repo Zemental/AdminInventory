@@ -1,4 +1,5 @@
 <?php
+    include('../scripts/funciones.php');
     session_start();
     if(!isset($_SESSION['usuario']))
     {
@@ -7,13 +8,14 @@
     else
     {
         date_default_timezone_set('America/Lima');
+        $tipos = getTipoProtectores();
     }
 ?>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Envíos | SGI Admin</title>
+    <title>Protectores | SGI Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- Open Sans font from Google CDN -->
@@ -36,6 +38,7 @@
 <body class="theme-default main-menu-animated">
 
 <script>var init = [];</script>
+
 
 <div id="main-wrapper">
     <div id="main-navbar" class="navbar navbar-inverse" role="navigation">
@@ -114,7 +117,7 @@
                         <li>
                             <a tabindex="-1" href="chips.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Chips</span></a>
                         </li>
-                        <li>
+                        <li class="active"> 
                             <a tabindex="-1" href="protectores.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Protectores</span></a>
                         </li>
                         <li>
@@ -148,8 +151,8 @@
                 <li class="mm-dropdown">
                     <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestionar Movimientos</span></a>
                     <ul>
-                        <li class="active">
-                            <a tabindex="-1" href="envios.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Envíos a Sucursales</span></a>
+                        <li>
+                            <a tabindex="-1" href="envioSucursales.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Envíos a Sucursales</span></a>
                         </li>
                         <li>
                             <a tabindex="-1" href="ventasRealizadas.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Ventas Realizadas</span></a>
@@ -183,33 +186,124 @@
     <div id="content-wrapper">
         <div class="page-header">
             <div class="row">
-                <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-mobile page-header-icon"></i>&nbsp;&nbsp;Envios Realizados</h1>
+                <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-mobile page-header-icon"></i>&nbsp;&nbsp;Inventario de Protectores</h1>
             </div>
-        </div>       
+        </div>
+
+        <script>
+            init.push(function () {
+                $('#tablaProtectores').dataTable();
+                $('#tablaProtectores_wrapper .table-caption').text('Listado General de Protectores');
+                $('#tablaProtectores_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
+                mostrarProtectores();
+            });
+        </script>
+        
+                <!-- Javascript -->
+                <script>
+                    function movieFormatResult(movie) {
+                        var markup = "<table class='movie-result'><tr>";
+                        if (movie.posters !== undefined && movie.posters.thumbnail !== undefined) {
+                            markup += "<td class='movie-image' style='vertical-align: top'><img src='" + movie.posters.thumbnail + "' style='max-width: 60px; display: inline-block; margin-right: 10px; margin-left: 10px;' /></td>";
+                        }
+                        markup += "<td class='movie-info'><div class='movie-title' style='font-weight: 600; color: #000; margin-bottom: 6px;'>" + movie.title + "</div>";
+                        if (movie.critics_consensus !== undefined) {
+                            markup += "<div class='movie-synopsis'>" + movie.critics_consensus + "</div>";
+                        }
+                        else if (movie.synopsis !== undefined) {
+                            markup += "<div class='movie-synopsis'>" + movie.synopsis + "</div>";
+                        }
+                        markup += "</td></tr></table>";
+                        return markup;
+                    }
+
+                    function movieFormatSelection(movie) {
+                        return movie.title;
+                    }
+
+                    init.push(function () {
+                        // Single select
+                        $("#modeloCelular").select2({
+                            allowClear: true,
+                            placeholder: "Buscar modelo celular..."
+                        });
+
+                        // Multiselect
+                        $("#jquery-select2-multiple").select2({
+                            placeholder: "Select a State"
+                        });
+
+                        // External source
+                        $("#jquery-select2-external").select2({
+                            placeholder: "Search for a movie",
+                            minimumInputLength: 1,
+                            ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+                                url: "http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+                                dataType: 'jsonp',
+                                data: function (term, page) {
+                                    return {
+                                        q: term, // search term
+                                        page_limit: 10,
+                                        apikey: "ju6z9mjyajq2djue3gbvv26t" // please do not use so this example keeps working
+                                    };
+                                },
+                                results: function (data, page) { // parse the results into the format expected by Select2.
+                                    // since we are using custom formatting functions we do not need to alter remote JSON data
+                                    return {results: data.movies};
+                                }
+                            },
+                            initSelection: function(element, callback) {
+                                // the input tag has a value attribute preloaded that points to a preselected movie's id
+                                // this function resolves that id attribute to an object that select2 can render
+                                // using its formatResult renderer - that way the movie name is shown preselected
+                                var id=$(element).val();
+                                if (id!=="") {
+                                    $.ajax("http://api.rottentomatoes.com/api/public/v1.0/movies/"+id+".json", {
+                                        data: {
+                                            apikey: "ju6z9mjyajq2djue3gbvv26t"
+                                        },
+                                        dataType: "jsonp"
+                                    }).done(function(data) { callback(data); });
+                                }
+                            },
+                            formatResult: movieFormatResult, // omitted for brevity, see the source of this page
+                            formatSelection: movieFormatSelection,  // omitted for brevity, see the source of this page
+                            dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
+                            escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
+                        });
+
+                        // Disabled state
+                        $(".select2-disabled-examples select").select2({ placeholder: 'Select option...' });
+
+                        // Colors
+                        $(".select2-colors-examples select").select2();
+                    });
+                </script>
+                <!-- / Javascript -->
               
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">                          
-                    <a href="envioSucursales.php" class="btn btn-primary btn-labeled" style="width:15%;">
+                    <a href="#" id="nuevoProtector" class="btn btn-primary btn-labeled" style="width:15%;">
                         <span class="btn-label icon fa fa-plus"></span>
-                            Nuevo Envio
+                            Nuevo Protector
                     </a>                           
                 </span>
             </div>
             <div class="panel-body">
                 <div class="table-primary">
-                    <table class="table table-striped table-bordered" id="tablaEnvios">
+                    <table class="table table-striped table-bordered" id="tablaProtectores">
                         <thead>
                             <tr>
-                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">N° DE MOVIMIENTO</th>
-                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">FECHA DE ENVIO</th>
-                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">SUCURSAL</th>
-                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">RESPONSABLE</th>
-                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">CANTIDAD</th>
-                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">OPERACIONES</th>
+                                <th style="width:3%;">N°</th>
+                                <th style="width:10%;">TIPO</th>
+                                <th style="width:15%;">MODELO</th>                                  
+                                <th style="width:5%;">CANTIDAD</th>                             
+                                <th style="width:7%;">UBICACION</th>
+                                <th style="width:8%;">OPERACIONES</th>
                             </tr>
                         </thead>
-                        <tbody id="cuerpoEnvios">
+                        <tbody id="cuerpoProtectores">
 
                         </tbody>
                     </table>
@@ -217,7 +311,7 @@
             </div>
         </div>
     </div>
-     <div class="modal fade" id="modalCelular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal fade" id="modalProtector" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" >
                 <div class="modal-content">
                     <div class="modal-header">
@@ -225,43 +319,47 @@
                         <h4 class="modal-title text-center" id="cabeceraRegistro"><b></b></h4>
                     </div>
                     <div class="modal-body">
-                        <form action=""  method="POST" class="panel form-horizontal" id="formCelular">                            
-                            <div class="panel-body">
+                        <form action=""  method="POST" class="panel form-horizontal" id="formProtector">                            
+                            <div class="panel-body select2-disabled-examples select2-colors-examples">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
-                                            <label class="control-label">Código imie*</label>
-                                            <input type="text" id="imei" name="imei" class="form-control" autocomplete="off" placeholder="Código imei" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <label class="control-label">Tipo protector*</label>
+                                            <select id="tipo" name="tipo" class="form-control">
+                                                 <option value="">Seleccione...</option>
+                                                  <?php foreach ($tipos as $tipo): ?>
+                                                      <option value="<?= $tipo[0] ?>"><?= $tipo[1] ?></option>
+                                                  <?php endforeach ?> 
+                                            </select>
                                         </div>
                                     </div><!-- col-sm-6 -->
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
-                                            <label class="control-label">Nro. Serie*</label>
-                                            <input type="text" id="serie" name="serie" class="form-control" autocomplete="off" placeholder="Nro. Serie" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <label class="control-label">Modelo celular*</label>
+                                            <select id="modeloCelular" name="modeloCelular" class="form-control">
+                                                 <option></option>
+                                                  <?php foreach ($tipos as $tipo): ?>
+                                                      <option value="<?= $tipo[0] ?>"><?= $tipo[1] ?></option>
+                                                  <?php endforeach ?> 
+                                            </select>
                                         </div>
                                     </div><!-- col-sm-6 -->
                                 </div><!-- row -->
                                 
-                                <div class="row">
+                                <div class="row">                                    
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
-                                            <label class="control-label">Marca*</label>
-                                            <input type="text" id="marca" name="marca" class="form-control" placeholder="Ejm: SAMSUMG" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <label class="control-label">Cantidad*</label>
+                                            <input type="number" id="cantidad" name="cantidad" class="form-control" autocomplete="off" placeholder="CANTIDAD">
                                         </div>
-                                    </div><!-- col-sm-6 -->
-                                    <div class="col-sm-6">
-                                        <div class="form-group no-margin-hr">
-                                            <label class="control-label">Modelo*</label>
-                                            <input type="text" id="modelo" name="modelo" class="form-control" placeholder="Ejm: SAMSUMG GALAXY J2" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div><!-- col-sm-6 -->
+                                    </div><!-- col-sm-6 -->                                  
                                 </div><!-- row -->
                             </div>
                             <input  type="hidden" id="operacion" name="operacion" value="Registrar"/>
                             <input  type="hidden" id="codigo" name="codigo"/>
                             <div class="panel-footer text-right">
-                                <button class="btn btn-primary" id="registrarCelular">Guardar</button>
-                                <button class="btn btn-default" data-dismiss="modal" id="cancelarCelular">Cancelar</button>
+                                <button class="btn btn-primary" id="registrarProtector">Guardar</button>
+                                <button class="btn btn-default" data-dismiss="modal" id="cancelarProtector">Cancelar</button>
                             </div>
                         </form>
                     </div>
@@ -280,16 +378,15 @@
 <!-- Pixel Admin's javascripts -->
 <script src="../assets/javascripts/bootstrap.min.js"></script>
 <script src="../assets/javascripts/pixel-admin.min.js"></script>
-<script src="../assets/javascripts/envioSucursales.js"></script>
+<script src="../assets/javascripts/protector.js"></script>
 <script src="../assets/javascripts/jquery.noty.js"></script>
+<script src="../assets/javascripts/jquery.mockjax.js"></script>
+<script src="../assets/javascripts/demo-mock.js"></script>
 
 
 <script type="text/javascript">
     init.push(function () {
-        $('#tablaEnvios').dataTable();
-        $('#tablaEnvios_wrapper .table-caption').text('Listado General de Envios Realizados');
-        $('#tablaEnvioss_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
-        mostrarEnvios();
+        // Javascript code here
     });
     window.PixelAdmin.start(init);
 </script>
