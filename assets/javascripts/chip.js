@@ -151,7 +151,11 @@ function editar(codigo){
 }
 
 function eliminar(codigo, estado){
-    var respuesta = confirm('¿Desea eliminar el equipo celular?');
+    if (estado == 0){
+        var respuesta = confirm('¿Desea ELIMINAR el chip?');
+    } else {
+        var respuesta = confirm('¿Desea ACTIVAR el chip?');
+    }
     if (respuesta == true) {
         //alert('Acepto');
         var opcion = 'eliminar_chip';
@@ -159,8 +163,7 @@ function eliminar(codigo, estado){
             type: 'POST',
             data:'opcion='+opcion+'&codigo='+codigo+'&estado='+estado,
             url: '../controllers/controlChip/chipController.php',
-            success: function(data){
-                alert('Chip fue dado de baja');
+            success: function(data){                
                 mostrarChips();
             },
             error: function(data){

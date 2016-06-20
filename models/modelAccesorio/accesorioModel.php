@@ -1,6 +1,6 @@
 <?php
 include_once '../../models/conexionModel.php';
-class ChipModel {
+class AccesorioModel {
     public $param = array();
     function __construct() {
         $this->conexion = ConexionModel::getConexion();
@@ -14,58 +14,61 @@ class ChipModel {
     function gestionar($param) {
         $this->param = $param;
         switch ($this->param['opcion']) {
-            case 'mostrar_chips':
-                echo $this->mostrarChips();
+            case 'mostrar_accesorios':
+                echo $this->mostrarAccesorios();
                 break;            
-            case 'registrar_chip':
-                echo $this->registrarChip();
+            case 'registrar_accesorio':
+                echo $this->registrarAccesorio();
                 break;           
             case 'recuperar_datos':
                 echo $this->recuperarDatos();
                 break;
-            case 'editar_chip':
-                echo $this->editarChip();
+            case 'editar_accesorio':
+                echo $this->editarAccesorio();
                 break;   
-            case 'eliminar_chip':
-                echo $this->eliminarChip();
+            case 'eliminar_accesorio':
+                echo $this->eliminarAccesorio();
                 break;         
             case "get":break;
         }
     }
 
    
-    function prepararConsultaGestionarChips($opcion) {
-        $consultaSql = "call sp_control_chip(";
+    function prepararConsultaGestionarAccesorios($opcion) {
+        $consultaSql = "call sp_control_accesorio(";
         $consultaSql.="'".$opcion . "',";        
         $consultaSql.="'".$this->param['codigo'] . "',";
-        $consultaSql.="'".$this->param['icc'] . "',";
-        $consultaSql.="'".$this->param['numero'] . "',";
-        $consultaSql.="'".$this->param['operadora'] . "',";             
+        $consultaSql.="'".$this->param['tipo'] . "',";
+        $consultaSql.="'".$this->param['codigoAccesorio'] . "',";
+        $consultaSql.="'".$this->param['descripcion'] . "',";   
+        $consultaSql.="'".$this->param['cantidad'] . "',";      
         $consultaSql.="'".$this->param['estado'] . "')";
         //echo $consultaSql;
         $this->result = mysqli_query($this->conexion,$consultaSql);
     }    
 
-    function mostrarChips() {
-        $this->prepararConsultaGestionarChips('opc_mostrar_chips');
+    function mostrarAccesorios() {
+        $this->prepararConsultaGestionarAccesorios('opc_mostrar_accesorios');
         $this->cerrarAbrir();     
         $item = 0;  
         while($row = mysqli_fetch_row($this->result)){            
             $item++;
-            if ($row[7] == 1){
+            if ($row[8] == 1){
                 echo '<tr>
                     <td style="text-align:center; font-size: 12px; height: 10px; width: 3%; background:#CCFF99;">'.$item.'</td>';
-                echo '<td style="font-size: 12px; height: 10px; width: 12%;">'.utf8_encode($row[2]).'</td>
-                    <td style="font-size: 12px; height: 10px; width: 13%;">'.utf8_encode($row[3]).'</td>
-                    <td style="font-size: 12px; height: 10px; width: 10%;">'.utf8_encode($row[4]).'</td>                                     
-                    <td style="font-size: 12px; height: 10px; width: 7%;">'.utf8_encode($row[5]).'</td>';      
+                echo '<td style="font-size: 12px; height: 10px; width: 10%;">'.utf8_encode($row[2]).'</td>
+                    <td style="font-size: 12px; height: 10px; width: 8%;">'.utf8_encode($row[3]).'</td>
+                    <td style="font-size: 12px; height: 10px; width: 15%;">'.utf8_encode($row[4]).'</td>  
+                    <td style="font-size: 12px; height: 10px; width: 5%;">'.utf8_encode($row[5]).'</td>                  
+                    <td style="font-size: 12px; height: 10px; width: 7%;">'.utf8_encode($row[6]).'</td>';      
             } else {
                 echo '<tr>
                     <td style="text-align:center; font-size: 12px; height: 10px; width: 3%; background:#FF9999;">'.$item.'</td>';
-                echo '<td style="font-size: 12px; height: 10px; width: 12%;">'.utf8_encode($row[2]).'</td>
-                    <td style="font-size: 12px; height: 10px; width: 13%;">'.utf8_encode($row[3]).'</td>
-                    <td style="font-size: 12px; height: 10px; width: 10%;">'.utf8_encode($row[4]).'</td>                               
-                    <td style="font-size: 12px; height: 10px; width: 7%;">'.utf8_encode($row[5]).'</td>';  
+                echo '<td style="font-size: 12px; height: 10px; width: 10%;">'.utf8_encode($row[2]).'</td>
+                    <td style="font-size: 12px; height: 10px; width: 8%;">'.utf8_encode($row[3]).'</td>
+                    <td style="font-size: 12px; height: 10px; width: 15%;">'.utf8_encode($row[4]).'</td>  
+                    <td style="font-size: 12px; height: 10px; width: 5%;">'.utf8_encode($row[5]).'</td>                  
+                    <td style="font-size: 12px; height: 10px; width: 7%;">'.utf8_encode($row[6]).'</td>';  
             }
             
             /*if ($row[7] == 'A') {
@@ -101,7 +104,7 @@ class ChipModel {
                                 <i class="ace-icon fa fa-pencil bigger-120" onclick="editar('.$row[0].');"></i>
                             </span>
                         </a>';
-            if ($row[7] == 1){
+            if ($row[8] == 1){
                 echo    '<a href="#" style="margin-right:10px;" class="tooltip-error" data-rel="tooltip" title="Eliminar">
                             <span class="red">
                                 <i class="ace-icon fa fa-trash-o bigger-120" onclick="eliminar('.$row[0].',0);"></i>
@@ -153,27 +156,27 @@ class ChipModel {
         }
     }
 
-    function registrarChip() {
-        $this->prepararConsultaGestionarChips('opc_registrar_chip');
+    function registrarAccesorio() {
+        $this->prepararConsultaGestionarAccesorios('opc_registrar_accesorio');
         $this->cerrarAbrir();
         echo 1;
     }    
 
     function recuperarDatos() {
-        $this->prepararConsultaGestionarChips('opc_datos_chip');
+        $this->prepararConsultaGestionarAccesorios('opc_datos_accesorio');
         $row = mysqli_fetch_row($this->result);
         echo json_encode($row);
     }
     
 
-    function editarChip() {
-        $this->prepararConsultaGestionarChips('opc_editar_chip');
+    function editarAccesorio() {
+        $this->prepararConsultaGestionarAccesorios('opc_editar_accesorio');
         $this->cerrarAbrir();
         echo 1;
     }
 
-    function eliminarChip() {
-        $this->prepararConsultaGestionarChips('opc_eliminar_chip');
+    function eliminarAccesorio() {
+        $this->prepararConsultaGestionarAccesorios('opc_eliminar_accesorio');
         $this->cerrarAbrir();
         echo 1;
     }

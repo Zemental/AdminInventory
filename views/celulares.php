@@ -215,7 +215,7 @@
                                 <th style="width:13%;">SERIE</th>
                                 <th style="width:10%;">MARCA</th>
                                 <th style="width:15%;">MODELO</th>
-                                <th class="text-center" style="width:7%;">UBICACION</th>
+                                <th style="width:7%;">UBICACION</th>
                                 <th style="width:8%;">OPERACIONES</th>
                             </tr>
                         </thead>
