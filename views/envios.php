@@ -57,7 +57,7 @@
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="home.php">Principal</a>
-                        </li>                       
+                        </li>                        
                     </ul> <!-- / .navbar-nav -->
 
                     <div class="right clearfix">
@@ -89,11 +89,7 @@
 
     <div id="main-menu" role="navigation">
         <div id="main-menu-inner">
-            <div class="menu-content top" id="menu-content-demo">
-                <!-- Menu custom content demo
-                     CSS:        styles/pixel-admin-less/demo.less or styles/pixel-admin-scss/_demo.scss
-                     Javascript: html/assets/demo/demo.js
-                 -->
+            <div class="menu-content top" id="menu-content-demo">                
                 <div>
                     <div class="text-bg"><span class="text-slim">Bienvenida,</span> <span class="text-semibold"><?= $_SESSION['nombres'] ?></span></div>
 
@@ -105,14 +101,14 @@
                     <a href="#" class="close">&times;</a>
                 </div>
             </div>
-            <ul class="navigation">
+             <ul class="navigation">
                 <li>
                     <a href="home.php"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Principal</span></a>
                 </li>
                 <li class="mm-dropdown">
                     <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestionar Inventario</span></a>
                     <ul>
-                        <li >
+                        <li class="active">
                             <a tabindex="-1" href="celulares.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Celulares</span></a>
                         </li>
                         <li>
@@ -148,8 +144,7 @@
                             <a tabindex="-1" href="asmoviles.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">AS MOVILES</span></a>
                         </li>
                     </ul>
-                </li>               
-                
+                </li>      
                 <li class="mm-dropdown">
                     <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestionar Movimientos</span></a>
                     <ul>
@@ -186,93 +181,189 @@
 
 
     <div id="content-wrapper">
+        <div class="page-header">
+            <div class="row">
+                <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-mobile page-header-icon"></i>&nbsp;&nbsp;Envios Realizados</h1>
+            </div>
+        </div>       
+              
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">                          
+                    <a href="envioSucursales.php" class="btn btn-primary btn-labeled" style="width:15%;">
+                        <span class="btn-label icon fa fa-plus"></span>
+                            Nuevo Envio
+                    </a>                           
+                </span>
+            </div>
+            <div class="panel-body">
+                <div class="table-primary">
+                    <table class="table table-striped table-bordered" id="tablaEnvios">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">N° DE MOVIMIENTO</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">FECHA DE ENVIO</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">SUCURSAL</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">RESPONSABLE</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">CANTIDAD</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">OPERACIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoEnvios">
 
-        <div class="row">
-            <div class="col-md-12" style="margin-top: 10px;">
-                <div class="col-md-3">
-                    <div class="view">
-                        <img class="img-responsive" src="../assets/images/clientes.jpg">
-                        <div class="mask">
-                            <p style="margin-top: 30px;">CLIENTES</p>
-                            <a href="#" class="info">INGRESAR</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="view">
-                        <img class="img-responsive" src="../assets/images/pacientes.jpg">
-                        <div class="mask">
-                            <p style="margin-top: 30px;">PACIENTES</p>
-                            <a href="#" class="info">INGRESAR</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="view">
-                        <img class="img-responsive" src="../assets/images/atenciones.jpg">
-                        <div class="mask">
-                            <p style="margin-top: 30px;">ATENCIONES</p>
-                            <a href="#" class="info">INGRESAR</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="view">
-                        <img class="img-responsive" src="../assets/images/facturacion.png">
-                        <div class="mask">
-                            <p style="margin-top: 30px;">FACTURACIÓN</p>
-                            <a href="#" class="info">INGRESAR</a>
-                        </div>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="col-md-12" style="margin-top: 20px;">                
-                <div class="col-md-3">
-                    <div class="view">
-                        <img class="img-responsive" src="../assets/images/almacen.jpg">
-                        <div class="mask">
-                            <p style="margin-top: 30px;">ALMACÉN</p>
-                            <a href="#" class="info">INGRESAR</a>
-                        </div>
+        </div>
+    </div>
+     <div class="modal fade" id="modalCelular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-center" id="cabeceraRegistro"><b></b></h4>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="view">
-                        <img class="img-responsive" src="../assets/images/reportes.png">
-                        <div class="mask">
-                            <p style="margin-top: 30px;">REPORTES</p>
-                            <a href="#" class="info">INGRESAR</a>
-                        </div>
+                    <div class="modal-body">
+                        <form action=""  method="POST" class="panel form-horizontal" id="formCelular">                            
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">Código imie*</label>
+                                            <input type="text" id="imei" name="imei" class="form-control" autocomplete="off" placeholder="Código imei" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div><!-- col-sm-6 -->
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">Nro. Serie*</label>
+                                            <input type="text" id="serie" name="serie" class="form-control" autocomplete="off" placeholder="Nro. Serie" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div><!-- col-sm-6 -->
+                                </div><!-- row -->
+                                
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">Marca*</label>
+                                            <input type="text" id="marca" name="marca" class="form-control" placeholder="Ejm: SAMSUMG" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div><!-- col-sm-6 -->
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">Modelo*</label>
+                                            <input type="text" id="modelo" name="modelo" class="form-control" placeholder="Ejm: SAMSUMG GALAXY J2" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div><!-- col-sm-6 -->
+                                </div><!-- row -->
+                            </div>
+                            <input  type="hidden" id="operacion" name="operacion" value="Registrar"/>
+                            <input  type="hidden" id="codigo" name="codigo"/>
+                            <div class="panel-footer text-right">
+                                <button class="btn btn-primary" id="registrarCelular">Guardar</button>
+                                <button class="btn btn-default" data-dismiss="modal" id="cancelarCelular">Cancelar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
 
-    </div>
     <div id="main-menu-bg"></div>
 </div> <!-- / #main-wrapper -->
 
 <!-- Get jQuery from Google CDN -->
 <!--[if !IE]> -->
 <script type="text/javascript"> window.jQuery || document.write('<script src="../assets/javascripts/jquery.min.js">'+"<"+"/script>"); </script>
-<!-- <![endif]-->
-<!--[if lte IE 9]>
-<script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
-<![endif]-->
 
 
 <!-- Pixel Admin's javascripts -->
 <script src="../assets/javascripts/bootstrap.min.js"></script>
 <script src="../assets/javascripts/pixel-admin.min.js"></script>
+<script src="../assets/javascripts/envioSucursales.js"></script>
+<script src="../assets/javascripts/jquery.noty.js"></script>
+
 
 <script type="text/javascript">
     init.push(function () {
-        // Javascript code here
+        $('#tablaEnvios').dataTable();
+        $('#tablaEnvios_wrapper .table-caption').text('Listado General de Envios Realizados');
+        $('#tablaEnvioss_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
+        mostrarEnvios();
     });
     window.PixelAdmin.start(init);
 </script>
+ <script type="text/javascript">
 
+        function solonumeros(e) {
+            key = e.keyCode || e.which;
+            teclado = String.fromCharCode(key);
+            numeros = "0123456789";
+            especiales = "8-37-38-46"
+            teclado_especial=false;
+
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    teclado_especial= true;
+                }
+            }
+
+            if (numeros.indexOf(teclado)==-1 && !teclado_especial) {
+                return false;
+            }
+        }
+
+        function telefonovalidation(e) {
+            var unicode = e.charCode ? e.charCode : e.keyCode
+            if (unicode != 45 && unicode != 32) {
+                if (unicode < 48 || unicode > 57) //if not a number
+                { return false } //disable key press                
+            }
+        }
+
+        function soloLetras(e){
+            key = e.keyCode || e.which;
+            tecla = String.fromCharCode(key).toLowerCase();
+            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+            especiales = "8-37-39-46";
+
+            tecla_especial = false
+            for(var i in especiales){
+                if(key == especiales[i]){
+                    tecla_especial = true;
+                    break;
+                }
+            }
+
+            if(letras.indexOf(tecla)==-1 && !tecla_especial){
+                return false;
+            }
+        }
+
+        function validarEmail(field) {
+            usuario = field.value.substring(0, field.value.indexOf("@"));
+            dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
+
+            if ((usuario.length >=1) &&
+                (dominio.length >=3) &&
+                (usuario.search("@")==-1) &&
+                (dominio.search("@")==-1) &&
+                (usuario.search(" ")==-1) &&
+                (dominio.search(" ")==-1) &&
+                (dominio.search(".")!=-1) &&
+                (dominio.indexOf(".") >=1)&&
+                (dominio.lastIndexOf(".") < dominio.length - 1)) {
+                document.getElementById("msgemail").innerHTML="E-mail válido";
+                alert("E-mail valido");
+            }
+            else{
+                document.getElementById("msgemail").innerHTML="<font color='red'>E-mail inválido </font>";
+                alert("E-mail invalido");
+            }
+        }
+       
+    </script>
 </body>
 
-<!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 May 2016 05:21:23 GMT -->
+
 </html>
