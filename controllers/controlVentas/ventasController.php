@@ -3,37 +3,59 @@ session_start();
 include_once '../../models/modelVentas/ventasModel.php';
 
 $param = array();
-$param['opcion'] = '';
-$param['codigo'] = '';
-$param['imei'] = '';
-$param['serie'] = '';
-$param['marca'] = '';
-$param['modelo'] = '';
+$param['param_opcion'] = '';  
+$param['param_id'] = '';
+$param['param_sucursal'] = '';
+$param['param_tipodoc'] = '';
+$param['param_numerodoc'] = '';
+$param['param_total'] = '';
+$param['param_productos'] = '';
+$param['param_cantidad'] = '';
+$param['param_precio'] = '';
+$param['param_importe'] = '';
 
-if (isset($_POST['opcion'])) {
-    $param['opcion'] = $_POST['opcion'];
+if (isset($_POST['param_opcion'])) {
+    $param['param_opcion'] = $_POST['param_opcion'];
 }
 
-if (isset($_POST['codigo'])) {
-    $param['codigo'] = $_POST['codigo'];
+if (isset($_POST['param_id'])) {
+    $param['param_id'] = $_POST['param_id'];
 }
 
-if (isset($_POST['imei'])) {
-    $param['imei'] = $_POST['imei'];
+
+if (isset($_POST['param_sucursal'])) {
+    $param['param_sucursal'] = $_POST['param_sucursal'];
 }
 
-if (isset($_POST['serie'])) {
-    $param['serie'] = $_POST['serie'];
+if (isset($_POST['param_tipodoc'])) {
+    $param['param_tipodoc'] = $_POST['param_tipodoc'];
 }
 
-if (isset($_POST['marca'])) {
-    $param['marca'] = $_POST['marca'];
+if (isset($_POST['param_numerodoc'])) {
+    $param['param_numerodoc'] = $_POST['param_numerodoc'];
 }
 
-if (isset($_POST['modelo'])) {
-    $param['modelo'] = $_POST['modelo'];
+if (isset($_POST['param_total'])) {
+    $param['param_total'] = $_POST['param_total'];
 }
 
-$Celular = new CelularModel();
-echo $Celular->gestionar($param);
+if (isset($_POST['param_productos'])) {
+    $param['param_productos'] = explode(",",$_POST['param_productos']);
+}
+
+if (isset($_POST['param_cantidad'])) {
+    $param['param_cantidad'] = explode(",",$_POST['param_cantidad']);
+}
+
+if (isset($_POST['param_precio'])) {
+    $param['param_precio'] = explode(",",$_POST['param_precio']);
+}
+
+if (isset($_POST['param_importe'])) {
+    $param['param_importe'] = explode(",",$_POST['param_importe']);
+}
+
+
+$Ventas = new VentasModel();
+echo $Ventas->gestionar($param);
 

@@ -152,7 +152,7 @@
                             <a tabindex="-1" href="envios.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Envíos a Sucursales</span></a>
                         </li>
                         <li>
-                            <a tabindex="-1" href="ventasRealizadas.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Ventas Realizadas</span></a>
+                            <a tabindex="-1" href="ventas.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Ventas Realizadas</span></a>
                         </li>                        
                     </ul>
                 </li>         
@@ -186,98 +186,341 @@
                 <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-mobile page-header-icon"></i>&nbsp;&nbsp;Inventario de Celulares</h1>
             </div>
         </div>
-
-        <script>
-            init.push(function () {
-                $('#tablaCelulares').dataTable();
-                $('#tablaCelulares_wrapper .table-caption').text('Listado General de Celulares');
-                $('#tablaCelulares_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
-                mostrarCelulares();
-            });
-        </script>
-              
+   
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">                          
-                    <a href="#" id="nuevoCelular" class="btn btn-primary btn-labeled" style="width:15%;">
-                        <span class="btn-label icon fa fa-plus"></span>
-                            Nuevo Celular
-                    </a>                           
-                </span>
-            </div>
-            <div class="panel-body">
-                <div class="table-primary">
-                    <table class="table table-striped table-bordered" id="tablaCelulares">
-                        <thead>
-                            <tr>
-                                <th style="width:3%;">N°</th>
-                                <th style="width:12%;">IMEI</th>
-                                <th style="width:13%;">SERIE</th>
-                                <th style="width:10%;">MARCA</th>
-                                <th style="width:15%;">MODELO</th>
-                                <th class="text-center" style="width:7%;">UBICACION</th>
-                                <th style="width:8%;">OPERACIONES</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cuerpoCelulares">
+                <div class="row">
+                    <div class="form-group">                                                              
+                        <div class="col-md-3 col-md-offset-1">                                     
+                            <label for="">TIPO DOCUMENTO</label>                        
+                            <select class="form-control form-group-margin" id="param_documento" name="param_documento" >
+                                <option value="" disabled selected style="display: none;">Seleccione Documento</option>
+                                <option value="B"> BOLETA</option>';
+                                <option value="F"> FACTURA</option>';
+                            </select> 
+                        </div> 
+                        <div class="col-md-3 col-md-offset-1">                                     
+                            <label for="">NUMERO</label>
+                            <div class="input-group">
+                                <input class="form-control col-md-12 " type="text" name="param_numeroDoc" id="param_numeroDoc" placeholder="N° DOCUMENTO" />                                           
+                            </div>  
+                        </div>
+                        <div class="col-md-3">                                     
+                            <label for="">Sucursal</label>                        
+                            <select class="form-control form-group-margin" id="sucursal">
+                                
+                            </select> 
+                        </div>                                           
+                    </div>   
+                    <div class="form-group">    
+                        <!-- / CELULARES -->                                                                              
+                        <div class="col-md-3 col-md-offset-1">                                     
+                            <label for="">Celulares</label>                        
+                             <div class="input-group">
+                                <input type="text" class="form-control" id="param_celulares" name="param_celulares" placeholder="Buscar Celulares">
+                                <span class="input-group-btn">
+                                    <button class="btn" type="button" id="buscarCelulares"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div> <!-- / .input-group -->
+                        </div>
+                        <div class="col-md-2">                                     
+                            <label for="">IMEI</label>
+                            <div class="input-group">
+                                <input disabled class="form-control col-md-12 " type="text" name="param_imei" id="param_imei"/>                                           
+                            </div>                                                                        
+                        </div>
+                        <div class="col-md-2">                                     
+                            <label for="">SERIE</label>
+                            <div class="input-group">
+                                <input disabled class="form-control col-md-12 " type="text" name="param_serie" id="param_serie">                            
+                            </div>                                                                        
+                        </div>
+                        <div class="col-md-2">                                     
+                            <label for="">P. UNITARIO</label>
+                            <div class="input-group col-md-7">
+                                <input disabled class="form-control col-md-6" type="text" name="param_precioCelular" id="param_precioCelular" placeholder="0.00">                            
+                            </div>                                                                        
+                        </div>                        
+                        <input class="form-control col-md-12 " type="hidden" name="param_codigocelular" id="param_codigocelular">
+                        <div class="col-md-1">                                     
+                            <label for="">.</label>
+                            <div class="input-group">
+                                <button disabled type="button" class="btn btn-success btn-md ace-icon fa fa-plus" id="addRowCelular">
+                                </button>                                           
+                            </div>                                                                        
+                        </div>                      
+                    </div> 
+                    <!-- / CHIPS -->    
+                    <div class="form-group">                                                              
+                        <div class="col-md-3 col-md-offset-1">                                     
+                            <label for="">CHIP</label>                        
+                             <div class="input-group">
+                                <input type="text" class="form-control" id="param_chip" name="param_chip" placeholder="Buscar Chip">
+                                <span class="input-group-btn">
+                                    <button class="btn" type="button" id="buscarChip"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div> <!-- / .input-group -->
+                        </div>
+                        <div class="col-md-2">                                     
+                            <label for="">ICC</label>
+                            <div class="input-group">
+                                <input disabled class="form-control col-md-12 " type="text" name="param_icc" id="param_icc"/>                                           
+                            </div>                                                                        
+                        </div>
+                        <div class="col-md-2">                                     
+                            <label for="">NUMERO</label>
+                            <div class="input-group">
+                                <input disabled class="form-control col-md-12 " type="text" name="param_numero" id="param_numero">                                           
+                            </div>                                                                        
+                        </div>
+                        <div class="col-md-2">                                     
+                            <label for="">P. UNITARIO</label>
+                            <div class="input-group col-md-7">
+                                <input disabled class="form-control col-md-6" type="text" name="param_precioChips" id="param_precioChips" placeholder="0.00">                            
+                            </div>                                                                        
+                        </div>
+                        <input class="form-control col-md-12 " type="hidden" name="param_codigoChip" id="param_codigoChip">
+                        <div class="col-md-1">                                     
+                            <label for="">.</label>
+                            <div class="input-group">
+                                <button disabled type="button" class="btn btn-success btn-md ace-icon fa fa-plus" id="addRowChips">
+                                </button>                                           
+                            </div>                                                                        
+                        </div>                        
+                    </div>   
+                    <!-- / PROTECCTORES -->    
+                    <div class="form-group">                                                              
+                        <div class="col-md-4 col-md-offset-1">                                     
+                            <label for="">PROTECTOR</label>                        
+                             <div class="input-group">
+                                <input type="text" class="form-control" id="param_protector" name="param_protector" placeholder="Buscar Protector">
+                                <span class="input-group-btn">
+                                    <button class="btn" type="button" id="buscarProtector"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div> <!-- / .input-group -->
+                        </div>
+                        <div class="col-md-2">                                     
+                            <label for="">TIPO</label>
+                            <div class="input-group">
+                                <input disabled="" class="form-control col-md-12 " type="text" name="param_tipoProtector" id="param_tipoProtector"/>                                           
+                            </div>                                                                        
+                        </div>
+                        <div class="col-md-1">                                     
+                            <label for="">CANTIDAD</label>
+                            <div class="input-group">
+                                <input disabled class="form-control col-md-6 " type="text" name="param_cantidadProtec" id="param_cantidadProtec" value="1" />                                           
+                            </div>                                                                        
+                        </div>
+                        <div class="col-md-2">                                     
+                            <label for="">P. UNITARIO</label>
+                            <div class="input-group col-md-7">
+                                <input disabled class="form-control col-md-6" type="text" name="param_precioProtector" id="param_precioProtector" placeholder="0.00">                            
+                            </div>                                                                        
+                        </div>
+                        <input  class="form-control col-md-12 " type="hidden" name="param_codigoProtector" id="param_codigoProtector"/>
+                        <div class="col-md-1">                                     
+                            <label for="">.</label>
+                            <div class="input-group">
+                                <button disabled type="button" class="btn btn-success btn-md ace-icon fa fa-plus" id="addRowProtector">
+                                </button>                                           
+                            </div>                                                                        
+                        </div>                        
+                    </div> 
+                    <!-- / ACCESORIOS -->    
+                    <div class="form-group">                                                              
+                        <div class="col-md-4 col-md-offset-1">                                     
+                            <label for="">ACCESORIO</label>                        
+                             <div class="input-group">
+                                <input type="text" class="form-control" id="param_accesorio" name="param_accesorio" placeholder="Buscar Accesorio">
+                                <span class="input-group-btn">
+                                    <button class="btn" type="button" id="buscarAccesorio"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div> <!-- / .input-group -->
+                        </div>
+                        <div class="col-md-2">                                     
+                            <label for="">CODIGO</label>
+                            <div class="input-group">
+                                <input disabled="" class="form-control col-md-12 " type="text" name="param_codAccesorio" id="param_codAccesorio"/>                                           
+                            </div>                                                                        
+                        </div>
+                        <div class="col-md-1">                                     
+                            <label for="">CANTIDAD</label>
+                            <div class="input-group">
+                                <input disabled class="form-control col-md-12 " type="text" name="param_cantidadAcce" id="param_cantidadAcce" value="1" />                                           
+                            </div>                                                                        
+                        </div>
+                        <div class="col-md-2">                                     
+                            <label for="">P. UNITARIO</label>
+                            <div class="input-group col-md-7">
+                                <input disabled class="form-control col-md-6" type="text" name="param_precioAccesorio" id="param_precioAccesorio" placeholder="0.00">                            
+                            </div>                                                                        
+                        </div>
+                        <input disabled="" class="form-control col-md-12 " type="hidden" name="param_idAccesorio" id="param_idAccesorio"/>
+                        <div class="col-md-1">                                     
+                            <label for="">.</label>
+                            <div class="input-group">
+                                <button disabled type="button" class="btn btn-success btn-md ace-icon fa fa-plus" id="addRowAccesorios">
+                                </button>                                           
+                            </div>                                                                        
+                        </div>                        
+                    </div> 
+                </div>
+                <div class="panel-body">
+                    <div class="table-primary">
+                        <table class="table table-striped table-bordered" id="tablaDetalleVentas">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">CANTIDAD</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 25%;">DESCRIPCION</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">P. UNIT</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">IMPORTE</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">OPERACIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpoDetalleVentas">
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div class="form-group">    
+                        <!-- / CELULARES -->                                                                              
+                        <div class="col-sm-7 col-md-offset-9">                                     
+                            <label class="col-sm-2 control-label" style="color:red">TOTAL S/.</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="param_total" id="param_total" class="form-control" disabled value="0">
+                                </div>
+                        </div>                                        
+                    </div>
+                </div>
+                <button type="button" class="btn btn-danger btn-md ace-icon fa fa-plus" onclick="mostrar();">
+                </button> 
+                <button type="button" class="btn btn-primary btn-md ace-icon fa fa-plus col-md-offset-5" id="registrarVentas"> REGISTRAR
+                </button>
+                <button type="button" class="btn btn-danger btn-md ace-icon fa fa-plus" id="cancelar"> CANCELAR
+                </button>
+            </div>
+    </div>
+
+    <div class="modal fade" id="modalBuscarProductos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center" id="cabeceraRegistro"><b></b></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="table-primary">
+                        <table class="table table-striped table-bordered" id="tablaCelulares">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 8%;">CODIGO</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">IMEI</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">SERIE</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">MARCA</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">MODELO</th>                    
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpoCelulares">
+
+                            </tbody>
+                        </table>
+                    </div> 
                 </div>
             </div>
         </div>
     </div>
-     <div class="modal fade" id="modalCelular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" >
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title text-center" id="cabeceraRegistro"><b></b></h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action=""  method="POST" class="panel form-horizontal" id="formCelular">                            
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group no-margin-hr">
-                                            <label class="control-label">Código imie*</label>
-                                            <input type="text" id="imei" name="imei" class="form-control" autocomplete="off" placeholder="Código imei" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div><!-- col-sm-6 -->
-                                    <div class="col-sm-6">
-                                        <div class="form-group no-margin-hr">
-                                            <label class="control-label">Nro. Serie*</label>
-                                            <input type="text" id="serie" name="serie" class="form-control" autocomplete="off" placeholder="Nro. Serie" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div><!-- col-sm-6 -->
-                                </div><!-- row -->
-                                
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group no-margin-hr">
-                                            <label class="control-label">Marca*</label>
-                                            <input type="text" id="marca" name="marca" class="form-control" placeholder="Ejm: SAMSUMG" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div><!-- col-sm-6 -->
-                                    <div class="col-sm-6">
-                                        <div class="form-group no-margin-hr">
-                                            <label class="control-label">Modelo*</label>
-                                            <input type="text" id="modelo" name="modelo" class="form-control" placeholder="Ejm: SAMSUMG GALAXY J2" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div><!-- col-sm-6 -->
-                                </div><!-- row -->
-                            </div>
-                            <input  type="hidden" id="operacion" name="operacion" value="Registrar"/>
-                            <input  type="hidden" id="codigo" name="codigo"/>
-                            <div class="panel-footer text-right">
-                                <button class="btn btn-primary" id="registrarCelular">Guardar</button>
-                                <button class="btn btn-default" data-dismiss="modal" id="cancelarCelular">Cancelar</button>
-                            </div>
-                        </form>
+
+    <div class="modal fade" id="modalBuscarChip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center" id="cabeceraRegistro"><b>.:: Seleccionar Chip ::.</b></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="table-primary">
+                        <table class="table table-striped table-bordered" id="tablaChip">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 8%;">CODIGO</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">ICC</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">NUMERO</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">DESCRIPCION</th>                             
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpoChip">
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="modal fade" id="modalBuscarProtector" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center" id="cabeceraRegistro"><b>.:: Seleccionar Protector ::.</b></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="table-primary">
+                        <table class="table table-striped table-bordered" id="tablaProtector">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 8%;">CODIGO</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">TIPO</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">MODELO</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">CANTIDAD</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpoProtector">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalBuscarAccesorio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center" id="cabeceraRegistro"><b>.:: Seleccionar Accesorio ::.</b></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="table-primary">
+                        <table class="table table-striped table-bordered" id="tablaAccesorio">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 8%;">CODIGO</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">TIPO</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">CODIGO</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">DESCRIPCION</th>
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;">CANTIDAD</th>                    
+                                    <th style="text-align: center; font-size: 11px; height: 10px; width: 15%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpoAccesorio">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div id="main-menu-bg"></div>
 </div> <!-- / #main-wrapper -->
@@ -293,13 +536,20 @@
 <script src="../assets/javascripts/ventasRealizadas.js"></script>
 <script src="../assets/javascripts/jquery.noty.js"></script>
 
-
 <script type="text/javascript">
-    init.push(function () {
-        // Javascript code here
+    init.push(function () {        
+        $('#tablaDetalleVentas').DataTable({
+            "bPaginate": false,
+            "bFilter": false,
+            "bInfo": false
+        }); 
+        $('#tablaDetalleVentas_wrapper .table-caption').text('Detalle de Envio');
+        mostrarSucursal();
+        agregarDetalleEnvio();
     });
     window.PixelAdmin.start(init);
 </script>
+
  <script type="text/javascript">
 
         function solonumeros(e) {

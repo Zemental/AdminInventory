@@ -154,7 +154,7 @@ function agregarDetalleEnvio() {
         var imei                = document.getElementById('param_imei').value;
         var serie               = document.getElementById('param_serie').value;        
         t.row.add( [
-            1,
+            '<center>'+1+'</center>',
             '<strong>IMEI: </strong>'+imei+' / <strong>SERIE: </strong>'+serie+' / <strong>MODELO: </strong>'+celular,           
             '<button class="btn btn-danger btn-xs center deleteValid col-md-offset-4" onclick="Eliminar('+"'"+codigoCelular+"'"+',1)">Eliminar</button>',
         ] ).draw( false );
@@ -177,7 +177,7 @@ function agregarDetalleEnvio() {
         var numero          = document.getElementById('param_numero').value;
         var idChip          = document.getElementById('param_codigoChip').value;        
         t.row.add( [
-            1,
+            '<center>'+1+'</center>',
             '<strong>ICC: </strong>'+icc+' / <strong>NUMERO: </strong>'+numero+' / <strong>OPERADOR: </strong>'+chip,           
             '<button class="btn btn-danger btn-xs center deleteValid col-md-offset-4" onclick="Eliminar('+"'"+idChip+"'"+',1)">Eliminar</button>',
         ] ).draw(false);
@@ -200,7 +200,7 @@ function agregarDetalleEnvio() {
         var cantidad         = document.getElementById('param_cantidadProtec').value;
         var idProtector      = document.getElementById('param_codigoProtector').value;        
         t.row.add( [
-            cantidad,
+            '<center>'+cantidad+'</center>',
             '<strong>TIPO: </strong>'+tipo+' / <strong>MODELO: </strong>'+modelo,           
             '<button class="btn btn-danger btn-xs center deleteValid col-md-offset-4" onclick="Eliminar('+"'"+idProtector+"'"+','+"'"+cantidad+"'"+')">Eliminar</button>',
         ] ).draw( false );
@@ -224,7 +224,7 @@ function agregarDetalleEnvio() {
         var cantidad     = document.getElementById('param_cantidadAcce').value;
         var idAcesorio   = document.getElementById('param_idAccesorio').value;        
         t.row.add( [
-            cantidad,
+            '<center>'+cantidad+'</center>',
             '<strong>CODIGO: </strong>'+codigo+' / <strong>MODELO: </strong>'+accesorio,           
             '<button class="btn btn-danger btn-xs center deleteValid col-md-offset-4" onclick="Eliminar('+"'"+idAcesorio+"'"+','+"'"+cantidad+"'"+')">Eliminar</button>',
         ] ).draw( false );

@@ -183,33 +183,34 @@
     <div id="content-wrapper">
         <div class="page-header">
             <div class="row">
-                <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-mobile page-header-icon"></i>&nbsp;&nbsp;Envios Realizados</h1>
+                <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-mobile page-header-icon"></i>&nbsp;&nbsp;Ventas Realizados</h1>
             </div>
         </div>       
               
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">                          
-                    <a href="envioSucursales.php" class="btn btn-primary btn-labeled" style="width:15%;">
+                    <a href="ventasRealizadas.php" class="btn btn-primary btn-labeled" style="width:15%;">
                         <span class="btn-label icon fa fa-plus"></span>
-                            Nuevo Envio
+                            Nuevo Venta
                     </a>                           
                 </span>
             </div>
             <div class="panel-body">
                 <div class="table-primary">
-                    <table class="table table-striped table-bordered" id="tablaEnvios">
+                    <table class="table table-striped table-bordered" id="tablaVentas">
                         <thead>
                             <tr>
-                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">N° DE MOVIMIENTO</th>
-                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">FECHA DE ENVIO</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">N° DOCUMENTO</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">TIPO DOCUMENTO</th>
                                 <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">SUCURSAL</th>
                                 <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">RESPONSABLE</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">FECHA DE VENTA</th>
                                 <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">CANTIDAD</th>
                                 <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">OPERACIONES</th>
                             </tr>
                         </thead>
-                        <tbody id="cuerpoEnvios">
+                        <tbody id="cuerpoVentas">
 
                         </tbody>
                     </table>
@@ -280,16 +281,16 @@
 <!-- Pixel Admin's javascripts -->
 <script src="../assets/javascripts/bootstrap.min.js"></script>
 <script src="../assets/javascripts/pixel-admin.min.js"></script>
-<script src="../assets/javascripts/envioSucursales.js"></script>
+<script src="../assets/javascripts/ventasRealizadas.js"></script>
 <script src="../assets/javascripts/jquery.noty.js"></script>
 
 
 <script type="text/javascript">
     init.push(function () {
-        $('#tablaEnvios').dataTable();
-        $('#tablaEnvios_wrapper .table-caption').text('Listado General de Envios Realizados');
-        $('#tablaEnvioss_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
-        mostrarEnvios();
+        $('#tablaVentas').dataTable();
+        $('#tablaVentas_wrapper .table-caption').text('Listado General de Envios Realizados');
+        $('#tablaVentas_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
+        mostrarVentas();
     });
     window.PixelAdmin.start(init);
 </script>

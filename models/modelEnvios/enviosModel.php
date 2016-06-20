@@ -69,10 +69,11 @@ class EnviosModel {
 
     function prepararConsultaMostrar($opcion) {
         $consultaSql = "call sp_mostrar_productos(";
-        $consultaSql.="'".$opcion . "')";        
+        $consultaSql.="'".$opcion . "',"; 
+        $consultaSql.="'".$this->param['param_sucursal']. "')";        
         //echo $consultaSql;
         $this->result = mysqli_query($this->conexion,$consultaSql);
-    }  
+    }
 
     function prepararConsultasEnvio($opcion) {
             $consultaSql = "call sp_gestionar_envio(";
@@ -87,7 +88,8 @@ class EnviosModel {
             $consultaSql = "call sp_gestion_detalle_envio(";
             $consultaSql.="'".$opcion . "',";
             $consultaSql.= "'".$producto."',";
-            $consultaSql.= "'".$cantidad."')";
+            $consultaSql.= "'".$cantidad."',";
+            $consultaSql.= "'".$this->param['param_sucursal']."')";
             //echo $consultaSql;
             $this->result = mysqli_query($this->conexion,$consultaSql);    
         }  
@@ -293,6 +295,9 @@ class EnviosModel {
             $producto                   = $this->param['param_productos'][$i];
             $cantidad                   = $this->param['param_cantidad'][$i];
             $this->prepararConsultaDetalleEnvio('opc_grabar_detalle_envio', $producto, $cantidad);
+            $this->prepararConsultaDetalleEnvio('opc_modificar_ubicacion', $producto,'');
+            $this->prepararConsultaDetalleEnvio('opc_update_protector', $producto, $cantidad);
+            $this->prepararConsultaDetalleEnvio('opc_update_accesorio', $producto, $cantidad);
         }
     }
 }
