@@ -144,7 +144,18 @@ $(function() {
 
     $('#cancelar').on('click', function(){                   
         location.href='ventas.php';
+    });
+
+    $('#reporteVentas').on('click', function(){                   
+       open("../reportes/ReporteVentas.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
     }); 
+
+    $('#reporteVentasExcel').on('click', function(){ 
+        //alert('dgfdg');
+        location.href = '../reportes/reporteVentasExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    }); 
+
 });
 
 function agregarDetalleEnvio() {

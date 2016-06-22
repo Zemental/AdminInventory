@@ -143,6 +143,15 @@ $(function() {
     $('#cancelar').on('click', function(){                   
         location.href='envios.php';
     }); 
+
+    $('#reporteEnvios').on('click', function(){                   
+       open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteEnviosExcel').on('click', function(){ 
+        location.href = '../reportes/reporteEnviosExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    }); 
 });
 
 function agregarDetalleEnvio() {

@@ -161,10 +161,10 @@
                     <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestionar Reportes</span></a>
                     <ul>
                         <li>
-                            <a tabindex="-1" href="envioMercaderia.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Envíos de Mercadería</span></a>
+                            <a tabindex="-1" href="reporteEnvios.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Envíos de Mercadería</span></a>
                         </li>
                         <li>
-                            <a tabindex="-1" href="mercaderiaVendida.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Mercadería vendida</span></a>
+                            <a tabindex="-1" href="reporteVentas.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Mercadería vendida</span></a>
                         </li>
                         <li>
                             <a tabindex="-1" href="saldoMercaderia.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Saldos de Mercadería</span></a>
