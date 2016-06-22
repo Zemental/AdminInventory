@@ -188,64 +188,50 @@
     <div id="content-wrapper">
 
         <div class="row">
+            <h1 class="text-center" style="font-weith:bold;margin-bottom:30px;">
+                SISTEMA DE GESTIÓN DE INVENTARIO 
+            </h1>
             <div class="col-md-12" style="margin-top: 10px;">
-                <div class="col-md-3">
-                    <div class="view">
-                        <img class="img-responsive" src="../assets/images/clientes.jpg">
-                        <div class="mask">
-                            <p style="margin-top: 30px;">CLIENTES</p>
-                            <a href="#" class="info">INGRESAR</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="view">
-                        <img class="img-responsive" src="../assets/images/pacientes.jpg">
-                        <div class="mask">
-                            <p style="margin-top: 30px;">PACIENTES</p>
-                            <a href="#" class="info">INGRESAR</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="view">
-                        <img class="img-responsive" src="../assets/images/atenciones.jpg">
-                        <div class="mask">
-                            <p style="margin-top: 30px;">ATENCIONES</p>
-                            <a href="#" class="info">INGRESAR</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="view">
-                        <img class="img-responsive" src="../assets/images/facturacion.png">
-                        <div class="mask">
-                            <p style="margin-top: 30px;">FACTURACIÓN</p>
-                            <a href="#" class="info">INGRESAR</a>
-                        </div>
-                    </div>
-                </div>
+                 <img class="center-block img-responsive" src="../assets/images/banner.jpg">
             </div>
-            <div class="col-md-12" style="margin-top: 20px;">                
+            <div class="col-md-12" style="margin-top: 40px;">
                 <div class="col-md-3">
                     <div class="view">
-                        <img class="img-responsive" src="../assets/images/almacen.jpg">
+                        <img class="img-responsive" src="../assets/images/celulares.jpg">
                         <div class="mask">
-                            <p style="margin-top: 30px;">ALMACÉN</p>
-                            <a href="#" class="info">INGRESAR</a>
+                            <p style="margin-top: 30px;">CELULARES</p>
+                            <a href="celulares.php" class="info">INGRESAR</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="view">
-                        <img class="img-responsive" src="../assets/images/reportes.png">
+                        <img class="img-responsive" src="../assets/images/chips.jpeg">
                         <div class="mask">
-                            <p style="margin-top: 30px;">REPORTES</p>
-                            <a href="#" class="info">INGRESAR</a>
+                            <p style="margin-top: 30px;">CHIPS</p>
+                            <a href="chips.php" class="info">INGRESAR</a>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-md-3">
+                    <div class="view">
+                        <img class="img-responsive" src="../assets/images/protectores.png">
+                        <div class="mask">
+                            <p style="margin-top: 30px;">PROTECTORES</p>
+                            <a href="protectores.php" class="info">INGRESAR</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="view">
+                        <img class="img-responsive" src="../assets/images/accesorios.jpg">
+                        <div class="mask">
+                            <p style="margin-top: 30px;">ACCESORIOS</p>
+                            <a href="accesorios.php" class="info">INGRESAR</a>
+                        </div>
+                    </div>
+                </div>
+            </div>            
         </div>
 
     </div>

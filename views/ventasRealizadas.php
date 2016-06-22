@@ -13,7 +13,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Principal | SGI Admin</title>
+    <title>Ventas Realizadas | SGI Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- Open Sans font from Google CDN -->
@@ -108,7 +108,7 @@
                 <li class="mm-dropdown">
                     <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestionar Inventario</span></a>
                     <ul>
-                        <li class="active">
+                        <li >
                             <a tabindex="-1" href="celulares.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Celulares</span></a>
                         </li>
                         <li>
@@ -151,7 +151,7 @@
                         <li>
                             <a tabindex="-1" href="envios.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Envíos a Sucursales</span></a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a tabindex="-1" href="ventas.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Ventas Realizadas</span></a>
                         </li>                        
                     </ul>
@@ -183,7 +183,7 @@
     <div id="content-wrapper">
         <div class="page-header">
             <div class="row">
-                <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-mobile page-header-icon"></i>&nbsp;&nbsp;Inventario de Celulares</h1>
+                <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-mobile page-header-icon"></i>&nbsp;&nbsp;Registro de Ventas Realizadas</h1>
             </div>
         </div>
    

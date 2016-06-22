@@ -199,88 +199,7 @@
             });
         </script>
         
-                <!-- Javascript -->
-                <script>
-                    function movieFormatResult(movie) {
-                        var markup = "<table class='movie-result'><tr>";
-                        if (movie.posters !== undefined && movie.posters.thumbnail !== undefined) {
-                            markup += "<td class='movie-image' style='vertical-align: top'><img src='" + movie.posters.thumbnail + "' style='max-width: 60px; display: inline-block; margin-right: 10px; margin-left: 10px;' /></td>";
-                        }
-                        markup += "<td class='movie-info'><div class='movie-title' style='font-weight: 600; color: #000; margin-bottom: 6px;'>" + movie.title + "</div>";
-                        if (movie.critics_consensus !== undefined) {
-                            markup += "<div class='movie-synopsis'>" + movie.critics_consensus + "</div>";
-                        }
-                        else if (movie.synopsis !== undefined) {
-                            markup += "<div class='movie-synopsis'>" + movie.synopsis + "</div>";
-                        }
-                        markup += "</td></tr></table>";
-                        return markup;
-                    }
-
-                    function movieFormatSelection(movie) {
-                        return movie.title;
-                    }
-
-                    init.push(function () {
-                        // Single select
-                        $("#modeloCelular").select2({
-                            allowClear: true,
-                            placeholder: "Buscar modelo celular..."
-                        });
-
-                        // Multiselect
-                        $("#jquery-select2-multiple").select2({
-                            placeholder: "Select a State"
-                        });
-
-                        // External source
-                        $("#jquery-select2-external").select2({
-                            placeholder: "Search for a movie",
-                            minimumInputLength: 1,
-                            ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-                                url: "http://api.rottentomatoes.com/api/public/v1.0/movies.json",
-                                dataType: 'jsonp',
-                                data: function (term, page) {
-                                    return {
-                                        q: term, // search term
-                                        page_limit: 10,
-                                        apikey: "ju6z9mjyajq2djue3gbvv26t" // please do not use so this example keeps working
-                                    };
-                                },
-                                results: function (data, page) { // parse the results into the format expected by Select2.
-                                    // since we are using custom formatting functions we do not need to alter remote JSON data
-                                    return {results: data.movies};
-                                }
-                            },
-                            initSelection: function(element, callback) {
-                                // the input tag has a value attribute preloaded that points to a preselected movie's id
-                                // this function resolves that id attribute to an object that select2 can render
-                                // using its formatResult renderer - that way the movie name is shown preselected
-                                var id=$(element).val();
-                                if (id!=="") {
-                                    $.ajax("http://api.rottentomatoes.com/api/public/v1.0/movies/"+id+".json", {
-                                        data: {
-                                            apikey: "ju6z9mjyajq2djue3gbvv26t"
-                                        },
-                                        dataType: "jsonp"
-                                    }).done(function(data) { callback(data); });
-                                }
-                            },
-                            formatResult: movieFormatResult, // omitted for brevity, see the source of this page
-                            formatSelection: movieFormatSelection,  // omitted for brevity, see the source of this page
-                            dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
-                            escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
-                        });
-
-                        // Disabled state
-                        $(".select2-disabled-examples select").select2({ placeholder: 'Select option...' });
-
-                        // Colors
-                        $(".select2-colors-examples select").select2();
-                    });
-                </script>
-                <!-- / Javascript -->
-              
+                           
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">                          
@@ -297,7 +216,7 @@
                             <tr>
                                 <th style="width:3%;">N°</th>
                                 <th style="width:10%;">TIPO</th>
-                                <th style="width:15%;">MODELO</th>                                  
+                                <th style="width:15%;">MODELO CELULAR</th>                                  
                                 <th style="width:5%;">CANTIDAD</th>                             
                                 <th style="width:7%;">UBICACION</th>
                                 <th style="width:8%;">OPERACIONES</th>
@@ -320,7 +239,7 @@
                     </div>
                     <div class="modal-body">
                         <form action=""  method="POST" class="panel form-horizontal" id="formProtector">                            
-                            <div class="panel-body select2-disabled-examples select2-colors-examples">
+                            <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
@@ -336,28 +255,22 @@
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
                                             <label class="control-label">Modelo celular*</label>
-                                            <select id="modeloCelular" name="modeloCelular" class="form-control">
-                                                 <option></option>
-                                                  <?php foreach ($tipos as $tipo): ?>
-                                                      <option value="<?= $tipo[0] ?>"><?= $tipo[1] ?></option>
-                                                  <?php endforeach ?> 
-                                            </select>
+                                            <input type="text" id="modeloCelular" name="modeloCelular" class="form-control" placeholder="Ejm: SAMSUMG GALAXY J2" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                         </div>
                                     </div><!-- col-sm-6 -->
-                                </div><!-- row -->
-                                
+                                </div><!-- row -->                                
                                 <div class="row">                                    
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
                                             <label class="control-label">Cantidad*</label>
                                             <input type="number" id="cantidad" name="cantidad" class="form-control" autocomplete="off" placeholder="CANTIDAD">
                                         </div>
-                                    </div><!-- col-sm-6 -->                                  
+                                    </div><!-- col-sm-6 -->                                                                 
                                 </div><!-- row -->
                             </div>
                             <input  type="hidden" id="operacion" name="operacion" value="Registrar"/>
-                            <input  type="hidden" id="codigo" name="codigo"/>
-                            <div class="panel-footer text-right">
+                            <input  type="hidden" id="codigo" name="codigo"/>                     
+                            <div class="panel-footer text-right">                                
                                 <button class="btn btn-primary" id="registrarProtector">Guardar</button>
                                 <button class="btn btn-default" data-dismiss="modal" id="cancelarProtector">Cancelar</button>
                             </div>
@@ -380,8 +293,7 @@
 <script src="../assets/javascripts/pixel-admin.min.js"></script>
 <script src="../assets/javascripts/protector.js"></script>
 <script src="../assets/javascripts/jquery.noty.js"></script>
-<script src="../assets/javascripts/jquery.mockjax.js"></script>
-<script src="../assets/javascripts/demo-mock.js"></script>
+
 
 
 <script type="text/javascript">

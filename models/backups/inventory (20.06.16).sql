@@ -166,33 +166,81 @@ BEGIN
     END IF;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_gestion_detalle_envio`(IN `opcion` VARCHAR(100), IN `producto` INT, IN `cantidad` INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_gestion_detalle_envio`(IN `opcion` VARCHAR(100), IN `producto` INT, IN `canTotal` INT, IN `sucursal` INT)
     NO SQL
 BEGIN
   IF opcion = 'opc_grabar_detalle_envio' THEN
       SET @ENVIO = (SELECT MAX(numMovimiento) AS id FROM movimiento);
-        INSERT INTO detallemovimiento(numMovimiento,idProducto,cantidad) VALUES (@ENVIO, producto, cantidad);
+        INSERT INTO detallemovimiento(numMovimiento,idProducto,cantidad) VALUES (@ENVIO, producto, canTotal);
+    END IF;   
+    IF opcion = 'opc_modificar_ubicacion' THEN
+      UPDATE productos SET idSucursal = sucursal WHERE idProducto = producto;
+    END IF;
+    IF opcion = 'opc_update_protector' THEN
+      SET @PROTECTOR = (SELECT idProtector FROM protectores WHERE idProducto = producto);
+      UPDATE protectores SET cantidad = cantidad - canTotal WHERE idProtector = @PROTECTOR;
+    END IF;
+    IF opcion = 'opc_update_accesorio' THEN
+      SET @ACCESORIO = (SELECT idAccesorio FROM accesorios WHERE idProducto = producto);
+        UPDATE accesorios SET cantidad = cantidad - canTotal WHERE idAccesorio = @ACCESORIO;
     END IF;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_mostrar_productos`(IN `opcion` VARCHAR(200))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_gestionar_venta`(IN `opcion` VARCHAR(100), IN `numDocumento` VARCHAR(100), IN `tipoDocumento` VARCHAR(5), IN `sucursal` INT, IN `montoTotal` DOUBLE)
+    NO SQL
+BEGIN
+  IF opcion = 'opc_registro_venta' THEN 
+      INSERT INTO venta (numVenta, tipoDocumento, idSucursal, fechaVenta, cantidadTotal, activo) VALUES (numDocumento,tipoDocumento,sucursal,now(),montoTotal,1);
+    END IF;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_gestion_detalle_venta`(IN `opcion` VARCHAR(100), IN `producto` INT, IN `cantidad` INT, IN `precio` DOUBLE, IN `importe` DOUBLE, IN `numeroDoc` INT)
+    NO SQL
+BEGIN
+  IF opcion = 'opc_grabar_detalle_venta' THEN
+      INSERT INTO detalleventa (numVenta, idProducto, cantidad, precio, importe) VALUES (numeroDoc, producto,cantidad,precio,importe);
+    END IF;
+    IF opcion = 'opc_modificar_estado_producto' THEN
+      UPDATE productos SET estado = 'V' WHERE idProducto = producto;
+    END IF;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_mostrar_productos`(IN `opcion` VARCHAR(200), IN `sucursal` INT)
     NO SQL
 BEGIN
   IF opcion = 'opc_mostrar_celulares' THEN
-      SELECT idCelular, imei, serie, marca, modelo FROM celulares;
+      SELECT C.idCelular, C.imei, C.serie, C.marca, C.modelo FROM celulares C INNER JOIN productos P ON P.idProducto = C.idProducto WHERE P.activo = 1;
     END IF;
     IF opcion = 'opc_mostrar_chip' THEN
-      SELECT idChip, icc, numero, operadora FROM chips;
+      SELECT C.idChip, C.icc, C.numero, C.operadora FROM chips C INNER JOIN productos P ON P.idProducto = C.idProducto WHERE P.activo = 1;
     END IF;
     IF opcion = 'opc_mostrar_protector' THEN
-      SELECT PR.idProtector, TP.nombre, PR.modeloCelular, PR.cantidad FROM protectores PR INNER JOIN tipoprotector TP ON TP.idTipoProtector = PR.tipo;
+      SELECT PR.idProtector, TP.nombre, PR.modeloCelular, PR.cantidad FROM protectores PR INNER JOIN tipoprotector TP ON TP.idTipoProtector = PR.idTipoProtector INNER JOIN productos P ON P.idProducto = PR.idProducto WHERE P.activo = 1;
     END IF;
     IF opcion = 'opc_mostrar_accesorio' THEN
-      SELECT A.idAccesorio, TA.nombre, A.codigo, A.descripcion, A.cantidad FROM accesorios A INNER JOIN tipoaccesorio TA ON TA.idTipoAccesorio = A.tipo;
+      SELECT A.idAccesorio, TA.nombre, A.codigo, A.descripcion, A.cantidad FROM accesorios A INNER JOIN tipoaccesorio TA ON TA.idTipoAccesorio = A.idTipoAccesorio INNER JOIN productos P ON P.idProducto = A.idProducto WHERE P.activo = 1;
     END IF;
     IF opcion = 'opc_mostrar_envios' THEN
       SELECT M.numMovimiento, M.fechaEnvio, S.nombre, CONCAT(R.nombres,' ',R.apellidos),M.cantidadTotal FROM movimiento M 
 INNER JOIN sucursales S ON S.idSucursal = M.idSucursal
+INNER JOIN responsables R ON R.idResponsable = S.idResponsable;
+    END IF;
+    IF opcion = 'opc_mostrar_celulares_ventas' THEN
+      SELECT C.idCelular, C.imei, C.serie, C.marca, C.modelo FROM celulares C 
+  INNER JOIN productos P ON P.idProducto = C.idProducto WHERE P.idSucursal = sucursal;
+    END IF;
+    IF opcion = 'opc_mostrar_chip_ventas' THEN
+      SELECT C.idChip, C.icc, C.numero, C.operadora FROM chips C INNER JOIN productos P ON P.idProducto = C.idProducto WHERE P.idSucursal = sucursal;
+    END IF;
+    IF opcion = 'opc_mostrar_protector_ventas' THEN
+      SELECT PR.idProtector, TP.nombre, PR.modeloCelular, PR.cantidad FROM protectores PR INNER JOIN tipoprotector TP ON TP.idTipoProtector = PR.idTipoProtector INNER JOIN productos P ON P.idProducto = PR.idProducto WHERE P.idSucursal = sucursal;
+    END IF;
+    IF opcion = 'opc_mostrar_accesorio_ventas' THEN
+      SELECT A.idAccesorio, TA.nombre, A.codigo, A.descripcion, A.cantidad FROM accesorios A INNER JOIN tipoaccesorio TA ON TA.idTipoAccesorio = A.idTipoAccesorio INNER JOIN productos P ON P.idProducto = A.idProducto WHERE P.idSucursal = sucursal;
+    END IF;
+    IF opcion = 'opc_mostrar_ventas' THEN
+      SELECT V.numVenta,V.tipoDocumento,S.nombre, CONCAT(R.nombres,' ',R.apellidos), V.fechaVenta, V.cantidadTotal FROM venta V 
+INNER JOIN sucursales S ON S.idSucursal = V.idSucursal
 INNER JOIN responsables R ON R.idResponsable = S.idResponsable;
     END IF;
 END$$
@@ -207,10 +255,10 @@ BEGIN
       SELECT idProducto, icc, numero, operadora FROM chips WHERE idChip = id;
     END IF;
     IF opcion = 'opc_seleccion_protector' THEN
-      SELECT PR.idProducto, TP.nombre, PR.modeloCelular FROM protectores PR INNER JOIN tipoprotector TP ON TP.idTipoProtector = PR.tipo WHERE idProtector = id;
+      SELECT PR.idProducto, TP.nombre, PR.modeloCelular FROM protectores PR INNER JOIN tipoprotector TP ON TP.idTipoProtector = PR.idTipoProtector WHERE idProtector = id;
     END IF;  
     IF opcion = 'opc_seleccion_accesorio' THEN
-      SELECT A.idProducto, CONCAT(TA.nombre,' - ',A.descripcion), A.codigo FROM accesorios A INNER JOIN tipoaccesorio TA ON TA.idTipoAccesorio = A.tipo WHERE idAccesorio = id;
+      SELECT A.idProducto, CONCAT(TA.nombre,' - ',A.descripcion), A.codigo FROM accesorios A INNER JOIN tipoaccesorio TA ON TA.idTipoAccesorio = A.idTipoAccesorio WHERE idAccesorio = id;
 
     END IF;
 END$$
