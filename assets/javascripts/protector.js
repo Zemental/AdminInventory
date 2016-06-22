@@ -2,8 +2,6 @@ window.onload = function(){
     $('#tablaProtectores').dataTable();    
     mostrarProtectores();
 
-    $('#modeloCelular').select2("open");
-
      $('#cancelarProtector').on('click', function(){        
         $('#modalProtector').modal('hide');
         mostrarProtectores();
@@ -52,7 +50,7 @@ $(function() {
                     $.ajax({
                         type: 'POST',
                         data:'opcion='+opcion+'&tipo='+tipo+'&modeloCelular=' +modeloCelular+
-                            +'&cantidad=' +cantidad,
+                            '&cantidad=' +cantidad,
                         url: '../controllers/controlProtector/protectorController.php',
                         success: function(data){
                             nota("success","Protector registrado correctamente.",2000);
@@ -145,10 +143,11 @@ function editar(codigo){
         success: function(data){
             objeto=JSON.parse(data);
             $("#codigo").val(objeto[0]);            
-            document.getElementById('tipo').value = (objeto[1]);
+            //document.getElementById('tipo').value = (objeto[1]);
+            $("#tipo").val(objeto[1]);
             $("#modeloCelular").val(objeto[2]);
             //$("#descripcion").val(objeto[3]);
-            $("#cantidad").val(objeto[4]); 
+            $("#cantidad").val(objeto[3]); 
         },
         error: function(data){
 
@@ -166,7 +165,7 @@ function eliminar(codigo, estado){
     
     if (respuesta == true) {
         //alert('Acepto');
-        var opcion = 'eliminar_accesorio';
+        var opcion = 'eliminar_protector';
         $.ajax({
             type: 'POST',
             data:'opcion='+opcion+'&codigo='+codigo+'&estado='+estado,

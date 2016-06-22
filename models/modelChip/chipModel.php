@@ -96,7 +96,7 @@ class ChipModel {
 
             echo '<td style="font-size: 11px; height: 10px; width: 8%; text-align: center;">
                     <div class="hidden-sm hidden-xs action-buttons">                                
-                        <a href="#" style="margin-right:10px;" title="Editar">
+                        <a href="#" style="margin-right:20px;" title="Editar">
                             <span class="green">
                                 <i class="ace-icon fa fa-pencil bigger-120" onclick="editar('.$row[0].');"></i>
                             </span>
@@ -115,12 +115,7 @@ class ChipModel {
                         </a>';
             }
                                 
-            echo    '<a href="#" style="margin-right:10px;" class="tooltip-error" data-rel="tooltip" title="Procesar venta">
-                        <span class="black">
-                            <i class="ace-icon fa fa-envelope-o bigger-120" onclick="abrirEmail('.$row[0].');"></i>
-                        </span>
-                    </a>
-                                
+            echo    '                                
                             </div>
                             <div class="hidden-md hidden-lg">
                                 <div class="inline pos-rel">
@@ -139,12 +134,7 @@ class ChipModel {
                                                 <span class="red">
                                                     <i class="ace-icon fa fa-trash-o bigger-120" onclick="eliminar('.$row[0].');"></i>
                                                 </span>
-                                            </a>
-                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Email">
-                                                <span class="black">
-                                                    <i class="ace-icon fa fa-envelope-o bigger-120" onclick="abrirEmail('.$row[0].');"></i>
-                                                </span>
-                                            </a>
+                                            </a>                                            
                                         </li>
                                     </ul>
                                 </div>
