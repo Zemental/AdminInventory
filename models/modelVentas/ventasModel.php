@@ -94,7 +94,7 @@ class VentasModel {
         $consultaSql.= "'".$precio."',";
         $consultaSql.= "'".$importe."',";
         $consultaSql.="'".$this->param['param_numerodoc'] . "')";
-        //echo $consultaSql;
+        echo $consultaSql;
         $this->result = mysqli_query($this->conexion,$consultaSql);    
     }  
 
@@ -307,7 +307,7 @@ class VentasModel {
             $precio                     = $this->param['param_precio'][$i];
             $importe                    = $this->param['param_importe'][$i];
             $this->prepararConsultaDetalleVenta('opc_grabar_detalle_venta', $producto, $cantidad, $precio, $importe);
-            $this->prepararConsultaDetalleVenta('opc_modificar_estado_producto', $producto,'','','');
+            $this->prepararConsultaDetalleVenta('opc_modificar_estado_producto', $producto,$cantidad,'','');
         }
     }
 }

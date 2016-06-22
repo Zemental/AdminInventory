@@ -43,7 +43,7 @@ class CelularModel {
         $consultaSql.="'".$this->param['marca'] . "',";   
         $consultaSql.="'".$this->param['modelo'] . "',";      
         $consultaSql.="'".$this->param['estado'] . "')";
-        //echo $consultaSql;
+        echo $consultaSql;
         $this->result = mysqli_query($this->conexion,$consultaSql);
     }    
 

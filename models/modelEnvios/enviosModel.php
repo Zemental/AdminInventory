@@ -90,7 +90,7 @@ class EnviosModel {
             $consultaSql.= "'".$producto."',";
             $consultaSql.= "'".$cantidad."',";
             $consultaSql.= "'".$this->param['param_sucursal']."')";
-            //echo $consultaSql;
+            echo $consultaSql;
             $this->result = mysqli_query($this->conexion,$consultaSql);    
         }  
 
@@ -298,6 +298,8 @@ class EnviosModel {
             $this->prepararConsultaDetalleEnvio('opc_modificar_ubicacion', $producto,'');
             $this->prepararConsultaDetalleEnvio('opc_update_protector', $producto, $cantidad);
             $this->prepararConsultaDetalleEnvio('opc_update_accesorio', $producto, $cantidad);
+            $this->prepararConsultaDetalleEnvio('opc_update_celular', $producto, $cantidad);
+            $this->prepararConsultaDetalleEnvio('opc_update_chips', $producto, $cantidad);
         }
     }
 }
