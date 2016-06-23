@@ -60,6 +60,225 @@ window.onload = function(){
     protectoresAlicel6();
 }
 
+$(function() {    
+    $('#reporteCelularAlicel1PDF').on('click', function(){                   
+       open("../reportes/ReporteCelularesAlicel1.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteCelularAlicel1Excel').on('click', function(){ 
+        location.href = '../reportes/reporteCelularAlicel1Excel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    }); 
+
+    $('#reporteCelularAlicel2PDF').on('click', function(){                   
+       open("../reportes/ReporteCelularesAlicel2.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteCelularAlicel2Excel').on('click', function(){ 
+        location.href = '../reportes/reporteCelularAlicel2Excel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    }); 
+
+    $('#reporteCelularEntelPDF').on('click', function(){                   
+       open("../reportes/ReporteCelularesEntel.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteCelularEntelExcel').on('click', function(){ 
+        location.href = '../reportes/reporteCelularEntelExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteCelularPizarroPDF').on('click', function(){                   
+       open("../reportes/ReporteCelularesPizarro.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteCelularPizarroExcel').on('click', function(){ 
+        location.href = '../reportes/reporteCelularPizarroExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    }); 
+
+    $('#reporteCelularAlmagroPDF').on('click', function(){                   
+       open("../reportes/ReporteCelularesAlmagro.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteCelularAlmagroExcel').on('click', function(){ 
+        location.href = '../reportes/reporteCelularAlmagroExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteCelularMovilesPDF').on('click', function(){                   
+       open("../reportes/ReporteCelularesMoviles.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteCelularMovilesExcel').on('click', function(){ 
+        location.href = '../reportes/reporteCelularMovilesExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    }); 
+
+    $('#reporteChipsAlicel1PDF').on('click', function(){                   
+       open("../reportes/ReporteChipsAlicel1.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteChipsAlicel1Excel').on('click', function(){ 
+        location.href = '../reportes/reporteChipsAlicel1Excel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    }); 
+
+    $('#reporteChipsAlicel2PDF').on('click', function(){                   
+       open("../reportes/ReporteChipsAlicel2.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteChipsAlicel2Excel').on('click', function(){ 
+        location.href = '../reportes/reporteChipsAlicel2Excel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    }); 
+
+    $('#reporteChipsEntelPDF').on('click', function(){                   
+       open("../reportes/ReporteChipsEntel.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteChipsEntelExcel').on('click', function(){ 
+        location.href = '../reportes/reporteChipsEntelExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    }); 
+
+    $('#reporteChipsPizarroPDF').on('click', function(){                   
+       open("../reportes/reporteChipsPizarro.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteChipsPizarroExcel').on('click', function(){ 
+        location.href = '../reportes/reporteChipsPizarroExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteChipsAlmagroPDF').on('click', function(){                   
+       open("../reportes/reporteChipsAlmagro.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteChipsAlmagroExcel').on('click', function(){ 
+        location.href = '../reportes/reporteChipsAlmagroExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    }); 
+
+    $('#reporteChipsMovilesPDF').on('click', function(){                   
+       open("../reportes/reporteChipsMoviles.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteChipsMovilesExcel').on('click', function(){ 
+        location.href = '../reportes/reporteChipsMovilesExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteAccesoriosAlicel1PDF').on('click', function(){                   
+       open("../reportes/reporteAccesoriosAlicel1.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteAccesoriosAlicel1Excel').on('click', function(){ 
+        location.href = '../reportes/reporteAccesoriosAlicel1Excel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    }); 
+
+    $('#reporteAccesoriosAlicel2PDF').on('click', function(){                   
+       open("../reportes/reporteAccesoriosAlicel2.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteAccesoriosAlicel2Excel').on('click', function(){ 
+        location.href = '../reportes/reporteAccesoriosAlicel2Excel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteAccesoriosEntelPDF').on('click', function(){                   
+       open("../reportes/reporteAccesoriosEntel.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteAccesoriosEntelExcel').on('click', function(){ 
+        location.href = '../reportes/reporteAccesoriosEntelExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    }); 
+   
+    $('#reporteAccesoriosPizarroPDF').on('click', function(){                   
+       open("../reportes/reporteAccesoriosPizarro.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteAccesoriosPizarroExcel').on('click', function(){ 
+        location.href = '../reportes/reporteAccesoriosPizarroExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteAccesoriosAlmagroPDF').on('click', function(){                   
+       open("../reportes/reporteAccesoriosAlmagro.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteAccesoriosAlmagroExcel').on('click', function(){ 
+        location.href = '../reportes/reporteAccesoriosAlmagroExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteAccesoriosMovilesPDF').on('click', function(){                   
+       open("../reportes/reporteAccesoriosMoviles.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteAccesoriosMovilesExcel').on('click', function(){ 
+        location.href = '../reportes/reporteAccesoriosMovilesExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteProtectoresAlicel1PDF').on('click', function(){                   
+       open("../reportes/reporteProtectoresAlicel1.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteProtectoresAlicel1Excel').on('click', function(){ 
+        location.href = '../reportes/reporteProtectoresAlicel1Excel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteProtectoresAlicel2PDF').on('click', function(){                   
+       open("../reportes/reporteProtectoresAlicel2.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteProtectoresAlicel2Excel').on('click', function(){ 
+        location.href = '../reportes/reporteProtectoresAlicel2Excel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteProtectoresEntelPDF').on('click', function(){                   
+       open("../reportes/reporteProtectoresEntel.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteProtectoresEntelExcel').on('click', function(){ 
+        location.href = '../reportes/reporteProtectoresEntelExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteProtectoresPizarroPDF').on('click', function(){                   
+       open("../reportes/reporteProtectoresPizarro.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteProtectoresPizarroExcel').on('click', function(){ 
+        location.href = '../reportes/reporteProtectoresPizarroExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteProtectoresAlmagroPDF').on('click', function(){                   
+       open("../reportes/reporteProtectoresAlmagro.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteProtectoresAlmagroExcel').on('click', function(){ 
+        location.href = '../reportes/reporteProtectoresAlmagroExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteProtectoresMovilesPDF').on('click', function(){                   
+       open("../reportes/reporteProtectoresMoviles.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+
+    $('#reporteProtectoresMovilesExcel').on('click', function(){ 
+        location.href = '../reportes/reporteProtectoresMovilesExcel.php';
+       //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    });
+});
+
+
 function celularesAlicel1(){
     var opcion = 'saldo_celulares_alicel1';
     var sucursal = 1;

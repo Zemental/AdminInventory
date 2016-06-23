@@ -238,7 +238,7 @@
                         <div class="col-md-2">                                     
                             <label for="">P. UNITARIO</label>
                             <div class="input-group col-md-7">
-                                <input disabled class="form-control col-md-6" type="text" name="param_precioCelular" id="param_precioCelular" placeholder="0.00">                            
+                                <input disabled class="form-control col-md-6" type="text" name="param_precioCelular" id="param_precioCelular" placeholder="0.00" onkeypress="return decimales(event, this);">                            
                             </div>                                                                        
                         </div>                        
                         <input class="form-control col-md-12 " type="hidden" name="param_codigocelular" id="param_codigocelular">
@@ -276,7 +276,7 @@
                         <div class="col-md-2">                                     
                             <label for="">P. UNITARIO</label>
                             <div class="input-group col-md-7">
-                                <input disabled class="form-control col-md-6" type="text" name="param_precioChips" id="param_precioChips" placeholder="0.00">                            
+                                <input disabled class="form-control col-md-6" type="text" name="param_precioChips" id="param_precioChips" placeholder="0.00" onkeypress="return decimales(event, this);">                            
                             </div>                                                                        
                         </div>
                         <input class="form-control col-md-12 " type="hidden" name="param_codigoChip" id="param_codigoChip">
@@ -308,13 +308,13 @@
                         <div class="col-md-1">                                     
                             <label for="">CANTIDAD</label>
                             <div class="input-group">
-                                <input disabled class="form-control col-md-6 " type="text" name="param_cantidadProtec" id="param_cantidadProtec" value="1" />                                           
+                                <input disabled class="form-control col-md-6 " type="text" name="param_cantidadProtec" id="param_cantidadProtec" value="1" onKeyPress="return solonumeros(event)"/>                                           
                             </div>                                                                        
                         </div>
                         <div class="col-md-2">                                     
                             <label for="">P. UNITARIO</label>
                             <div class="input-group col-md-7">
-                                <input disabled class="form-control col-md-6" type="text" name="param_precioProtector" id="param_precioProtector" placeholder="0.00">                            
+                                <input disabled class="form-control col-md-6" type="text" name="param_precioProtector" id="param_precioProtector" placeholder="0.00" onkeypress="return decimales(event, this);" >                            
                             </div>                                                                        
                         </div>
                         <input  class="form-control col-md-12 " type="hidden" name="param_codigoProtector" id="param_codigoProtector"/>
@@ -346,13 +346,13 @@
                         <div class="col-md-1">                                     
                             <label for="">CANTIDAD</label>
                             <div class="input-group">
-                                <input disabled class="form-control col-md-12 " type="text" name="param_cantidadAcce" id="param_cantidadAcce" value="1" />                                           
+                                <input disabled class="form-control col-md-12 " type="text" name="param_cantidadAcce" id="param_cantidadAcce" value="1" onKeyPress="return solonumeros(event)"/>                                           
                             </div>                                                                        
                         </div>
                         <div class="col-md-2">                                     
                             <label for="">P. UNITARIO</label>
                             <div class="input-group col-md-7">
-                                <input disabled class="form-control col-md-6" type="text" name="param_precioAccesorio" id="param_precioAccesorio" placeholder="0.00">                            
+                                <input disabled class="form-control col-md-6" type="text" name="param_precioAccesorio" id="param_precioAccesorio" placeholder="0.00" onkeypress="return decimales(event, this);">                            
                             </div>                                                                        
                         </div>
                         <input disabled="" class="form-control col-md-12 " type="hidden" name="param_idAccesorio" id="param_idAccesorio"/>
@@ -596,6 +596,23 @@
                 return false;
             }
         }
+
+        function decimales(e, field) {
+            key = e.keyCode ? e.keyCode : e.which
+            if (key == 8) return true
+            if (key > 47 && key < 58) {
+              if (field.value == "") return true
+              regexp = /.[0-9]{5}$/
+              return !(regexp.test(field.value))
+            }
+            if (key == 46) {
+              if (field.value == "") return false
+              regexp = /^[0-9]+$/
+              return regexp.test(field.value)
+            }
+            return false
+          }
+
 
         function validarEmail(field) {
             usuario = field.value.substring(0, field.value.indexOf("@"));
