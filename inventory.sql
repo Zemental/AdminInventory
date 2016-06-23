@@ -101,7 +101,8 @@ CREATE TABLE Chips
 	idProducto 	INT NOT NULL,
 	icc 		VARCHAR (65) NOT NULL,
 	numero 		VARCHAR (65) NOT NULL,
-	operadora   VARCHAR (65) NOT NULL,		
+	operadora   VARCHAR (65) NOT NULL,	
+	cantidada 	INT NOT NULL DEFAULT '1',	
 
 	PRIMARY KEY (idChip, icc),
 	FOREIGN KEY (idProducto) REFERENCES Productos (idProducto)

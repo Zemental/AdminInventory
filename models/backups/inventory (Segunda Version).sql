@@ -435,7 +435,7 @@ CREATE TABLE IF NOT EXISTS `chips` (
   `icc` varchar(65) NOT NULL,
   `numero` varchar(65) NOT NULL,
   `operadora` varchar(65) NOT NULL,
-  `cantidad` int(11) NOT NULL DEFAULT '1',
+  `cantidad` int(11) NOT NULL DEFAULT '1',  
   PRIMARY KEY (`idChip`,`icc`),
   KEY `idProducto` (`idProducto`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
