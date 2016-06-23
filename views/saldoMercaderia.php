@@ -232,8 +232,8 @@
                                 <div class="tab-pane fade active in" id="uidemo-tabs-default-demo-celulares">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteCelularAlicel1PDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteCelularAlicel1Excel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -260,8 +260,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-chips">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteChipsAlicel1PDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteChipsAlicel1Excel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -270,7 +270,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th style="text-align: center; font-size: 11px; height: 10px; width: 5%;">CODIGO</th>
-                                                        <th style="text-align: center; font-size: 11px; height: 10px; width: 8%;">IMEI</th>
+                                                        <th style="text-align: center; font-size: 11px; height: 10px; width: 8%;">ICC</th>
                                                         <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">SERIE</th>
                                                         <th style="text-align: center; font-size: 11px; height: 10px; width: 8%;">OPERADORA</th>
                                                         <th style="text-align: center; font-size: 11px; height: 10px; width: 5%;">STOCK</th>
@@ -288,8 +288,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-accesorios">                                    
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteAccesoriosAlicel1PDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteAccesoriosAlicel1Excel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -316,8 +316,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-protectores">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteProtectoresAlicel1PDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteProtectoresAlicel1Excel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                        
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -365,9 +365,8 @@
                                 <div class="tab-pane fade active in" id="uidemo-tabs-default-demo-celulares2">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
-                                        </span>
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteCelularAlicel2PDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteCelularAlicel2Excel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>
                                     </div>
                                     <div class="panel-body">
                                         <div class="table-primary">
@@ -393,8 +392,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-chips2">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteChipsAlicel2PDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteChipsAlicel2Excel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                         
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -421,8 +420,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-accesorios2">                                    
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteAccesoriosAlicel2PDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteAccesoriosAlicel2Excel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -449,8 +448,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-protectores2">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteProtectoresAlicel2PDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteProtectoresAlicel2Excel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -497,8 +496,8 @@
                                 <div class="tab-pane fade active in" id="uidemo-tabs-default-demo-celulares3">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteCelularEntelPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteCelularEntelExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                  
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -525,8 +524,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-chips3">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteChipsEntelPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteChipsEntelExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                           
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -553,8 +552,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-accesorios3">                                    
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteAccesoriosEntelPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteAccesoriosEntelExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -581,8 +580,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-protectores3">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteProtectoresEntelPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteProtectoresEntelExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                    
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -629,8 +628,8 @@
                                 <div class="tab-pane fade active in" id="uidemo-tabs-default-demo-celulares4">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteCelularPizarroPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteCelularPizarroExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -657,8 +656,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-chips4">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteChipsPizarroPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteChipsPizarroExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                         
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -685,8 +684,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-accesorios4">                                    
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteAccesoriosPizarroPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteAccesoriosPizarroExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                       
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -713,8 +712,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-protectores4">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteProtectoresPizarroPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteProtectoresPizarroExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -740,7 +739,7 @@
                             </div> <!-- / .tab-content -->
                         </div>
                     </div>
-                    <!-- SUCURSAL 5 -->
+                    <!-- SUCURSAL 5 ME KEDE -->
                     <div class="tab-pane fade" id="uidemo-tabs-default-demo-sucursal5">
                         <div class="panel-body">
                             <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
@@ -761,8 +760,8 @@
                                 <div class="tab-pane fade active in" id="uidemo-tabs-default-demo-celulares5">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteCelularAlmagroPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteCelularAlmagroExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                        
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -789,8 +788,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-chips5">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteChipsAlmagroPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteChipsAlmagroExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                    
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -817,8 +816,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-accesorios5">                                    
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteAccesoriosAlmagroPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteAccesoriosAlmagroExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                    
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -845,8 +844,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-protectores5">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteProtectoresAlmagroPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteProtectoresAlmagroExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                      
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -893,8 +892,8 @@
                                 <div class="tab-pane fade active in" id="uidemo-tabs-default-demo-celulares6">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteCelularMovilesPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteCelularMovilesExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                         
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -921,8 +920,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-chips6">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteChipsMovilesPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteChipsMovilesExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -949,8 +948,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-accesorios6">                                    
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteAccesoriosMovilesPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteAccesoriosMovilesExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                       
                                         </span>
                                     </div>
                                     <div class="panel-body">
@@ -977,8 +976,8 @@
                                 <div class="tab-pane fade" id="uidemo-tabs-default-demo-protectores6">
                                     <div class="panel-heading">
                                         <span class="panel-title">                                              
-                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteEnvios"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
-                                            <button class="btn btn-md btn-labeled btn-success" id="reporteEnviosExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                          
+                                            <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteProtectoresMovilesPDF"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button> 
+                                            <button class="btn btn-md btn-labeled btn-success" id="reporteProtectoresMovilesExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>
                                         </span>
                                     </div>
                                     <div class="panel-body">

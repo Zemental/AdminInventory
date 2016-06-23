@@ -186,10 +186,52 @@
                 <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-mobile page-header-icon"></i>&nbsp;&nbsp;Ventas Realizados</h1>
             </div>
         </div>       
-              
+        
+        <script>
+            init.push(function () {
+                var options = {
+                    todayBtn: "linked",
+                    orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+                }
+                $('#fechaInicio').datepicker();
+                $('#fechaFin').datepicker();
+                
+            });
+        </script>
+
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">                                             
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-2 form-horizontal">
+                            <div class="form-group">                                       
+                               <label for="socio" class="col-md-4 control-label">Fecha Inicio: </label>
+                               <div class="input-group date col-md-7" id="fechaInicio">
+                                    <input type="text" class="form-control" id="param_fechaInicio"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>                                   
+                            </div>
+                        </div>
+                        <div class="col-md-4 form-horizontal">
+                            <div class="form-group">                                                                     
+                               <label for="socio" class="col-md-4 control-label">Fecha Final: </label>
+                               <div class="input-group date col-md-7" id="fechaFin">
+                                    <input type="text" class="form-control" id="param_fechaFin"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">                                                                 
+                            <div class="input-group">
+                                <button type="button" class="btn btn-success btn-md ace-icon fa fa-search" id="buscarVentas">
+                                </button>                                           
+                            </div>                                                                        
+                        </div>  
+                        <div class="">                                                                 
+                            <div class="input-group">
+                                <button type="button" class="btn btn-primary btn-md ace-icon fa fa-refresh" id="todasVentas">
+                                </button>                                           
+                            </div>                                                                        
+                        </div>
+                    </div><br>  
                     <button class="btn btn-md btn-labeled btn-danger col-md-offset-8" id="reporteVentas"><span class="btn-label icon fa fa-file-text"></span>Exportar PDF</button>
                     <button class="btn btn-md btn-labeled btn-success" id="reporteVentasExcel"><span class="btn-label icon fa fa-file-text"></span>Exportar EXCEL</button>                              
                 </span>

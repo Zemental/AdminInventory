@@ -46,12 +46,15 @@ class EnviosModel {
                 break; 
             case 'registro_envio':
                 echo $this->registro_envio();
+            case 'buscar_envios':
+                echo $this->buscar_envios();
                 break;                              
             case "get":break;
         }
     }
 
-   
+    
+
     function prepararConsultaCombos($opcion) {
         $consultaSql = "call sp_combos(";
         $consultaSql.="'".$opcion . "')";        
@@ -68,9 +71,14 @@ class EnviosModel {
     } 
 
     function prepararConsultaMostrar($opcion) {
+        $fechaInicio=date("Y-m-d",strtotime($this->param['param_fechaInicio']));
+        $fechaFin=date("Y-m-d",strtotime($this->param['param_fechaFin']));
+
         $consultaSql = "call sp_mostrar_productos(";
         $consultaSql.="'".$opcion . "',"; 
-        $consultaSql.="'".$this->param['param_sucursal']. "')";        
+        $consultaSql.="'".$this->param['param_sucursal']. "',";
+        $consultaSql.="'".$fechaInicio. "',";
+        $consultaSql.="'".$fechaFin. "')";        
         //echo $consultaSql;
         $this->result = mysqli_query($this->conexion,$consultaSql);
     }
@@ -119,7 +127,7 @@ class EnviosModel {
                     <td style="text-align: center; font-size: 11px; height: 10px; width: 10%;">'.$row[4].'</td>                    
                     <td style="text-align: center; font-size: 11px; height: 10px; width: 10%;">
                             <div class="hidden-sm hidden-xs action-buttons">
-                                <a href="#" class="tooltip-error btn btn-success btn-xs" data-rel="tooltip" title="View" onclick="agregarCelular('.$row[0].');">
+                                <a href="#" class="tooltip-error btn btn-success btn-xs" data-rel="tooltip" title="View" onclick="reporteEnvios('.$row[0].');">
                                 Detalles</a>
                             </div>
                             <div class="hidden-md hidden-lg">
@@ -130,7 +138,7 @@ class EnviosModel {
 
                                     <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                         <li>
-                                            <a href="#" class="tooltip-error btn btn-success btn-xs" data-rel="tooltip" title="View" onclick="agregarCelular('.$row[0].');">Detalles</a>
+                                            <a href="#" class="tooltip-error btn btn-success btn-xs" data-rel="tooltip" title="View" onclick="reporteEnvios('.$row[0].');">Detalles</a>
                                 </li>
                                     </ul>
                                 </div>
@@ -138,6 +146,39 @@ class EnviosModel {
                         </td>';                     
             }
     }
+
+    function buscar_envios() {
+        $this->prepararConsultaMostrar('opc_buscar_envios');
+        $this->cerrarAbrir();
+        while($row = mysqli_fetch_row($this->result)){                      
+                echo '<tr>
+                    <td style="text-align: center; font-size: 11px; height: 10px; width: 10%;">'.$row[0].'</td>                
+                    <td style="text-align: center; font-size: 11px; height: 10px; width: 10%;">'.$row[1].'</td>
+                    <td style="text-align: center; font-size: 11px; height: 10px; width: 10%;">'.utf8_encode($row[2]).'</td>   
+                    <td style="text-align: center; font-size: 11px; height: 10px; width: 10%;">'.utf8_encode($row[3]).'</td> 
+                    <td style="text-align: center; font-size: 11px; height: 10px; width: 10%;">'.$row[4].'</td>                    
+                    <td style="text-align: center; font-size: 11px; height: 10px; width: 10%;">
+                            <div class="hidden-sm hidden-xs action-buttons">
+                                <a href="#" class="tooltip-error btn btn-success btn-xs" data-rel="tooltip" title="View" onclick="reporteEnvios('.$row[0].');">
+                                Detalles</a>
+                            </div>
+                            <div class="hidden-md hidden-lg">
+                                <div class="inline pos-rel">
+                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                        <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                    </button>
+
+                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                        <li>
+                                            <a href="#" class="tooltip-error btn btn-success btn-xs" data-rel="tooltip" title="View" onclick="reporteEnvios('.$row[0].');">Detalles</a>
+                                </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>';                     
+            }
+    }
+    
 
     function mostrar_celulares() {
         $this->prepararConsultaMostrar('opc_mostrar_celulares');

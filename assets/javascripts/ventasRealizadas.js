@@ -112,6 +112,36 @@ $(function() {
         }); 
     });  
 
+    $('#buscarVentas').on('click', function(){                   
+        
+        var fechaInicio       = document.getElementById('param_fechaInicio').value;
+        var fechaFin          = document.getElementById('param_fechaFin').value;
+        var param_opcion = 'buscar_ventas';
+        if (fechaInicio == '' && fechaFin == '') {
+            alert('Seleccionar fechas a buscar.');
+        } else {
+            $.ajax({
+                type: 'POST',        
+                data:'param_opcion='+param_opcion+'&param_fechaInicio='+fechaInicio+'&param_fechaFin='+fechaFin,
+                url: '../controllers/controlVentas/ventasController.php',
+                success: function(data){
+                    $('#tablaVentas').DataTable().destroy();
+                    $('#cuerpoVentas').html(data);
+                    $('#tablaVentas').DataTable();     
+                },
+                error: function(data){
+                           
+                }
+            });
+        }
+    }); 
+
+    $('#todasVentas').on('click', function(){ 
+        document.getElementById('param_fechaInicio').value="";
+        document.getElementById('param_fechaFin').value="";                  
+        mostrarVentas();
+    }); 
+
 
     $('#registrarVentas').on('click', function(){                   
         var sucursal = document.getElementById('sucursal').value;
@@ -146,13 +176,30 @@ $(function() {
         location.href='ventas.php';
     });
 
-    $('#reporteVentas').on('click', function(){                   
-       open("../reportes/ReporteVentas.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    $('#reporteVentas').on('click', function(){   
+        var fechaInicio       = document.getElementById('param_fechaInicio').value;
+        var fechaFin          = document.getElementById('param_fechaFin').value;
+
+        if (fechaFin == '' || fechaInicio == '') {
+            open("../reportes/ReporteVentas.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+        } else {
+            open("../reportes/ReporteVentasFechas.php?fechaInicio="+fechaInicio+"&fechaFin="+fechaFin, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+        } 
     }); 
 
     $('#reporteVentasExcel').on('click', function(){ 
+        var fechaInicio       = document.getElementById('param_fechaInicio').value;
+        var fechaFin          = document.getElementById('param_fechaFin').value;
+        
+        if (fechaFin == '' || fechaInicio == '') {
+            location.href = '../reportes/reporteVentasExcel.php';
+            //open("../reportes/ReporteVentas.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+        } else {
+            location.href = "../reportes/reporteVentasExcelFechas.php?fechaInicio="+fechaInicio+"&fechaFin="+fechaFin;
+            //open("../reportes/ReporteVentasFechas.php?fechaInicio="+fechaInicio+"&fechaFin="+fechaFin, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+        }
         //alert('dgfdg');
-        location.href = '../reportes/reporteVentasExcel.php';
+        //location.href = '../reportes/reporteVentasExcel.php';
        //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
     }); 
 
@@ -511,6 +558,10 @@ function Eliminar(producto, cantidad, importe) {
     //document.getElementById('param_total').value=contador;
 }
 
+function detalleVenta(numeroVenta) {  
+    //alert(numeroVenta);
+    open("../reportes/detallesVenta.php?numeroVenta="+numeroVenta, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+}
 
 function mostrar() {
     //alert('sfgdg');

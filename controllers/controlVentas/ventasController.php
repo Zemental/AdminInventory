@@ -13,6 +13,8 @@ $param['param_productos'] = '';
 $param['param_cantidad'] = '';
 $param['param_precio'] = '';
 $param['param_importe'] = '';
+$param['param_fechaInicio'] = '';
+$param['param_fechaFin'] = '';
 
 if (isset($_POST['param_opcion'])) {
     $param['param_opcion'] = $_POST['param_opcion'];
@@ -25,6 +27,14 @@ if (isset($_POST['param_id'])) {
 
 if (isset($_POST['param_sucursal'])) {
     $param['param_sucursal'] = $_POST['param_sucursal'];
+}
+
+if (isset($_POST['param_fechaInicio'])) {
+    $param['param_fechaInicio'] = $_POST['param_fechaInicio'];
+}
+
+if (isset($_POST['param_fechaFin'])) {
+    $param['param_fechaFin'] = $_POST['param_fechaFin'];
 }
 
 if (isset($_POST['param_tipodoc'])) {

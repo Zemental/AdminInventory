@@ -284,7 +284,7 @@
                         <div class="col-md-1">                                     
                             <label for="">CANTIDAD</label>
                             <div class="input-group">
-                                <input disabled class="form-control col-md-6 " type="text" name="param_cantidadProtec" id="param_cantidadProtec" value="1" />                                           
+                                <input disabled class="form-control col-md-6 " type="text" name="param_cantidadProtec" id="param_cantidadProtec" value="1" onKeyPress="return solonumeros(event)" />                                           
                             </div>                                                                        
                         </div>
                         <input  class="form-control col-md-12 " type="hidden" name="param_codigoProtector" id="param_codigoProtector"/>
@@ -316,7 +316,7 @@
                         <div class="col-md-1">                                     
                             <label for="">CANTIDAD</label>
                             <div class="input-group">
-                                <input disabled class="form-control col-md-12 " type="text" name="param_cantidadAcce" id="param_cantidadAcce" value="1" />                                           
+                                <input disabled class="form-control col-md-12 " type="text" name="param_cantidadAcce" id="param_cantidadAcce" value="1" onKeyPress="return solonumeros(event)"/>                                           
                             </div>                                                                        
                         </div>
                         <input disabled="" class="form-control col-md-12 " type="hidden" name="param_idAccesorio" id="param_idAccesorio"/>
@@ -531,6 +531,22 @@
                 return false;
             }
         }
+
+        function decimales(e, field) {
+            key = e.keyCode ? e.keyCode : e.which
+            if (key == 8) return true
+            if (key > 47 && key < 58) {
+              if (field.value == "") return true
+              regexp = /.[0-9]{5}$/
+              return !(regexp.test(field.value))
+            }
+            if (key == 46) {
+              if (field.value == "") return false
+              regexp = /^[0-9]+$/
+              return regexp.test(field.value)
+            }
+            return false
+          }
 
         function telefonovalidation(e) {
             var unicode = e.charCode ? e.charCode : e.keyCode

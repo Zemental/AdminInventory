@@ -137,19 +137,67 @@ $(function() {
                 });
             }
         }
-         
     });
+
+    $('#buscarEnvios').on('click', function(){                   
+        //alert('Registro Envio');
+        var fechaInicio       = document.getElementById('param_fechaInicio').value;
+        var fechaFin          = document.getElementById('param_fechaFin').value;
+        var param_opcion = 'buscar_envios';
+        if (fechaInicio == '' && fechaFin == '') {
+            alert('Seleccionar fechas a buscar.');
+        } else {
+            $.ajax({
+                    type: 'POST',        
+                    data:'param_opcion='+param_opcion+'&param_fechaInicio='+fechaInicio+'&param_fechaFin='+fechaFin,
+                    url: '../controllers/controlEnvios/enviosController.php',
+                    success: function(data){
+                        $('#tablaEnvios').DataTable().destroy();
+                        $('#cuerpoEnvios').html(data);
+                        $('#tablaEnvios').DataTable();     
+                    },
+                    error: function(data){
+                               
+                    }
+                });
+        }
+    });
+
+    $('#todosEnvios').on('click', function(){ 
+        document.getElementById('param_fechaInicio').value="";
+        document.getElementById('param_fechaFin').value="";                  
+        mostrarEnvios();
+    });
+
 
     $('#cancelar').on('click', function(){                   
         location.href='envios.php';
     }); 
 
-    $('#reporteEnvios').on('click', function(){                   
-       open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+    $('#reporteEnvios').on('click', function(){
+        var fechaInicio       = document.getElementById('param_fechaInicio').value;
+        var fechaFin          = document.getElementById('param_fechaFin').value;
+        if (fechaFin == '' || fechaInicio == '') {
+            open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+        } else {
+            open("../reportes/ReporteEnviosFechas.php?fechaInicio="+fechaInicio+"&fechaFin="+fechaFin, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+            //alert('fdgfdgfd')
+        }
+        
     });
 
     $('#reporteEnviosExcel').on('click', function(){ 
-        location.href = '../reportes/reporteEnviosExcel.php';
+        var fechaInicio       = document.getElementById('param_fechaInicio').value;
+        var fechaFin          = document.getElementById('param_fechaFin').value;
+        if (fechaFin == '' || fechaInicio == '') {
+            location.href = '../reportes/reporteEnviosExcel.php';
+        } else {
+            location.href = "../reportes/reporteEnviosExcelFechas.php?fechaInicio="+fechaInicio+"&fechaFin="+fechaFin;
+            //open("../reportes/ReporteEnviosFechas.php?fechaInicio="+fechaInicio+"&fechaFin="+fechaFin, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+            //alert('fdgfdgfd')
+        }
+
+        
        //open("../reportes/ReporteEnvios.php", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
     }); 
 });
@@ -386,6 +434,12 @@ function Eliminar(producto, cantidad) {
     contador = contador - parseFloat(cantidad);
     document.getElementById('param_total').value=contador;
 }
+
+function reporteEnvios(numeroEnvio) {  
+    //alert(numeroEnvio);
+    open("../reportes/detallesEnvio.php?numeroEnvio="+numeroEnvio, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes, top=100,left=300, width: 1000,height: 400");
+}
+
 
 
 function mostrar() {
