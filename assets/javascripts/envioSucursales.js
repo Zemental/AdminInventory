@@ -64,7 +64,6 @@ $(function() {
         //alert('bucar producto');
         //var sucursal = document.getElementById('sucursal').value;
         //alert(sucursal);
-        document.getElementById('sucursal').disabled=true;
         $('#modalBuscarProtector').modal({
             show:true,
             backdrop:'static'
@@ -89,8 +88,7 @@ $(function() {
     $('#buscarAccesorio').on('click', function(){                   
         //alert('bucar producto');
         //var sucursal = document.getElementById('sucursal').value;
-        //alert(sucursal);
-        document.getElementById('sucursal').disabled=true;
+        //alert(sucursal);S
         $('#modalBuscarAccesorio').modal({
             show:true,
             backdrop:'static'
@@ -224,6 +222,7 @@ function agregarDetalleEnvio() {
         document.getElementById('param_imei').value="";
         document.getElementById('param_serie').value=""; 
         document.getElementById('addRowCelular').disabled=true;
+        document.getElementById('sucursal').disabled=true;
         // para el descuento normal
     } );
 
@@ -247,6 +246,7 @@ function agregarDetalleEnvio() {
         document.getElementById('param_numero').value="";
         document.getElementById('param_codigoChip').value=""; 
         document.getElementById('addRowChips').disabled=true;
+        document.getElementById('sucursal').disabled=true;
         // para el descuento normal
     } );  
 
@@ -271,6 +271,7 @@ function agregarDetalleEnvio() {
         document.getElementById('param_codigoProtector').value=""; 
         document.getElementById('addRowProtector').disabled=true;
         document.getElementById('param_cantidadProtec').disabled=true;
+        document.getElementById('sucursal').disabled=true;
         // para el descuento normal
     } );
 
@@ -295,6 +296,7 @@ function agregarDetalleEnvio() {
         document.getElementById('param_codigoProtector').value=""; 
         document.getElementById('addRowAccesorios').disabled=true;
         document.getElementById('param_cantidadAcce').disabled=true;
+        document.getElementById('sucursal').disabled=true;
         // para el descuento normal
     } ); 
 
