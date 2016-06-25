@@ -98,7 +98,7 @@ class EnviosModel {
             $consultaSql.= "'".$producto."',";
             $consultaSql.= "'".$cantidad."',";
             $consultaSql.= "'".$this->param['param_sucursal']."')";
-            echo $consultaSql;
+            //echo $consultaSql;
             $this->result = mysqli_query($this->conexion,$consultaSql);    
         }  
 

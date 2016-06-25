@@ -30,8 +30,24 @@
             </tr>
         </table> 
         <br><br><br>
+        <?php
+            $con = new PDO('mysql:host=localhost;dbname=inventory', 'root', '');
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+            $query = "SELECT numVenta FROM venta WHERE ventaID = '".$venta."'";
+
+            $result = $con->query($query);
+
+            $data = $result->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach($data as $campo):
+                $numeroVenta = $campo['numVenta'];
+          
+        endforeach;
+        ?>
         <div align="center">   
-		    <strong style="font-size: 12pt">DETALLES DE LA VENTA N° <?php echo $venta ?></strong>
+		    <strong style="font-size: 12pt">DETALLES DE LA VENTA N° <?php echo $numeroVenta ?></strong>
 		</div><br><br>
     </page_header>
 	
@@ -57,7 +73,7 @@
             $query = "SELECT V.numVenta, V.tipoDocumento,S.nombre, S.direccion, S.telefono, V.fechaVenta, CONCAT(R.nombres,' ',R.apellidos) as Responsable, R.dni FROM venta V
     INNER JOIN sucursales S ON S.idSucursal = V.idSUcursal
     INNER JOIN responsables R ON R.idResponsable = S.idResponsable
-WHERE numVenta = '".$venta."'";
+WHERE ventaID = '".$venta."'";
 
             $result = $con->query($query);
 
@@ -125,26 +141,26 @@ WHERE numVenta = '".$venta."'";
     INNER JOIN productos P ON P.idProducto = DM.idProducto
     INNER JOIN tipoproducto TP ON TP.idTipoProducto = P.idTipoProducto
     INNER JOIN celulares C ON C.idProducto = P.idProducto
-WHERE DM.numVenta = '".$venta."'
+WHERE DM.ventaID = '".$venta."'
 UNION
 SELECT P.idProducto AS CODIGO, TP.nombre AS TIPO, concat('ICC: ',C.iCC,' /  NUMERO: ',C.numero,' /  OPERADORA: ', C.operadora) AS DESCRIPCION, DM.cantidad AS CANTIDAD, DM.precio AS PRECIO, DM.importe AS IMPORTE FROM detalleventa DM 
     INNER JOIN productos P ON P.idProducto = DM.idProducto
     INNER JOIN tipoproducto TP ON TP.idTipoProducto = P.idTipoProducto
     INNER JOIN chips C ON C.idProducto = P.idProducto
-WHERE DM.numVenta = '".$venta."'
+WHERE DM.ventaID = '".$venta."'
 UNION
 SELECT P.idProducto AS CODIGO, TP.nombre AS TIPO, concat('CODIGO: ',A.codigo,' /  DESCRIPCION: ',A.descripcion) AS DESCRIPCION, DM.cantidad AS CANTIDAD, DM.precio AS PRECIO, DM.importe AS IMPORTE FROM detalleventa DM 
     INNER JOIN productos P ON P.idProducto = DM.idProducto
     INNER JOIN tipoproducto TP ON TP.idTipoProducto = P.idTipoProducto
     INNER JOIN accesorios A ON A.idProducto = P.idProducto
-WHERE DM.numVenta = '".$venta."'
+WHERE DM.ventaID = '".$venta."'
 UNION
 SELECT P.idProducto AS CODIGO, TP.nombre AS TIPO, concat('TIPO DE PROTECCTOR: ',T.nombre,' /  MODELO DE CELULAR: ',PR.modeloCelular) AS DESCRIPCION, DM.cantidad AS CANTIDAD, DM.precio AS PRECIO, DM.importe AS IMPORTE FROM detalleventa DM 
     INNER JOIN productos P ON P.idProducto = DM.idProducto
     INNER JOIN tipoproducto TP ON TP.idTipoProducto = P.idTipoProducto
     INNER JOIN protectores PR ON PR.idProducto = P.idProducto
     INNER JOIN tipoprotector T ON T.idTipoProtector = PR.idTipoProtector
-WHERE DM.numVenta = '".$venta."'";
+WHERE DM.ventaID = '".$venta."'";
 
             $result = $con->query($query2);
 

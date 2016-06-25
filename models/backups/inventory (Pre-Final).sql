@@ -276,7 +276,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_gestion_detalle_venta`(IN `opcio
     NO SQL
 BEGIN
   IF opcion = 'opc_grabar_detalle_venta' THEN
-      INSERT INTO detalleventa (numVenta, idProducto, cantidad, precio, importe) VALUES (numeroDoc, producto,cantidadVenta,precio,importe);
+      SET @VENTA = (SELECT MAX(ventaID) AS id FROM venta);
+      INSERT INTO detalleventa (ventaID, idProducto, cantidad, precio, importe) VALUES (@VENTA, producto,cantidadVenta,precio,importe);
     END IF;
     IF opcion = 'opc_modificar_estado_producto' THEN
       UPDATE productos SET estado = 'V' WHERE idProducto = producto;
@@ -522,24 +523,17 @@ INSERT INTO `detallemovimiento` (`numDetalle`, `numMovimiento`, `stock`, `cantid
 
 CREATE TABLE IF NOT EXISTS `detalleventa` (
   `numDetalle` int(11) NOT NULL AUTO_INCREMENT,
-  `numVenta` varchar(15) NOT NULL,
+  `ventaID` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `precio` double DEFAULT NULL,
   `importe` double DEFAULT NULL,
   PRIMARY KEY (`numDetalle`),
-  KEY `numVenta` (`numVenta`),
+  KEY `ventaID` (`ventaID`),
   KEY `idProducto` (`idProducto`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
---
--- Volcado de datos para la tabla `detalleventa`
---
 
-INSERT INTO `detalleventa` (`numDetalle`, `numVenta`, `idProducto`, `cantidad`, `precio`, `importe`) VALUES
-(1, 'B-00001', 1, 1, 1250, 1250),
-(2, 'B-00001', 2, 1, 20.5, 20.5),
-(3, '00003', 5, 1, 1850.52, 1850.52);
 
 -- --------------------------------------------------------
 
@@ -780,23 +774,16 @@ INSERT INTO `usuarios` (`idUsuario`, `usuario`, `password`, `nombres`, `apellido
 --
 
 CREATE TABLE IF NOT EXISTS `venta` (
+  `ventaID` int(11) NOT NULL AUTO_INCREMENT,
   `numVenta` varchar(15) NOT NULL,
   `idSucursal` int(11) NOT NULL,
   `tipoDocumento` varchar(5) DEFAULT NULL,
   `fechaVenta` date NOT NULL,
   `cantidadTotal` int(11) NOT NULL,
   `activo` bit(1) NOT NULL,
-  PRIMARY KEY (`numVenta`),
+  PRIMARY KEY (`ventaID`),
   KEY `idSucursal` (`idSucursal`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `venta`
---
-
-INSERT INTO `venta` (`numVenta`, `idSucursal`, `tipoDocumento`, `fechaVenta`, `cantidadTotal`, `activo`) VALUES
-('00003', 2, 'F', '2016-06-25', 2184, b'1'),
-('B-00001', 1, 'B', '2016-06-25', 1270, b'1');
 
 --
 -- Restricciones para tablas volcadas
@@ -831,7 +818,7 @@ ALTER TABLE `detallemovimiento`
 -- Filtros para la tabla `detalleventa`
 --
 ALTER TABLE `detalleventa`
-  ADD CONSTRAINT `detalleventa_ibfk_1` FOREIGN KEY (`numVenta`) REFERENCES `venta` (`numVenta`),
+  ADD CONSTRAINT `detalleventa_ibfk_1` FOREIGN KEY (`ventaID`) REFERENCES `venta` (`ventaID`),
   ADD CONSTRAINT `detalleventa_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProducto`);
 
 --

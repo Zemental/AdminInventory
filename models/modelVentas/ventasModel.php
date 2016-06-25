@@ -137,7 +137,7 @@ class VentasModel {
                     <td style="text-align: center; font-size: 11px; height: 10px; width: 10%;">'.$row[5].'</td>                    
                     <td style="text-align: center; font-size: 11px; height: 10px; width: 10%;">
                             <div class="hidden-sm hidden-xs action-buttons">
-                                <a href="#" class="tooltip-error btn btn-success btn-xs" data-rel="tooltip" title="View" onclick="detalleVenta('.$row[0].');">
+                                <a href="#" class="tooltip-error btn btn-success btn-xs" data-rel="tooltip" title="View" onclick="detalleVenta('.$row[6].');">
                                 Detalles</a>
                             </div>
                             <div class="hidden-md hidden-lg">
@@ -148,7 +148,7 @@ class VentasModel {
 
                                     <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                         <li>
-                                            <a href="#" class="tooltip-error btn btn-success btn-xs" data-rel="tooltip" title="View" onclick="detalleVenta('.$row[0].');">Detalles</a>
+                                            <a href="#" class="tooltip-error btn btn-success btn-xs" data-rel="tooltip" title="View" onclick="detalleVenta('.$row[6].');">Detalles</a>
                                 </li>
                                     </ul>
                                 </div>
