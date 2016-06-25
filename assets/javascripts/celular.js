@@ -8,7 +8,8 @@ window.onload = function(){
         document.getElementById('imei').value= '';
         document.getElementById('serie').value= '';
         document.getElementById('marca').value= '';
-        document.getElementById('modelo').value= '';                
+        document.getElementById('modelo').value= ''; 
+        document.getElementById('precio').value= '';                
     });  
 }
 
@@ -19,6 +20,7 @@ $(function() {
         document.getElementById('serie').value= '';
         document.getElementById('marca').value= '';
         document.getElementById('modelo').value= '';
+        document.getElementById('precio').value= '';
         document.getElementById('operacion').value= 'Registrar';        
         $('#modalCelular').modal({
             show:true,
@@ -35,64 +37,103 @@ $(function() {
             var imei = document.getElementById('imei').value;
             var serie = document.getElementById('serie').value;
             var marca = document.getElementById('marca').value;
-            var modelo = document.getElementById('modelo').value;   
+            var modelo = document.getElementById('modelo').value; 
+            var precio = document.getElementById('precio').value;  
 
-            if(imei == '' || serie == '' || marca == '' || modelo == ''){
+            if(imei == '' || serie == '' || marca == '' || modelo == '' || precio == ''){
                 nota("error","Complete los campos obligatorios. (*)",2000);   
                 return;                                          
             }
             else
             {
-                
-                    $.ajax({
-                        type: 'POST',
-                        data:'opcion='+opcion+'&imei='+imei+'&serie=' +serie+
-                            '&marca='+marca+'&modelo=' +modelo,
-                        url: '../controllers/controlCelular/celularController.php',
-                        success: function(data){
-                            nota("success","Celular registrado correctamente.",2000);
-                            document.getElementById('imei').value= '';
-                            document.getElementById('serie').value= '';
-                            document.getElementById('marca').value= '';
-                            document.getElementById('modelo').value= '';                                     
-                            $('#modalCelular').modal('hide');
-                            mostrarCelulares();
-                        },
-                        error: function(data){
-                            nota("error","Ocurrió un error inesperado.",2000);
-                        }
-                    });  
-                               
+                if(imei.length < 15){
+                    nota("error","Código IMEI debe tener 15 dígitos.",2000);   
+                    return;
+                } else {
+                    if(precio <= 0){
+                        nota("error","El precio debe ser una cantidad mayor a cero.",2000);   
+                        return;
+                    }else{
+                        if (serie.length < 18) {
+                            nota("error","La serie tener 18 dígitos.",2000);   
+                            return;
+                        } else {
+                            $.ajax({
+                                type: 'POST',
+                                data:'opcion='+opcion+'&imei='+imei+'&serie=' +serie+
+                                    '&marca='+marca+'&modelo=' +modelo+'&precio=' +precio,
+                                url: '../controllers/controlCelular/celularController.php',
+                                success: function(data){
+                                    nota("success","Celular registrado correctamente.",2000);
+                                    document.getElementById('imei').value= '';
+                                    document.getElementById('serie').value= '';
+                                    document.getElementById('marca').value= '';
+                                    document.getElementById('modelo').value= ''; 
+                                    document.getElementById('precio').value= '';                                     
+                                    $('#modalCelular').modal('hide');
+                                    mostrarCelulares();
+                                },
+                                error: function(data){
+                                    nota("error","Ocurrió un error inesperado.",2000);
+                                }
+                            }); 
+                        }                                                    
+                    }
+                }                
+                      
             }           
 
         } else {
-            if (operacion = 'Editar') {                              
+            if (operacion = 'Editar') {                                            
                 var opcion = 'editar_celular';
                 var codigo = document.getElementById('codigo').value;
                 var imei = document.getElementById('imei').value;
                 var serie = document.getElementById('serie').value;
                 var marca = document.getElementById('marca').value;
                 var modelo = document.getElementById('modelo').value;     
+                var precio = document.getElementById('precio').value;
 
-                $.ajax({
-                    type: 'POST',
-                    data:'opcion='+opcion+'&codigo='+codigo+'&imei='+imei+'&serie=' +serie+
-                            '&marca='+marca+'&modelo=' +modelo,
-                    url: '../controllers/controlCelular/celularController.php',
-                    success: function(data){                        
-                        nota("success","Celular actualizado correctamente.",2000);
-                        document.getElementById('imei').value= '';
-                        document.getElementById('serie').value= '';
-                        document.getElementById('marca').value= '';
-                        document.getElementById('modelo').value= ''; 
-                        document.getElementById('operacion').value= 'Registrar'; 
-                        $('#modalCelular').modal('hide');
-                        mostrarCelulares();
-                    },
-                    error: function(data){
-                        nota("error","Ocurrió un error inesperado.",2000);
+                if(imei == '' || serie == '' || marca == '' || modelo == '' || precio == ''){
+                    nota("error","Complete los campos obligatorios. (*)",2000);   
+                    return;                                          
+                } else {
+                    if(precio <= 0){
+                        nota("error","El precio debe ser una cantidad mayor a cero.",2000);   
+                        return;
+                    } else {
+                        if (serie.length < 18) {
+                            nota("error","La serie tener 18 dígitos.",2000);   
+                            return;
+                        } else {
+                            if (imei.length < 15) {
+                                nota("error","Código IMEI debe tener 15 dígitos.",2000);   
+                                return;
+                            } else {
+                                $.ajax({
+                                    type: 'POST',
+                                    data:'opcion='+opcion+'&codigo='+codigo+'&imei='+imei+'&serie=' +serie+
+                                            '&marca='+marca+'&modelo=' +modelo+'&precio=' +precio,
+                                    url: '../controllers/controlCelular/celularController.php',
+                                    success: function(data){                        
+                                        nota("success","Celular actualizado correctamente.",2000);
+                                        document.getElementById('imei').value= '';
+                                        document.getElementById('serie').value= '';
+                                        document.getElementById('marca').value= '';
+                                        document.getElementById('modelo').value= ''; 
+                                        document.getElementById('precio').value= ''; 
+                                        document.getElementById('operacion').value= 'Registrar'; 
+                                        $('#modalCelular').modal('hide');
+                                        mostrarCelulares();
+                                    },
+                                    error: function(data){
+                                        nota("error","Ocurrió un error inesperado.",2000);
+                                    }
+                                });
+                            }
+                            
+                        }                        
                     }
-                });
+                }                
             }
 
         }
@@ -143,6 +184,7 @@ function editar(codigo){
             $("#serie").val(objeto[2]);
             $("#marca").val(objeto[3]);
             $("#modelo").val(objeto[4]); 
+            $("#precio").val(objeto[5]); 
         },
         error: function(data){
 
@@ -153,7 +195,7 @@ function editar(codigo){
 
 function eliminar(codigo, estado){
     if (estado == 0){
-        var respuesta = confirm('¿Desea ELIMINAR el equipo celular?');
+        var respuesta = confirm('¿Desea DAR DE BAJA el equipo celular?');
     } else {
         var respuesta = confirm('¿Desea ACTIVAR el equipo celular?');
     }

@@ -8,6 +8,7 @@ $param['codigo'] = '';
 $param['tipo'] = '';
 $param['modeloCelular'] = '';
 $param['cantidad'] = '';
+$param['precio'] = '';
 $param['estado'] = '';
 
 if (isset($_POST['opcion'])) {
@@ -28,6 +29,10 @@ if (isset($_POST['modeloCelular'])) {
 
 if (isset($_POST['cantidad'])) {
     $param['cantidad'] = $_POST['cantidad'];
+}
+
+if (isset($_POST['precio'])) {
+    $param['precio'] = $_POST['precio'];
 }
 
 if (isset($_POST['estado'])) {

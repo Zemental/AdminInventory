@@ -8,7 +8,7 @@ window.onload = function(){
         document.getElementById('icc').value= '';
         document.getElementById('numero').value= '';
         document.getElementById('operadora').value= '';
-        //document.getElementById('modelo').value= '';                
+        document.getElementById('precio').value= '';                
     });  
 }
 
@@ -18,7 +18,7 @@ $(function() {
         document.getElementById('icc').value= '';
         document.getElementById('numero').value= '';
         document.getElementById('operadora').value= '';
-        //document.getElementById('modelo').value= '';
+        document.getElementById('precio').value= '';
         document.getElementById('operacion').value= 'Registrar';        
         $('#modalChip').modal({
             show:true,
@@ -35,25 +35,29 @@ $(function() {
             var icc = document.getElementById('icc').value;
             var numero = document.getElementById('numero').value;
             var operadora = document.getElementById('operadora').value;
-            //var modelo = document.getElementById('modelo').value;   
+            var precio = document.getElementById('precio').value;   
 
-            if(icc == '' || numero == '' || operadora == '' ){
+            if(icc == '' || numero == '' || operadora == '' || precio == '' ){
                 nota("error","Complete los campos obligatorios. (*)",2000);   
                 return;                                          
             }
             else
             {
+                if (icc.length < 19) {
+                    nota("error","Código ICC debe tener 19 dígitos.",2000);   
+                    return;
+                } else {
                     $.ajax({
                         type: 'POST',
                         data:'opcion='+opcion+'&icc='+icc+'&numero=' +numero+
-                            '&operadora='+operadora,
+                            '&operadora='+operadora+'&precio='+precio,
                         url: '../controllers/controlChip/chipController.php',
                         success: function(data){
                             nota("success","Celular registrado correctamente.",2000);
                             document.getElementById('icc').value= '';
                             document.getElementById('numero').value= '';
                             document.getElementById('operadora').value= '';
-                            //document.getElementById('modelo').value= '';                                     
+                            document.getElementById('precio').value= '';                                     
                             $('#modalChip').modal('hide');
                             mostrarChips();
                         },
@@ -61,6 +65,7 @@ $(function() {
                             nota("error","Ocurrió un error inesperado.",2000);
                         }
                     });  
+                }                    
                                
             }           
 
@@ -71,27 +76,37 @@ $(function() {
                 var icc = document.getElementById('icc').value;
                 var numero = document.getElementById('numero').value;
                 var operadora = document.getElementById('operadora').value;
-                //var modelo = document.getElementById('modelo').value;     
+                var precio = document.getElementById('precio').value;     
 
-                $.ajax({
-                    type: 'POST',
-                    data:'opcion='+opcion+'&codigo='+codigo+'&icc='+icc+'&numero=' +numero+
-                            '&operadora='+operadora,
-                    url: '../controllers/controlChip/chipController.php',
-                    success: function(data){                        
-                        nota("success","Chip actualizado correctamente.",2000);
-                        document.getElementById('icc').value= '';
-                        document.getElementById('numero').value= '';
-                        document.getElementById('operadora').value= '';
-                        //document.getElementById('modelo').value= ''; 
-                        document.getElementById('operacion').value= 'Registrar'; 
-                        $('#modalChip').modal('hide');
-                        mostrarChips();
-                    },
-                    error: function(data){
-                        nota("error","Ocurrió un error inesperado.",2000);
+                if(icc == '' || numero == '' || operadora == '' || precio == '' ){
+                    nota("error","Complete los campos obligatorios. (*)",2000);   
+                    return;                                          
+                } else {
+                    if (icc.length < 19) {
+                        nota("error","Código ICC debe tener 19 dígitos.",2000);   
+                        return;
+                    } else {
+                        $.ajax({
+                            type: 'POST',
+                            data:'opcion='+opcion+'&codigo='+codigo+'&icc='+icc+'&numero=' +numero+
+                                    '&operadora='+operadora+'&precio='+precio,
+                            url: '../controllers/controlChip/chipController.php',
+                            success: function(data){                        
+                                nota("success","Chip actualizado correctamente.",2000);
+                                document.getElementById('icc').value= '';
+                                document.getElementById('numero').value= '';
+                                document.getElementById('operadora').value= '';
+                                document.getElementById('precio').value= ''; 
+                                document.getElementById('operacion').value= 'Registrar'; 
+                                $('#modalChip').modal('hide');
+                                mostrarChips();
+                            },
+                            error: function(data){
+                                nota("error","Ocurrió un error inesperado.",2000);
+                            }
+                        });
                     }
-                });
+                }                
             }
 
         }
@@ -141,7 +156,7 @@ function editar(codigo){
             $("#icc").val(objeto[1]);
             $("#numero").val(objeto[2]);
             $("#operadora").val(objeto[3]);
-            //$("#modelo").val(objeto[4]); 
+            $("#precio").val(objeto[4]); 
         },
         error: function(data){
 
@@ -152,7 +167,7 @@ function editar(codigo){
 
 function eliminar(codigo, estado){
     if (estado == 0){
-        var respuesta = confirm('¿Desea ELIMINAR el chip?');
+        var respuesta = confirm('¿Desea DAR DE BAJA el chip?');
     } else {
         var respuesta = confirm('¿Desea ACTIVAR el chip?');
     }

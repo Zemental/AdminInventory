@@ -311,7 +311,7 @@ function chipAlicel1(){
             $('#tablaChipAlicel1').DataTable().destroy();
             $('#cuerpoChipAlicel1').html(data);
             $('#tablaChipAlicel1').DataTable();
-            $('#tablaChipAlicel1_wrapper .table-caption').text('Accesorios');
+            $('#tablaChipAlicel1_wrapper .table-caption').text('Chips');
             $('#tablaChipAlicel1_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -332,7 +332,7 @@ function accesorioAlicel1(){
             $('#tablaAcessoriosAlicel1').DataTable().destroy();
             $('#cuerpoAcessoriosAlicel1').html(data);
             $('#tablaAcessoriosAlicel1').DataTable();
-            $('#tablaAcessoriosAlicel1_wrapper .table-caption').text('Chips');
+            $('#tablaAcessoriosAlicel1_wrapper .table-caption').text('Accesorios');
             $('#tablaAcessoriosAlicel1_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -353,7 +353,7 @@ function protectoresAlicel1(){
             $('#tablaProtectoresAlicel1').DataTable().destroy();
             $('#cuerpoProtectoresAlicel1').html(data);
             $('#tablaProtectoresAlicel1').DataTable();
-            $('#tablaProtectoresAlicel1_wrapper .table-caption').text('Chips');
+            $('#tablaProtectoresAlicel1_wrapper .table-caption').text('Protectores');
             $('#tablaProtectoresAlicel1_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -395,7 +395,7 @@ function chipAlicel2(){
             $('#tablaChipAlicel2').DataTable().destroy();
             $('#cuerpoChipAlicel2').html(data);
             $('#tablaChipAlicel2').DataTable();
-            $('#tablaChipAlicel2_wrapper .table-caption').text('Accesorios');
+            $('#tablaChipAlicel2_wrapper .table-caption').text('Chips');
             $('#tablaChipAlicel2_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -416,7 +416,7 @@ function accesorioAlicel2(){
             $('#tablaAcessoriosAlicel2').DataTable().destroy();
             $('#cuerpoAcessoriosAlicel2').html(data);
             $('#tablaAcessoriosAlicel2').DataTable();
-            $('#tablaAcessoriosAlicel2_wrapper .table-caption').text('Chips');
+            $('#tablaAcessoriosAlicel2_wrapper .table-caption').text('Accesorios');
             $('#tablaAcessoriosAlicel2_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -437,7 +437,7 @@ function protectoresAlicel2(){
             $('#tablaProtectoresAlicel2').DataTable().destroy();
             $('#cuerpoProtectoresAlicel2').html(data);
             $('#tablaProtectoresAlicel2').DataTable();
-            $('#tablaProtectoresAlicel2_wrapper .table-caption').text('Chips');
+            $('#tablaProtectoresAlicel2_wrapper .table-caption').text('Protectores');
             $('#tablaProtectoresAlicel2_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -480,7 +480,7 @@ function chipAlicel3(){
             $('#tablaChipAlicel3').DataTable().destroy();
             $('#cuerpoChipAlicel3').html(data);
             $('#tablaChipAlicel3').DataTable();
-            $('#tablaChipAlicel3_wrapper .table-caption').text('Accesorios');
+            $('#tablaChipAlicel3_wrapper .table-caption').text('Chips');
             $('#tablaChipAlicel3_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -501,7 +501,7 @@ function accesorioAlicel3(){
             $('#tablaAcessoriosAlicel3').DataTable().destroy();
             $('#cuerpoAcessoriosAlicel3').html(data);
             $('#tablaAcessoriosAlicel3').DataTable();
-            $('#tablaAcessoriosAlicel3_wrapper .table-caption').text('Chips');
+            $('#tablaAcessoriosAlicel3_wrapper .table-caption').text('Accesorios');
             $('#tablaAcessoriosAlicel3_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -522,7 +522,7 @@ function protectoresAlicel3(){
             $('#tablaProtectoresAlicel3').DataTable().destroy();
             $('#cuerpoProtectoresAlicel3').html(data);
             $('#tablaProtectoresAlicel3').DataTable();
-            $('#tablaProtectoresAlicel3_wrapper .table-caption').text('Chips');
+            $('#tablaProtectoresAlicel3_wrapper .table-caption').text('Protectores');
             $('#tablaProtectoresAlicel3_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -564,7 +564,7 @@ function chipAlicel4(){
             $('#tablaChipAlicel4').DataTable().destroy();
             $('#cuerpoChipAlicel4').html(data);
             $('#tablaChipAlicel4').DataTable();
-            $('#tablaChipAlicel4_wrapper .table-caption').text('Accesorios');
+            $('#tablaChipAlicel4_wrapper .table-caption').text('Chips');
             $('#tablaChipAlicel4_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -585,7 +585,7 @@ function accesorioAlicel4(){
             $('#tablaAcessoriosAlicel4').DataTable().destroy();
             $('#cuerpoAcessoriosAlicel4').html(data);
             $('#tablaAcessoriosAlicel4').DataTable();
-            $('#tablaAcessoriosAlicel4_wrapper .table-caption').text('Chips');
+            $('#tablaAcessoriosAlicel4_wrapper .table-caption').text('Accesorios');
             $('#tablaAcessoriosAlicel4_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -606,7 +606,7 @@ function protectoresAlicel4(){
             $('#tablaProtectoresAlicel4').DataTable().destroy();
             $('#cuerpoProtectoresAlicel4').html(data);
             $('#tablaProtectoresAlicel4').DataTable();
-            $('#tablaProtectoresAlicel4_wrapper .table-caption').text('Chips');
+            $('#tablaProtectoresAlicel4_wrapper .table-caption').text('Protectores');
             $('#tablaProtectoresAlicel4_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -648,7 +648,7 @@ function chipAlicel5(){
             $('#tablaChipAlicel5').DataTable().destroy();
             $('#cuerpoChipAlicel5').html(data);
             $('#tablaChipAlicel5').DataTable();
-            $('#tablaChipAlicel5_wrapper .table-caption').text('Accesorios');
+            $('#tablaChipAlicel5_wrapper .table-caption').text('Chips');
             $('#tablaChipAlicel5_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -669,7 +669,7 @@ function accesorioAlicel5(){
             $('#tablaAcessoriosAlicel5').DataTable().destroy();
             $('#cuerpoAcessoriosAlicel5').html(data);
             $('#tablaAcessoriosAlicel5').DataTable();
-            $('#tablaAcessoriosAlicel5_wrapper .table-caption').text('Chips');
+            $('#tablaAcessoriosAlicel5_wrapper .table-caption').text('Accesorios');
             $('#tablaAcessoriosAlicel5_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -690,7 +690,7 @@ function protectoresAlicel5(){
             $('#tablaProtectoresAlicel5').DataTable().destroy();
             $('#cuerpoProtectoresAlicel5').html(data);
             $('#tablaProtectoresAlicel5').DataTable();
-            $('#tablaProtectoresAlicel5_wrapper .table-caption').text('Chips');
+            $('#tablaProtectoresAlicel5_wrapper .table-caption').text('Protectores');
             $('#tablaProtectoresAlicel5_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -735,7 +735,7 @@ function chipAlicel6(){
             $('#tablaChipAlicel6').DataTable().destroy();
             $('#cuerpoChipAlicel6').html(data);
             $('#tablaChipAlicel6').DataTable();
-            $('#tablaChipAlicel6_wrapper .table-caption').text('Accesorios');
+            $('#tablaChipAlicel6_wrapper .table-caption').text('Chips');
             $('#tablaChipAlicel6_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -756,7 +756,7 @@ function accesorioAlicel6(){
             $('#tablaAcessoriosAlicel6').DataTable().destroy();
             $('#cuerpoAcessoriosAlicel6').html(data);
             $('#tablaAcessoriosAlicel6').DataTable();
-            $('#tablaAcessoriosAlicel6_wrapper .table-caption').text('Chips');
+            $('#tablaAcessoriosAlicel6_wrapper .table-caption').text('Accesorios');
             $('#tablaAcessoriosAlicel6_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
@@ -777,7 +777,7 @@ function protectoresAlicel6(){
             $('#tablaProtectoresAlicel6').DataTable().destroy();
             $('#cuerpoProtectoresAlicel6').html(data);
             $('#tablaProtectoresAlicel6').DataTable();
-            $('#tablaProtectoresAlicel6_wrapper .table-caption').text('Chips');
+            $('#tablaProtectoresAlicel6_wrapper .table-caption').text('Protectores');
             $('#tablaProtectoresAlicel6_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },

@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- Open Sans font from Google CDN -->
+    <link rel="icon" href="assets/images/celular.png" type="images/png"/>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&amp;subset=latin" rel="stylesheet" type="text/css">
 
     <!-- Pixel Admin's stylesheets -->
@@ -215,6 +216,7 @@
                                 <th style="width:13%;">SERIE</th>
                                 <th style="width:10%;">MARCA</th>
                                 <th style="width:15%;">MODELO</th>
+                                <th style="width:8%;">PRECIO</th>
                                 <th style="width:7%;">UBICACION</th>
                                 <th style="width:8%;">OPERACIONES</th>
                             </tr>
@@ -241,13 +243,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
                                             <label class="control-label">Código imie*</label>
-                                            <input type="text" id="imei" name="imei" class="form-control" autocomplete="off" placeholder="Código imei" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <input type="text" id="imei" name="imei" class="form-control" autocomplete="off" placeholder="Código imei" onkeypress="return solonumeros(event)" maxlength="15">
                                         </div>
                                     </div><!-- col-sm-6 -->
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
                                             <label class="control-label">Nro. Serie*</label>
-                                            <input type="text" id="serie" name="serie" class="form-control" autocomplete="off" placeholder="Nro. Serie" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <input type="text" id="serie" name="serie" class="form-control" autocomplete="off" placeholder="Nro. Serie" style="text-transform:uppercase;" maxlength="18" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                         </div>
                                     </div><!-- col-sm-6 -->
                                 </div><!-- row -->
@@ -256,15 +258,23 @@
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
                                             <label class="control-label">Marca*</label>
-                                            <input type="text" id="marca" name="marca" class="form-control" placeholder="Ejm: SAMSUMG" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <input type="text" id="marca" name="marca" class="form-control" placeholder="Ejm: SAMSUMG" autocomplete="on" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                         </div>
                                     </div><!-- col-sm-6 -->
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
                                             <label class="control-label">Modelo*</label>
-                                            <input type="text" id="modelo" name="modelo" class="form-control" placeholder="Ejm: SAMSUMG GALAXY J2" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <input type="text" id="modelo" name="modelo" class="form-control" placeholder="Ejm: GALAXY J2" autocomplete="on style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                         </div>
                                     </div><!-- col-sm-6 -->
+                                </div><!-- row -->
+                                 <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">Precio compra*</label>
+                                            <input type="text" id="precio" name="precio" class="form-control" autocomplete="off" placeholder="Ejm: 150.00">
+                                        </div>
+                                    </div><!-- col-sm-6 -->                                   
                                 </div><!-- row -->
                             </div>
                             <input  type="hidden" id="operacion" name="operacion" value="Registrar"/>

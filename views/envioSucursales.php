@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- Open Sans font from Google CDN -->
+    <link rel="icon" href="../assets/images/celular.png" type="images/png"/>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&amp;subset=latin" rel="stylesheet" type="text/css">
 
     <!-- Pixel Admin's stylesheets -->
@@ -194,7 +195,7 @@
                 <div class="row">
                     <div class="form-group">                                                              
                         <div class="col-md-3 col-md-offset-4">                                     
-                            <label for="">Sucursal</label>                        
+                            <label for="">SUCURSAL DESTINO</label>                        
                             <select class="form-control form-group-margin" id="sucursal">
                                 
                             </select> 
@@ -203,7 +204,7 @@
                     <div class="form-group">    
                         <!-- / CELULARES -->                                                                              
                         <div class="col-md-4 col-md-offset-1">                                     
-                            <label for="">Celulares</label>                        
+                            <label for="">CELULARES</label>                        
                              <div class="input-group">
                                 <input type="text" class="form-control" id="param_celulares" name="param_celulares" placeholder="Buscar Celulares">
                                 <span class="input-group-btn">

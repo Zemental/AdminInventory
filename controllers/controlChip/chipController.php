@@ -8,6 +8,7 @@ $param['codigo'] = '';
 $param['icc'] = '';
 $param['numero'] = '';
 $param['operadora'] = '';
+$param['precio'] = '';
 $param['estado'] = '';
 
 if (isset($_POST['opcion'])) {
@@ -28,6 +29,10 @@ if (isset($_POST['numero'])) {
 
 if (isset($_POST['operadora'])) {
     $param['operadora'] = $_POST['operadora'];
+}
+
+if (isset($_POST['precio'])) {
+    $param['precio'] = $_POST['precio'];
 }
 
 if (isset($_POST['estado'])) {

@@ -395,17 +395,11 @@ CREATE TABLE IF NOT EXISTS `accesorios` (
   `codigo` varchar(30) NOT NULL,
   `descripcion` varchar(65) DEFAULT NULL,
   `cantidad` int(11) NOT NULL,
+  `precio` double NOT NULL,
   PRIMARY KEY (`idAccesorio`),
   KEY `idProducto` (`idProducto`),
   KEY `idTipoAccesorio` (`idTipoAccesorio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Volcado de datos para la tabla `accesorios`
---
-
-INSERT INTO `accesorios` (`idAccesorio`, `idProducto`, `idTipoAccesorio`, `codigo`, `descripcion`, `cantidad`) VALUES
-(1, 4, 3, 'BAT001', 'BATERIA PARA SAMSUMG', 60);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -421,17 +415,10 @@ CREATE TABLE IF NOT EXISTS `celulares` (
   `marca` varchar(65) NOT NULL,
   `modelo` varchar(65) NOT NULL,
   `cantidad` int(11) NOT NULL DEFAULT '1',
+  `precio` double NOT NULL,
   PRIMARY KEY (`idCelular`,`imei`),
   KEY `idProducto` (`idProducto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Volcado de datos para la tabla `celulares`
---
-
-INSERT INTO `celulares` (`idCelular`, `idProducto`, `imei`, `serie`, `marca`, `modelo`, `cantidad`) VALUES
-(1, 1, 'IMEI001', 'SER001', 'SAMSUMG', 'SAMSUMG GALAXY S7', 0),
-(3, 5, 'QWE23', '34567', 'HAWEI', 'HAWEI P8', 1);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -446,16 +433,10 @@ CREATE TABLE IF NOT EXISTS `chips` (
   `numero` varchar(65) NOT NULL,
   `operadora` varchar(65) NOT NULL,
   `cantidad` int(11) NOT NULL DEFAULT '1',
+  `precio` double NOT NULL,
   PRIMARY KEY (`idChip`,`icc`),
   KEY `idProducto` (`idProducto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Volcado de datos para la tabla `chips`
---
-
-INSERT INTO `chips` (`idChip`, `idProducto`, `icc`, `numero`, `operadora`, `cantidad`) VALUES
-(1, 2, 'ICC001', '51938254410', 'MOVISTAR', 0);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -528,18 +509,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`idProducto`),
   KEY `idSucursal` (`idSucursal`),
   KEY `idTipoProducto` (`idTipoProducto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Volcado de datos para la tabla `productos`
---
-
-INSERT INTO `productos` (`idProducto`, `idTipoProducto`, `idSucursal`, `estado`, `fechaIngreso`, `activo`) VALUES
-(1, 1, 1, 'V', '2016-06-21', b'1'),
-(2, 2, 1, 'V', '2016-06-21', b'1'),
-(3, 3, 1, 'V', '2016-06-21', b'1'),
-(4, 4, 1, 'V', '2016-06-21', b'1'),
-(5, 1, 5, 'V', '2016-06-22', b'1');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -553,17 +523,11 @@ CREATE TABLE IF NOT EXISTS `protectores` (
   `idTipoProtector` int(11) NOT NULL,
   `modeloCelular` varchar(65) NOT NULL,
   `cantidad` int(11) NOT NULL,
+  `precio` double NOT NULL,
   PRIMARY KEY (`idProtector`),
   KEY `idProducto` (`idProducto`),
   KEY `idTipoProtector` (`idTipoProtector`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Volcado de datos para la tabla `protectores`
---
-
-INSERT INTO `protectores` (`idProtector`, `idProducto`, `idTipoProtector`, `modeloCelular`, `cantidad`) VALUES
-(1, 3, 1, 'SAMSUMG GALAXY J2', 70);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

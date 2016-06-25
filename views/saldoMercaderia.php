@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- Open Sans font from Google CDN -->
+    <link rel="icon" href="../assets/images/celular.png" type="images/png"/>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&amp;subset=latin" rel="stylesheet" type="text/css">
 
     <!-- Pixel Admin's stylesheets -->
@@ -1027,13 +1028,13 @@
         $('#tablaCelularAlicel1_wrapper .table-caption').text('Celulares');
         $('#tablaCelularAlicel1_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaChipAlicel1').DataTable(); 
-        $('#tablaChipAlicel1_wrapper .table-caption').text('chips');
+        $('#tablaChipAlicel1_wrapper .table-caption').text('Chips');
         $('#tablaChipAlicel1_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaAcessoriosAlicel1').DataTable(); 
         $('#tablaAcessoriosAlicel1_wrapper .table-caption').text('Accesorios');
         $('#tablaAcessoriosAlicel1_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaProtectoresAlicel1').DataTable(); 
-        $('#tablaProtectoresAlicel1_wrapper .table-caption').text('Accesorios');
+        $('#tablaProtectoresAlicel1_wrapper .table-caption').text('Protectores');
         $('#tablaProtectoresAlicel1_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         celularesAlicel1(); 
         chipAlicel1();
@@ -1043,13 +1044,13 @@
         $('#tablaCelularAlicel2_wrapper .table-caption').text('Celulares');
         $('#tablaCelularAlicel2_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaChipAlicel2').DataTable(); 
-        $('#tablaChipAlicel2_wrapper .table-caption').text('chips');
+        $('#tablaChipAlicel2_wrapper .table-caption').text('Chips');
         $('#tablaChipAlicel2_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaAcessoriosAlicel2').DataTable(); 
         $('#tablaAcessoriosAlicel2_wrapper .table-caption').text('Accesorios');
         $('#tablaAcessoriosAlicel2_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaProtectoresAlicel2').DataTable(); 
-        $('#tablaProtectoresAlicel2_wrapper .table-caption').text('Accesorios');
+        $('#tablaProtectoresAlicel2_wrapper .table-caption').text('Protectores');
         $('#tablaProtectoresAlicel2_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         celularesAlicel2(); 
         chipAlicel2();
@@ -1059,13 +1060,13 @@
         $('#tablaCelularAlicel3_wrapper .table-caption').text('Celulares');
         $('#tablaCelularAlicel3_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaChipAlicel3').DataTable(); 
-        $('#tablaChipAlicel3_wrapper .table-caption').text('chips');
+        $('#tablaChipAlicel3_wrapper .table-caption').text('Chips');
         $('#tablaChipAlicel3_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaAcessoriosAlicel3').DataTable(); 
         $('#tablaAcessoriosAlicel3_wrapper .table-caption').text('Accesorios');
         $('#tablaAcessoriosAlicel3_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaProtectoresAlicel3').DataTable(); 
-        $('#tablaProtectoresAlicel3_wrapper .table-caption').text('Accesorios');
+        $('#tablaProtectoresAlicel3_wrapper .table-caption').text('Protectores');
         $('#tablaProtectoresAlicel3_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         celularesAlicel3(); 
         chipAlicel3();
@@ -1075,13 +1076,13 @@
         $('#tablaCelularAlicel4_wrapper .table-caption').text('Celulares');
         $('#tablaCelularAlicel4_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaChipAlicel4').DataTable(); 
-        $('#tablaChipAlicel4_wrapper .table-caption').text('chips');
+        $('#tablaChipAlicel4_wrapper .table-caption').text('Chips');
         $('#tablaChipAlicel4_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaAcessoriosAlicel4').DataTable(); 
         $('#tablaAcessoriosAlicel4_wrapper .table-caption').text('Accesorios');
         $('#tablaAcessoriosAlicel4_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaProtectoresAlicel4').DataTable(); 
-        $('#tablaProtectoresAlicel4_wrapper .table-caption').text('Accesorios');
+        $('#tablaProtectoresAlicel4_wrapper .table-caption').text('Protectores');
         $('#tablaProtectoresAlicel4_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         celularesAlicel4(); 
         chipAlicel4();
@@ -1091,13 +1092,13 @@
         $('#tablaCelularAlicel5_wrapper .table-caption').text('Celulares');
         $('#tablaCelularAlicel5_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaChipAlicel5').DataTable(); 
-        $('#tablaChipAlicel5_wrapper .table-caption').text('chips');
+        $('#tablaChipAlicel5_wrapper .table-caption').text('Chips');
         $('#tablaChipAlicel5_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaAcessoriosAlicel5').DataTable(); 
         $('#tablaAcessoriosAlicel5_wrapper .table-caption').text('Accesorios');
         $('#tablaAcessoriosAlicel5_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaProtectoresAlicel5').DataTable(); 
-        $('#tablaProtectoresAlicel5_wrapper .table-caption').text('Accesorios');
+        $('#tablaProtectoresAlicel5_wrapper .table-caption').text('Protectores');
         $('#tablaProtectoresAlicel5_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         celularesAlicel5(); 
         chipAlicel5();
@@ -1107,13 +1108,13 @@
         $('#tablaCelularAlicel6_wrapper .table-caption').text('Celulares');
         $('#tablaCelularAlicel6_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaChipAlicel6').DataTable(); 
-        $('#tablaChipAlicel6_wrapper .table-caption').text('chips');
+        $('#tablaChipAlicel6_wrapper .table-caption').text('Chips');
         $('#tablaChipAlicel6_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaAcessoriosAlicel6').DataTable(); 
         $('#tablaAcessoriosAlicel6_wrapper .table-caption').text('Accesorios');
         $('#tablaAcessoriosAlicel6_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         $('#tablaProtectoresAlicel6').DataTable(); 
-        $('#tablaProtectoresAlicel6_wrapper .table-caption').text('Accesorios');
+        $('#tablaProtectoresAlicel6_wrapper .table-caption').text('Protectores');
         $('#tablaProtectoresAlicel6_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
         celularesAlicel6(); 
         chipAlicel6();

@@ -41,9 +41,10 @@ class CelularModel {
         $consultaSql.="'".$this->param['imei'] . "',";
         $consultaSql.="'".$this->param['serie'] . "',";
         $consultaSql.="'".$this->param['marca'] . "',";   
-        $consultaSql.="'".$this->param['modelo'] . "',";      
+        $consultaSql.="'".$this->param['modelo'] . "',";     
+        $consultaSql.="'".$this->param['precio'] . "',"; 
         $consultaSql.="'".$this->param['estado'] . "')";
-        echo $consultaSql;
+        //echo $consultaSql;
         $this->result = mysqli_query($this->conexion,$consultaSql);
     }    
 
@@ -53,22 +54,24 @@ class CelularModel {
         $item = 0;  
         while($row = mysqli_fetch_row($this->result)){            
             $item++;
-            if ($row[8] == 1){
+            if ($row[9] == 1){
                 echo '<tr>
                     <td style="text-align:center; font-size: 12px; height: 10px; width: 3%; background:#CCFF99;">'.$item.'</td>';
                 echo '<td style="font-size: 12px; height: 10px; width: 12%;">'.utf8_encode($row[2]).'</td>
                     <td style="font-size: 12px; height: 10px; width: 13%;">'.utf8_encode($row[3]).'</td>
                     <td style="font-size: 12px; height: 10px; width: 10%;">'.utf8_encode($row[4]).'</td>  
-                    <td style="font-size: 12px; height: 10px; width: 15%;">'.utf8_encode($row[5]).'</td>                  
-                    <td style="font-size: 12px; height: 10px; width: 7%;">'.utf8_encode($row[6]).'</td>';      
+                    <td style="font-size: 12px; height: 10px; width: 15%;">'.utf8_encode($row[5]).'</td>  
+                    <td style="font-size: 12px; height: 10px; width: 8%;">S/. '.utf8_encode($row[6]).'</td>
+                    <td style="font-size: 12px; height: 10px; width: 7%; text-align:center;">'.utf8_encode($row[7]).'</td>';      
             } else {
                 echo '<tr>
                     <td style="text-align:center; font-size: 12px; height: 10px; width: 3%; background:#FF9999;">'.$item.'</td>';
                 echo '<td style="font-size: 12px; height: 10px; width: 12%;">'.utf8_encode($row[2]).'</td>
                     <td style="font-size: 12px; height: 10px; width: 13%;">'.utf8_encode($row[3]).'</td>
                     <td style="font-size: 12px; height: 10px; width: 10%;">'.utf8_encode($row[4]).'</td>  
-                    <td style="font-size: 12px; height: 10px; width: 15%;">'.utf8_encode($row[5]).'</td>                  
-                    <td style="font-size: 12px; height: 10px; width: 7%;">'.utf8_encode($row[6]).'</td>';  
+                    <td style="font-size: 12px; height: 10px; width: 15%;">'.utf8_encode($row[5]).'</td>
+                    <td style="font-size: 12px; height: 10px; width: 8%;">S/. '.utf8_encode($row[6]).'</td>
+                    <td style="font-size: 12px; height: 10px; width: 7%; text-align:center;">'.utf8_encode($row[7]).'</td>';  
             }
             
             /*if ($row[7] == 'A') {
@@ -104,7 +107,7 @@ class CelularModel {
                                 <i class="ace-icon fa fa-pencil bigger-120" onclick="editar('.$row[0].');"></i>
                             </span>
                         </a>';
-            if ($row[8] == 1){
+            if ($row[9] == 1){
                 echo    '<a href="#" style="margin-right:10px;" class="tooltip-error" data-rel="tooltip" title="Eliminar">
                             <span class="red">
                                 <i class="ace-icon fa fa-trash-o bigger-180" onclick="eliminar('.$row[0].',0);"></i>

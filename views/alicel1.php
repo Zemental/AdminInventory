@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- Open Sans font from Google CDN -->
+    <link rel="icon" href="../assets/images/celular.png" type="images/png"/>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&amp;subset=latin" rel="stylesheet" type="text/css">
 
     <!-- Pixel Admin's stylesheets -->
@@ -161,10 +162,10 @@
                     <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestionar Reportes</span></a>
                     <ul>
                         <li>
-                            <a tabindex="-1" href="envioMercaderia.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Envíos de Mercadería</span></a>
+                            <a tabindex="-1" href="reporteEnvios.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Envíos de Mercadería</span></a>
                         </li>
                         <li>
-                            <a tabindex="-1" href="mercaderiaVendida.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Mercadería vendida</span></a>
+                            <a tabindex="-1" href="reporteVentas.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Mercadería vendida</span></a>
                         </li>
                         <li>
                             <a tabindex="-1" href="saldoMercaderia.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Saldos de Mercadería</span></a>
@@ -189,86 +190,142 @@
 
         <script>
             init.push(function () {
-                $('#tablaAlicel1').dataTable();
-                $('#tablaAlicel1_wrapper .table-caption').text('Listado General de Productos');
-                $('#tablaAlicel1_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
-                mostrarProductos();
+                $('#tablaCelulares').dataTable();
+                $('#tablaCelulares_wrapper .table-caption').text('Listado General de Productos');
+                $('#tablaCelulares_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
+                //mostrarProductos();
+                $('#tablaChips').dataTable();
+                $('#tablaChips_wrapper .table-caption').text('Listado General de Productos');
+                $('#tablaChips_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
+
+                $('#tablaProtectores').dataTable();
+                $('#tablaProtectores_wrapper .table-caption').text('Listado General de Productos');
+                $('#tablaProtectores_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
+
+                $('#tablaAccesorios').dataTable();
+                $('#tablaAccesorios_wrapper .table-caption').text('Listado General de Productos');
+                $('#tablaAccesorios_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
+               
             });
         </script>
-              
-        <div class="panel">           
+        
+     <div class="panel">          
             <div class="panel-body">
-                <div class="table-primary">
-                    <table class="table table-striped table-bordered" id="tablaAlicel1">
-                        <thead>
-                            <tr>
-                                <th style="width:3%;">N°</th>
-                                <th style="width:8%;">TIPO</th>
-                                <th style="width:13%;">PRODUCTO</th>
-                                <th style="width:10%;">SUCURSAL</th>
-                                <th style="width:8%;">ESTADO</th>
-                                <th style="width:9%;">FECHA REGISTRO</th>
-                                <th style="width:8%;">OPERACIONES</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cuerpoAlicel1">
+                <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#uidemo-tabs-default-demo-celulares" data-toggle="tab">CELULARES</a>
+                    </li>
+                    <li class="">
+                        <a href="#uidemo-tabs-default-demo-chips" data-toggle="tab">CHIPS</a>
+                    </li>
+                    <li class="">
+                        <a href="#uidemo-tabs-default-demo-protectores" data-toggle="tab">PROTECTORES</a>
+                    </li>
+                    <li class="">
+                        <a href="#uidemo-tabs-default-demo-accesorios" data-toggle="tab">ACCESORIOS</a>
+                    </li>                    
+                </ul>
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-     <div class="modal fade" id="modalCelular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" >
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title text-center" id="cabeceraRegistro"><b></b></h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action=""  method="POST" class="panel form-horizontal" id="formCelular">                            
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group no-margin-hr">
-                                            <label class="control-label">Código imie*</label>
-                                            <input type="text" id="imei" name="imei" class="form-control" autocomplete="off" placeholder="Código imei" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div><!-- col-sm-6 -->
-                                    <div class="col-sm-6">
-                                        <div class="form-group no-margin-hr">
-                                            <label class="control-label">Nro. Serie*</label>
-                                            <input type="text" id="serie" name="serie" class="form-control" autocomplete="off" placeholder="Nro. Serie" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div><!-- col-sm-6 -->
-                                </div><!-- row -->
-                                
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group no-margin-hr">
-                                            <label class="control-label">Marca*</label>
-                                            <input type="text" id="marca" name="marca" class="form-control" placeholder="Ejm: SAMSUMG" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div><!-- col-sm-6 -->
-                                    <div class="col-sm-6">
-                                        <div class="form-group no-margin-hr">
-                                            <label class="control-label">Modelo*</label>
-                                            <input type="text" id="modelo" name="modelo" class="form-control" placeholder="Ejm: SAMSUMG GALAXY J2" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div><!-- col-sm-6 -->
-                                </div><!-- row -->
+                <div class="tab-content tab-content-bordered">
+                    <div class="tab-pane fade active in" id="uidemo-tabs-default-demo-celulares">
+                        <div class="panel-body">
+                            <div class="table-primary">
+                                <table class="table table-striped table-bordered" id="tablaCelulares">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:3%;">N°</th>
+                                            <th style="width:10%;">IMEI</th>
+                                            <th style="width:10%;">SERIE</th>
+                                            <th style="width:8%;">MARCA</th>
+                                            <th style="width:10%;">MODELO</th>
+                                            <th style="width:5%;">PRECIO</th>
+                                            <th style="width:5%;">F. REGISTRO</th>
+                                            <th style="width:3%;">MOSTRADOR</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cuerpoCelulares">
+
+                                    </tbody>
+                                </table>
                             </div>
-                            <input  type="hidden" id="operacion" name="operacion" value="Registrar"/>
-                            <input  type="hidden" id="codigo" name="codigo"/>
-                            <div class="panel-footer text-right">
-                                <button class="btn btn-primary" id="registrarCelular">Guardar</button>
-                                <button class="btn btn-default" data-dismiss="modal" id="cancelarCelular">Cancelar</button>
+                        </div>
+                    </div>                                    
+                
+
+               
+                    <div class="tab-pane fade " id="uidemo-tabs-default-demo-chips">
+                        <div class="panel-body">
+                            <div class="table-primary">
+                                <table class="table table-striped table-bordered" id="tablaChips">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:3%;">N°</th>
+                                            <th style="width:8%;">ICC</th>
+                                            <th style="width:13%;">NUMERO</th>
+                                            <th style="width:10%;">OPERADORA</th>
+                                            <th style="width:10%;">PRECIO</th>
+                                            <th style="width:8%;">MOSTRADOR</th>
+                                            <th style="width:9%;">FECHA REGISTRO</th>
+                                            <th style="width:8%;">OPERACIONES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cuerpoChips">
+
+                                    </tbody>
+                                </table>
                             </div>
-                        </form>
-                    </div>
-                </div>
+                        </div>
+                    </div>                                    
+                
+                    <div class="tab-pane fade " id="uidemo-tabs-default-demo-protectores">
+                        <div class="panel-body">
+                            <div class="table-primary">
+                                <table class="table table-striped table-bordered" id="tablaProtectores">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:3%;">N°</th>
+                                            <th style="width:8%;">TIPO</th>
+                                            <th style="width:13%;">PRODUCTO</th>
+                                            <th style="width:10%;">SUCURSAL</th>
+                                            <th style="width:8%;">MOSTRADOR</th>
+                                            <th style="width:9%;">FECHA REGISTRO</th>
+                                            <th style="width:8%;">OPERACIONES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cuerpoProtectores">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>                                    
+               
+                    <div class="tab-pane fade " id="uidemo-tabs-default-demo-accesorios">
+                        <div class="panel-body">
+                            <div class="table-primary">
+                                <table class="table table-striped table-bordered" id="tablaAccesorios">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:3%;">N°</th>
+                                            <th style="width:8%;">TIPO</th>
+                                            <th style="width:13%;">PRODUCTO</th>
+                                            <th style="width:10%;">SUCURSAL</th>
+                                            <th style="width:8%;">MOSTRADOR</th>
+                                            <th style="width:9%;">FECHA REGISTRO</th>
+                                            <th style="width:8%;">OPERACIONES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cuerpoAccesorios">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>                                    
+                </div> <!-- / .tab-content -->
+
             </div>
+        <!-- AQUI TERMINA EL PANEL -->
         </div>
 
     <div id="main-menu-bg"></div>

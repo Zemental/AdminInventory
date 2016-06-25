@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- Open Sans font from Google CDN -->
+    <link rel="icon" href="../assets/images/celular.png" type="images/png"/>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&amp;subset=latin" rel="stylesheet" type="text/css">
 
     <!-- Pixel Admin's stylesheets -->
@@ -213,7 +214,8 @@
                                 <th style="width:3%;">N°</th>
                                 <th style="width:12%;">ICC</th>
                                 <th style="width:13%;">NUMERO</th>
-                                <th style="width:10%;">OPERADORA</th>                                
+                                <th style="width:10%;">OPERADORA</th>
+                                <th style="width:8%;">PRECIO</th>                                
                                 <th class="text-center" style="width:7%;">UBICACION</th>
                                 <th style="width:8%;">OPERACIONES</th>
                             </tr>
@@ -240,13 +242,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
                                             <label class="control-label">Código icc*</label>
-                                            <input type="text" id="icc" name="icc" class="form-control" autocomplete="off" placeholder="Código icc" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <input type="text" id="icc" name="icc" class="form-control" autocomplete="off" placeholder="Código icc" onkeypress="return solonumeros(event)" maxlength="19">
                                         </div>
                                     </div><!-- col-sm-6 -->
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
                                             <label class="control-label">Número*</label>
-                                            <input type="text" id="numero" name="numero" class="form-control" autocomplete="off" placeholder="Número" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <input type="text" id="numero" name="numero" class="form-control" autocomplete="off" placeholder="Número" onkeypress="return solonumeros(event)">
                                         </div>
                                     </div><!-- col-sm-6 -->
                                 </div><!-- row -->
@@ -264,8 +266,14 @@
                                                 <option value="OTRO">OTRO</option>
                                             </select>                                            
                                         </div>
-                                    </div><!-- col-sm-6 -->                                    
-                                </div><!-- row -->
+                                    </div><!-- col-sm-6 -->  
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">Precio compra*</label>
+                                            <input type="text" id="precio" name="precio" class="form-control" autocomplete="off" placeholder="Ejm: 150.00">
+                                        </div>
+                                    </div><!-- col-sm-6 -->                                     
+                                </div><!-- row -->                               
                             </div>
                             <input  type="hidden" id="operacion" name="operacion" value="Registrar"/>
                             <input  type="hidden" id="codigo" name="codigo"/>

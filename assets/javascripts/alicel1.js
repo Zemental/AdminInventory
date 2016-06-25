@@ -1,22 +1,28 @@
 window.onload = function(){    
-    $('#tablaAlicel1').dataTable();    
-    mostrarProductos();
+    $('#tablaCelulares').dataTable();    
+    mostrarCelulares();
+    $('#tablaChips').dataTable();    
+    mostrarChips();
+    $('#tablaProtectores').dataTable();    
+    mostrarProtectores();
+    $('#tablaAccesorios').dataTable();    
+    mostrarAccesorios();
     
 }
 
-function mostrarProductos(){
-    var opcion = 'mostrar_productos';
+function mostrarCelulares(){
+    var opcion = 'mostrar_celulares';
     var codigo = 0;
     $.ajax({
         type: 'POST',
         data:'opcion='+opcion+'&codigo=' +codigo,
         url: '../controllers/controlAlicel1/alicel1Controller.php',
         success: function(data){
-            $('#tablaAlicel1').DataTable().destroy();
-            $('#cuerpoAlicel1').html(data);
-            $('#tablaAlicel1').DataTable();
-            $('#tablaAlicel1_wrapper .table-caption').text('Listado General de Productos');
-            $('#tablaAlicel1_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
+            $('#tablaCelulares').DataTable().destroy();
+            $('#cuerpoCelulares').html(data);
+            $('#tablaCelulares').DataTable();
+            $('#tablaCelulares_wrapper .table-caption').text('Listado General de Productos');
+            $('#tablaCelulares_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
 
         },
         error: function(data){
@@ -25,11 +31,11 @@ function mostrarProductos(){
     });
 }
 
-/*function eliminar(codigo, estado){
+function estadoCelular(codigo, estado){
     if (estado == 0){
-        var respuesta = confirm('¿Desea ELIMINAR el equipo celular?');
+        var respuesta = confirm('¿Desea COLOCAR EN MOSTRADOR el equipo celular?');
     } else {
-        var respuesta = confirm('¿Desea ACTIVAR el equipo celular?');
+        var respuesta = confirm('¿Desea COLOCAR EN ALAMACEN el equipo celular?');
     }
     
     if (respuesta == true) {

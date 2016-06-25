@@ -8,7 +8,8 @@ window.onload = function(){
         document.getElementById('tipo').value= '';
         document.getElementById('codigoAccesorio').value= '';
         document.getElementById('descripcion').value= '';
-        document.getElementById('cantidad').value= '';                
+        document.getElementById('cantidad').value= ''; 
+        document.getElementById('precio').value= '';                               
     });  
 }
 
@@ -19,6 +20,7 @@ $(function() {
         document.getElementById('codigoAccesorio').value= '';
         document.getElementById('descripcion').value= '';
         document.getElementById('cantidad').value= '';
+        document.getElementById('precio').value= '';
         document.getElementById('operacion').value= 'Registrar';        
         $('#modalAccesorio').modal({
             show:true,
@@ -35,9 +37,10 @@ $(function() {
             var tipo = document.getElementById('tipo').value;
             var codigoAccesorio = document.getElementById('codigoAccesorio').value;
             var descripcion = document.getElementById('descripcion').value;
-            var cantidad = document.getElementById('cantidad').value;   
+            var cantidad = document.getElementById('cantidad').value;
+            var precio = document.getElementById('precio').value;           
 
-            if(tipo == '' || codigoAccesorio == '' || descripcion == '' || cantidad == ''){
+            if(tipo == '' || codigoAccesorio == '' || descripcion == '' || cantidad == '' || precio == ''){
                 nota("error","Complete los campos obligatorios. (*)",2000);   
                 return;                                          
             }
@@ -50,14 +53,15 @@ $(function() {
                     $.ajax({
                         type: 'POST',
                         data:'opcion='+opcion+'&tipo='+tipo+'&codigoAccesorio=' +codigoAccesorio+
-                            '&descripcion='+descripcion+'&cantidad=' +cantidad,
+                            '&descripcion='+descripcion+'&cantidad=' +cantidad+'&precio=' +precio,
                         url: '../controllers/controlAccesorio/accesorioController.php',
                         success: function(data){
                             nota("success","Accesorio registrado correctamente.",2000);
                             document.getElementById('tipo').value= '';
                             document.getElementById('codigoAccesorio').value= '';
                             document.getElementById('descripcion').value= '';
-                            document.getElementById('cantidad').value= '';                                     
+                            document.getElementById('cantidad').value= '';
+                            document.getElementById('precio').value= '';                                     
                             $('#modalAccesorio').modal('hide');
                             mostrarAccesorios();
                         },
@@ -76,12 +80,13 @@ $(function() {
                 var tipo = document.getElementById('tipo').value;
                 var codigoAccesorio = document.getElementById('codigoAccesorio').value;
                 var descripcion = document.getElementById('descripcion').value;
-                var cantidad = document.getElementById('cantidad').value;     
+                var cantidad = document.getElementById('cantidad').value;
+                var precio = document.getElementById('precio').value;     
 
                 $.ajax({
                     type: 'POST',
                     data:'opcion='+opcion+'&codigo='+codigo+'&tipo='+tipo+'&codigoAccesorio=' +codigoAccesorio+
-                            '&descripcion='+descripcion+'&cantidad=' +cantidad,
+                            '&descripcion='+descripcion+'&cantidad=' +cantidad+'&precio=' +precio,
                     url: '../controllers/controlAccesorio/AccesorioController.php',
                     success: function(data){                        
                         nota("success","Celular actualizado correctamente.",2000);
@@ -89,6 +94,7 @@ $(function() {
                         document.getElementById('codigoAccesorio').value= '';
                         document.getElementById('descripcion').value= '';
                         document.getElementById('cantidad').value= ''; 
+                        document.getElementById('precio').value= ''; 
                         document.getElementById('operacion').value= 'Registrar'; 
                         $('#modalAccesorio').modal('hide');
                         mostrarAccesorios();
@@ -146,7 +152,8 @@ function editar(codigo){
             document.getElementById('tipo').value = (objeto[1]);
             $("#codigoAccesorio").val(objeto[2]);
             $("#descripcion").val(objeto[3]);
-            $("#cantidad").val(objeto[4]); 
+            $("#cantidad").val(objeto[4]);
+            $("#precio").val(objeto[5]); 
         },
         error: function(data){
 
@@ -157,7 +164,7 @@ function editar(codigo){
 
 function eliminar(codigo, estado){
     if (estado == 0){
-        var respuesta = confirm('¿Desea ELIMINAR el accesorio?');
+        var respuesta = confirm('¿Desea DAR DE BAJA el accesorio?');
     } else {
         var respuesta = confirm('¿Desea ACTIVAR el accesorio?');
     }

@@ -7,7 +7,7 @@ window.onload = function(){
         mostrarProtectores();
         document.getElementById('tipo').value= '';
         document.getElementById('modeloCelular').value= '';
-        //document.getElementById('descripcion').value= '';
+        document.getElementById('precio').value= '';
         document.getElementById('cantidad').value= '';                
     });  
 }
@@ -17,7 +17,7 @@ $(function() {
         $('#cabeceraRegistro').html(".:: Nuevo Protector ::.");
         document.getElementById('tipo').value= '';
         document.getElementById('modeloCelular').value= '';
-        //document.getElementById('descripcion').value= '';
+        document.getElementById('precio').value= '';
         document.getElementById('cantidad').value= '';
         document.getElementById('operacion').value= 'Registrar';        
         $('#modalProtector').modal({
@@ -34,10 +34,10 @@ $(function() {
             var opcion = 'registrar_protector';                       
             var tipo = document.getElementById('tipo').value;
             var modeloCelular = document.getElementById('modeloCelular').value;
-            //var descripcion = document.getElementById('descripcion').value;
+            var precio = document.getElementById('precio').value;
             var cantidad = document.getElementById('cantidad').value;   
 
-            if(tipo == '' || modeloCelular == '' || cantidad == ''){
+            if(tipo == '' || modeloCelular == '' || cantidad == '' || precio == ''){
                 nota("error","Complete los campos obligatorios. (*)",2000);   
                 return;                                          
             }
@@ -47,24 +47,29 @@ $(function() {
                     nota("error","La cantidad debe ser mayor a cero (0)",2000);   
                     return;    
                 } else {
-                    $.ajax({
-                        type: 'POST',
-                        data:'opcion='+opcion+'&tipo='+tipo+'&modeloCelular=' +modeloCelular+
-                            '&cantidad=' +cantidad,
-                        url: '../controllers/controlProtector/protectorController.php',
-                        success: function(data){
-                            nota("success","Protector registrado correctamente.",2000);
-                            document.getElementById('tipo').value= '';
-                            document.getElementById('modeloCelular').value= '';
-                            //document.getElementById('descripcion').value= '';
-                            document.getElementById('cantidad').value= '';                                     
-                            $('#modalProtector').modal('hide');
-                            mostrarProtectores();
-                        },
-                        error: function(data){
-                            nota("error","Ocurrió un error inesperado.",2000);
-                        }
-                    });     
+                    if (precio <= 0) {
+                        nota("error","El precio debe ser mayor a cero (0)",2000);   
+                        return;
+                    } else {
+                        $.ajax({
+                            type: 'POST',
+                            data:'opcion='+opcion+'&tipo='+tipo+'&modeloCelular=' +modeloCelular+
+                                '&cantidad=' +cantidad+'&precio=' +precio,
+                            url: '../controllers/controlProtector/protectorController.php',
+                            success: function(data){
+                                nota("success","Protector registrado correctamente.",2000);
+                                document.getElementById('tipo').value= '';
+                                document.getElementById('modeloCelular').value= '';
+                                document.getElementById('precio').value= '';
+                                document.getElementById('cantidad').value= '';                                     
+                                $('#modalProtector').modal('hide');
+                                mostrarProtectores();
+                            },
+                            error: function(data){
+                                nota("error","Ocurrió un error inesperado.",2000);
+                            }
+                        });     
+                    }                    
                 }                     
                                
             }           
@@ -75,20 +80,26 @@ $(function() {
                 var codigo = document.getElementById('codigo').value;
                 var tipo = document.getElementById('tipo').value;
                 var modeloCelular = document.getElementById('modeloCelular').value;
-                //var descripcion = document.getElementById('descripcion').value;
+                var precio = document.getElementById('precio').value;
                 var cantidad = document.getElementById('cantidad').value;     
+
+                if(tipo == '' || modeloCelular == '' || cantidad == '' || precio == ''){
+                    nota("error","Complete los campos obligatorios. (*)",2000);   
+                    return;                                          
+                }
 
                 $.ajax({
                     type: 'POST',
                     data:'opcion='+opcion+'&codigo='+codigo+'&tipo='+tipo+'&modeloCelular=' +modeloCelular+
-                            '&cantidad=' +cantidad,
+                            '&cantidad=' +cantidad+'&precio=' +precio,
                     url: '../controllers/controlProtector/protectorController.php',
                     success: function(data){                        
                         nota("success","Protector actualizado correctamente.",2000);
                         document.getElementById('tipo').value= '';
                         document.getElementById('modeloCelular').value= '';
-                        //document.getElementById('descripcion').value= '';
+                        document.getElementById('precio').value= '';
                         document.getElementById('cantidad').value= ''; 
+                        document.getElementById('operacion').value= ''; 
                         document.getElementById('operacion').value= 'Registrar'; 
                         $('#modalProtector').modal('hide');
                         mostrarProtectores();
@@ -97,6 +108,8 @@ $(function() {
                         nota("error","Ocurrió un error inesperado.",2000);
                     }
                 });
+
+               
             }
 
         }
@@ -142,12 +155,12 @@ function editar(codigo){
         url: '../controllers/controlProtector/protectorController.php',
         success: function(data){
             objeto=JSON.parse(data);
-            $("#codigo").val(objeto[0]);            
-            //document.getElementById('tipo').value = (objeto[1]);
-            $("#tipo").val(objeto[1]);
-            $("#modeloCelular").val(objeto[2]);
-            //$("#descripcion").val(objeto[3]);
+            $("#codigo").val(objeto[0]);    
+            //$("#tipo").val(objeto[1]);
+            document.getElementById("tipo").value = objeto[1];
+            $("#modeloCelular").val(objeto[2]);            
             $("#cantidad").val(objeto[3]); 
+            $("#precio").val(objeto[4]);
         },
         error: function(data){
 
@@ -158,7 +171,7 @@ function editar(codigo){
 
 function eliminar(codigo, estado){
     if (estado == 0){
-        var respuesta = confirm('¿Desea ELIMINAR el protector?');
+        var respuesta = confirm('¿Desea DAR DE BAJA el protector?');
     } else {
         var respuesta = confirm('¿Desea ACTIVAR el protector?');
     }

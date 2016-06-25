@@ -9,6 +9,7 @@ $param['imei'] = '';
 $param['serie'] = '';
 $param['marca'] = '';
 $param['modelo'] = '';
+$param['precio'] = '';
 $param['estado'] = '';
 
 if (isset($_POST['opcion'])) {
@@ -33,6 +34,10 @@ if (isset($_POST['marca'])) {
 
 if (isset($_POST['modelo'])) {
     $param['modelo'] = $_POST['modelo'];
+}
+
+if (isset($_POST['precio'])) {
+    $param['precio'] = $_POST['precio'];
 }
 
 if (isset($_POST['estado'])) {

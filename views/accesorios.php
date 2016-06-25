@@ -19,6 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- Open Sans font from Google CDN -->
+    <link rel="icon" href="../assets/images/celular.png" type="images/png"/>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&amp;subset=latin" rel="stylesheet" type="text/css">
 
     <!-- Pixel Admin's stylesheets -->
@@ -216,7 +217,8 @@
                                 <th style="width:10%;">TIPO</th>
                                 <th style="width:8%;">CODIGO</th>
                                 <th style="width:15%;">DESCRIPCION</th>    
-                                <th style="width:5%;">CANTIDAD</th>                             
+                                <th style="width:5%;">CANTIDAD</th>
+                                <th style="width:8%;">PRECIO</th>                             
                                 <th style="width:7%;">UBICACION</th>
                                 <th style="width:8%;">OPERACIONES</th>
                             </tr>
@@ -273,6 +275,14 @@
                                         </div>
                                     </div><!-- col-sm-6 -->                                  
                                 </div><!-- row -->
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">Precio compra*</label>
+                                            <input type="text" id="precio" name="precio" class="form-control" autocomplete="off" placeholder="Ejm: 150.00">
+                                        </div>
+                                    </div><!-- col-sm-6 -->
+                                </div>
                             </div>
                             <input  type="hidden" id="operacion" name="operacion" value="Registrar"/>
                             <input  type="hidden" id="codigo" name="codigo"/>
