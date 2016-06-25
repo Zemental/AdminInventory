@@ -315,7 +315,12 @@ function mostrarSucursal(){
         data:'param_opcion='+param_opcion,
         url: '../controllers/controlEnvios/enviosController.php',
         success: function(data){
-            $('#sucursal').html(data);            
+            $('#sucursal').html(data);    
+            var selectobject = document.getElementById("sucursal");
+            for (var i=0; i<selectobject.length; i++){
+              if (selectobject.options[i].value == '7' )
+                 selectobject.remove(i);
+              }
         },
         error: function(data){
                    

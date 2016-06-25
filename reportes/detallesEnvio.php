@@ -188,7 +188,7 @@ WHERE DM.numMovimiento = '".$pedido."'";
                 </td>
                 <td>
                     <div style="width: 250px; font-size: 9pt;"" align="center">   
-                        <HR><strong align="center">RESPONSABLE:</strong>&nbsp;<?php echo $responsable; ?><<br><strong align="center">DNI:</strong>&nbsp;<?php echo $dni; ?>
+                        <HR><strong align="center">RESPONSABLE SUCURSAL:</strong>&nbsp;<?php echo $responsable; ?><<br><strong align="center">DNI:</strong>&nbsp;<?php echo $dni; ?>
                     </div>
                 </td>
                 <td>
@@ -198,7 +198,7 @@ WHERE DM.numMovimiento = '".$pedido."'";
                 </td>
                 <td>
                     <div style="width: 250px; font-size: 9pt;"" align="center">   
-                        <HR><strong align="center">RESPONSABLE:</strong>&nbsp;<?= $_SESSION['nombres'],' ',$_SESSION['apellidos'] ?><<br><strong align="center">DNI:</strong>&nbsp;<?php echo $dni; ?>
+                        <HR><strong align="center">RESPONSABLE ENVÍO:</strong>&nbsp;<?= $_SESSION['nombres'],' ',$_SESSION['apellidos'] ?><<br><strong align="center">DNI:</strong>&nbsp;<?php echo $dni; ?>
                     </div>                    
                 </td>
             </tr>

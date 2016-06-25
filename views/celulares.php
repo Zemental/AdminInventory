@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- Open Sans font from Google CDN -->
-    <link rel="icon" href="assets/images/celular.png" type="images/png"/>
+    <link rel="icon" href="../assets/images/celular.png" type="images/png"/>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&amp;subset=latin" rel="stylesheet" type="text/css">
 
     <!-- Pixel Admin's stylesheets -->
@@ -123,29 +123,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="mm-dropdown">
-                    <a href="#"><i class="menu-icon fa fa-tasks"></i><span class="mm-text">Gestionar Sucursales</span></a>
-                    <ul>
-                        <li>
-                            <a tabindex="-1" href="alicel1.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">ALICEL 1</span></a>
-                        </li>
-                        <li>
-                            <a tabindex="-1" href="alicel2.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">ALICEL 2</span></a>
-                        </li>
-                        <li>
-                            <a tabindex="-1" href="entel.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">ENTEL</span></a>
-                        </li>
-                        <li>
-                            <a tabindex="-1" href="pizarro.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">PIZARRO</span></a>
-                        </li>
-                        <li>
-                            <a tabindex="-1" href="almagro.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">ALMAGRO</span></a>
-                        </li>
-                        <li>
-                            <a tabindex="-1" href="asmoviles.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">AS MOVILES</span></a>
-                        </li>
-                    </ul>
-                </li>      
+                
                 <li class="mm-dropdown">
                     <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestionar Movimientos</span></a>
                     <ul>
@@ -218,6 +196,7 @@
                                 <th style="width:15%;">MODELO</th>
                                 <th style="width:8%;">PRECIO</th>
                                 <th style="width:7%;">UBICACION</th>
+                                <th style="width:8%;">ESTADO</th>
                                 <th style="width:8%;">OPERACIONES</th>
                             </tr>
                         </thead>
@@ -302,11 +281,45 @@
 <script src="../assets/javascripts/pixel-admin.min.js"></script>
 <script src="../assets/javascripts/celular.js"></script>
 <script src="../assets/javascripts/jquery.noty.js"></script>
-
+<script src="../assets/javascripts/jquery.mockjax.js"></script>
+<script src="../assets/javascripts/demo-mock.js"></script>
 
 <script type="text/javascript">
     init.push(function () {
-        // Javascript code here
+       $('#switcher-example-1').switcher();
+
+                        $('#switcher-example-2').switcher({
+                            theme: 'square',
+                            on_state_content: '<span class="fa fa-check"></span>',
+                            off_state_content: '<span class="fa fa-times"></span>'
+                        });
+
+                        $('#switcher-example-3').switcher({
+                            theme: 'modern'
+                        });
+
+                        // Colors
+                        $('#switchers-colors-default > input').switcher();
+                        $('#switchers-colors-square > input').switcher({ theme: 'square' });
+                        $('#switchers-colors-modern > input').switcher({ theme: 'modern' });
+
+                        // Sizes
+                        $('#switchers-sizes .switcher-example-default').switcher();
+                        $('#switchers-sizes .switcher-example-square').switcher({ theme: 'square' });
+                        $('#switchers-sizes .switcher-example-modern').switcher({ theme: 'modern' });
+
+                        // Disabled state
+                        $('#switcher-disabled-default').switcher();
+                        $('#switcher-disabled-square').switcher({ theme: 'square' });
+                        $('#switcher-disabled-modern').switcher({ theme: 'modern' });
+
+                        $('#switcher-enable-all').click(function () {
+                            $('#switchers-disabled input').switcher('enable');
+                        });
+
+                        $('#switcher-disable-all').click(function () {
+                            $('#switchers-disabled input').switcher('disable');
+                        });
     });
     window.PixelAdmin.start(init);
 </script>

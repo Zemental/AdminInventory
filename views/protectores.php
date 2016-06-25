@@ -126,29 +126,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="mm-dropdown">
-                    <a href="#"><i class="menu-icon fa fa-tasks"></i><span class="mm-text">Gestionar Sucursales</span></a>
-                    <ul>
-                        <li>
-                            <a tabindex="-1" href="alicel1.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">ALICEL 1</span></a>
-                        </li>
-                        <li>
-                            <a tabindex="-1" href="alicel2.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">ALICEL 2</span></a>
-                        </li>
-                        <li>
-                            <a tabindex="-1" href="entel.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">ENTEL</span></a>
-                        </li>
-                        <li>
-                            <a tabindex="-1" href="pizarro.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">PIZARRO</span></a>
-                        </li>
-                        <li>
-                            <a tabindex="-1" href="almagro.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">ALMAGRO</span></a>
-                        </li>
-                        <li>
-                            <a tabindex="-1" href="asmoviles.php"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">AS MOVILES</span></a>
-                        </li>
-                    </ul>
-                </li>      
+               
                 <li class="mm-dropdown">
                     <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestionar Movimientos</span></a>
                     <ul>
@@ -220,7 +198,8 @@
                                 <th style="width:15%;">MODELO CELULAR</th>                                  
                                 <th style="width:5%;">CANTIDAD</th>   
                                 <th style="width:7%;">PRECIO</th>                          
-                                <th style="width:7%; text-align:center;">UBICACION</th>                             
+                                <th style="width:7%; text-align:center;">UBICACION</th> 
+                                <th style="width:7%;">ESTADO</th>                            
                                 <th style="width:8%;">OPERACIONES</th>
                             </tr>
                         </thead>

@@ -162,6 +162,75 @@ function editar(codigo){
 
 }
 
+function mostrador(codigo, mostrar){
+    if (mostrar == 1){
+        var mostrar = 'M';
+       var respuesta = confirm('¿Desea COLOCAR EN MOSTRADOR el accesorio?');
+    } else {
+        var mostrar = 'A';
+        var respuesta = confirm('¿Desea REGRESAR AL ALMACEN el accesorio?');
+    }
+    
+    if (respuesta == true) {
+        //alert('Acepto');
+        var opcion = 'mostrador_accesorio';
+
+        $.ajax({
+            type: 'POST',
+            data:'opcion='+opcion+'&codigo='+codigo+'&mostrar='+mostrar,
+            url: '../controllers/controlAccesorio/accesorioController.php',
+            success: function(data){                
+                mostrarAccesorios();
+            },
+            error: function(data){
+                $('#cuerpoAccesorios').html(respuesta);
+            }
+        });
+    } else {
+        if (respuesta == false) {
+            mostrarAccesorios();
+        }
+
+    }
+
+}
+
+function verAccesorio(codigo){
+    $('#cabeceraRegistro').html(".:: Datos Accesorio ::.");
+    
+    $('#modalAccesorio').modal({
+        show:true,
+        backdrop:'static'
+    });
+
+    var opcion = 'recuperar_datos';
+    $.ajax({
+        type: 'POST',
+        data:'opcion='+opcion+'&codigo='+codigo,
+        url: '../controllers/controlAccesorio/accesorioController.php',
+        success: function(data){
+            objeto=JSON.parse(data);
+            $("#codigo").val(objeto[0]);            
+            document.getElementById('tipo').value = (objeto[1]);
+            $("#codigoAccesorio").val(objeto[2]);
+            $("#descripcion").val(objeto[3]);
+            $("#cantidad").val(objeto[4]);
+            $("#precio").val(objeto[5]); 
+            document.getElementById('tipo').disabled=true;
+            document.getElementById('codigoAccesorio').disabled=true;
+            document.getElementById('descripcion').disabled=true;
+            document.getElementById('cantidad').disabled=true;
+            document.getElementById('precio').disabled=true;
+            document.getElementById('registrarAccesorio').style.display = 'none';
+            document.getElementById('cancelarAccesorio').style.display = 'none'; 
+        },
+        error: function(data){
+
+        }
+    });   
+
+}
+
 function eliminar(codigo, estado){
     if (estado == 0){
         var respuesta = confirm('¿Desea DAR DE BAJA el accesorio?');
@@ -191,6 +260,8 @@ function eliminar(codigo, estado){
     }
 
 }
+
+
 
 function nota(op,msg,time){
     if(time == undefined)time = 2000;

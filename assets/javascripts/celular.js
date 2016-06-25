@@ -184,7 +184,14 @@ function editar(codigo){
             $("#serie").val(objeto[2]);
             $("#marca").val(objeto[3]);
             $("#modelo").val(objeto[4]); 
-            $("#precio").val(objeto[5]); 
+            $("#precio").val(objeto[5]);
+            document.getElementById('imei').disabled=false;
+            document.getElementById('serie').disabled=false;
+            document.getElementById('marca').disabled=false;
+            document.getElementById('modelo').disabled=false;
+            document.getElementById('precio').disabled=false; 
+            document.getElementById('registrarCelular').style.display = 'inline';
+            document.getElementById('cancelarCelular').style.display = 'inline';
         },
         error: function(data){
 
@@ -192,6 +199,40 @@ function editar(codigo){
     });   
 
 }
+
+function mostrador(codigo, mostrar){
+    if (mostrar == 1){
+        var mostrar = 'M';
+       var respuesta = confirm('¿Desea COLOCAR EN MOSTRADOR el equipo celular?');
+    } else {
+        var mostrar = 'A';
+        var respuesta = confirm('¿Desea REGRESAR AL ALMACEN el equipo celular?');
+    }
+    
+    if (respuesta == true) {
+        //alert('Acepto');
+        var opcion = 'mostrador_celular';
+
+        $.ajax({
+            type: 'POST',
+            data:'opcion='+opcion+'&codigo='+codigo+'&mostrar='+mostrar,
+            url: '../controllers/controlCelular/celularController.php',
+            success: function(data){                
+                mostrarCelulares();
+            },
+            error: function(data){
+                $('#cuerpoCelulares').html(respuesta);
+            }
+        });
+    } else {
+        if (respuesta == false) {
+            mostrarCelulares();
+        }
+
+    }
+
+}
+
 
 function eliminar(codigo, estado){
     if (estado == 0){
@@ -220,6 +261,42 @@ function eliminar(codigo, estado){
         }
 
     }
+
+}
+
+function verCelular(codigo){
+    $('#cabeceraRegistro').html(".:: Datos Celular ::.");
+    
+    $('#modalCelular').modal({
+        show:true,
+        backdrop:'static'
+    });
+
+    var opcion = 'recuperar_datos';
+    $.ajax({
+        type: 'POST',
+        data:'opcion='+opcion+'&codigo='+codigo,
+        url: '../controllers/controlCelular/celularController.php',
+        success: function(data){
+            objeto=JSON.parse(data);
+            $("#codigo").val(objeto[0]);            
+            $("#imei").val(objeto[1]);
+            $("#serie").val(objeto[2]);
+            $("#marca").val(objeto[3]);
+            $("#modelo").val(objeto[4]); 
+            $("#precio").val(objeto[5]); 
+            document.getElementById('imei').disabled=true;
+            document.getElementById('serie').disabled=true;
+            document.getElementById('marca').disabled=true;
+            document.getElementById('modelo').disabled=true;
+            document.getElementById('precio').disabled=true;
+            document.getElementById('registrarCelular').style.display = 'none';
+            document.getElementById('cancelarCelular').style.display = 'none';
+        },
+        error: function(data){
+
+        }
+    });   
 
 }
 

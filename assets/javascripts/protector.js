@@ -155,12 +155,84 @@ function editar(codigo){
         url: '../controllers/controlProtector/protectorController.php',
         success: function(data){
             objeto=JSON.parse(data);
-            $("#codigo").val(objeto[0]);    
-            //$("#tipo").val(objeto[1]);
+            $("#codigo").val(objeto[0]);            
             document.getElementById("tipo").value = objeto[1];
             $("#modeloCelular").val(objeto[2]);            
             $("#cantidad").val(objeto[3]); 
             $("#precio").val(objeto[4]);
+            document.getElementById('tipo').disabled=false;
+            document.getElementById('modeloCelular').disabled=false;
+            document.getElementById('cantidad').disabled=false;
+            document.getElementById('precio').disabled=false;
+            document.getElementById('registrarProtector').style.display = 'inline';
+            document.getElementById('cancelarProtector').style.display = 'inline'; 
+        },
+        error: function(data){
+
+        }
+    });   
+
+}
+
+function mostrador(codigo, mostrar){
+    if (mostrar == 1){
+        var mostrar = 'M';
+       var respuesta = confirm('¿Desea COLOCAR EN MOSTRADOR el protector?');
+    } else {
+        var mostrar = 'A';
+        var respuesta = confirm('¿Desea REGRESAR AL ALMACEN el protector?');
+    }
+    
+    if (respuesta == true) {
+        //alert('Acepto');
+        var opcion = 'mostrador_protector';
+
+        $.ajax({
+            type: 'POST',
+            data:'opcion='+opcion+'&codigo='+codigo+'&mostrar='+mostrar,
+            url: '../controllers/controlProtector/protectorController.php',
+            success: function(data){                
+                mostrarProtectores();
+            },
+            error: function(data){
+                $('#cuerpoProtectores').html(respuesta);
+            }
+        });
+    } else {
+        if (respuesta == false) {
+            mostrarProtectores();
+        }
+
+    }
+
+}
+
+function verProtector(codigo){
+    $('#cabeceraRegistro').html(".:: Datos Protector ::.");
+    
+    $('#modalProtector').modal({
+        show:true,
+        backdrop:'static'
+    });
+
+    var opcion = 'recuperar_datos';
+    $.ajax({
+        type: 'POST',
+        data:'opcion='+opcion+'&codigo='+codigo,
+        url: '../controllers/controlProtector/protectorController.php',
+        success: function(data){
+            objeto=JSON.parse(data);
+            $("#codigo").val(objeto[0]);            
+            document.getElementById("tipo").value = objeto[1];
+            $("#modeloCelular").val(objeto[2]);            
+            $("#cantidad").val(objeto[3]); 
+            $("#precio").val(objeto[4]);
+            document.getElementById('tipo').disabled=true;
+            document.getElementById('modeloCelular').disabled=true;
+            document.getElementById('cantidad').disabled=true;
+            document.getElementById('precio').disabled=true;
+            document.getElementById('registrarProtector').style.display = 'none';
+            document.getElementById('cancelarProtector').style.display = 'none'; 
         },
         error: function(data){
 

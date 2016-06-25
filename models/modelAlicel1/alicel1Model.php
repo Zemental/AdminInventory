@@ -28,7 +28,7 @@ class Alicel1Model {
     }
 
    
-    function prepararConsultaGestionarProducto($opcion) {
+    function prepararConsultaGestionarCelulares($opcion) {
         $consultaSql = "call sp_control_alicel1(";
         $consultaSql.="'".$opcion . "',";        
         $consultaSql.="'".$this->param['codigo'] . "',";            
@@ -46,10 +46,11 @@ class Alicel1Model {
             if ($row[8] == 1){
                 echo '<tr>
                     <td style="text-align:center; font-size: 12px; height: 10px; width: 3%; background:#CCFF99;">'.$item.'</td>';
-                echo '<td style="font-size: 12px; height: 10px; width: 12%;">'.utf8_encode($row[2]).'</td>
-                    <td style="font-size: 12px; height: 10px; width: 13%;">'.utf8_encode($row[3]).'</td>
-                    <td style="font-size: 12px; height: 10px; width: 10%;">'.utf8_encode($row[4]).'</td>  
-                    <td style="font-size: 12px; height: 10px; width: 15%;">'.utf8_encode($row[5]).'</td>                  
+                echo '<td style="font-size: 12px; height: 10px; width: 12%;">'.utf8_encode($row[1]).'</td>
+                    <td style="font-size: 12px; height: 10px; width: 13%;">'.utf8_encode($row[2]).'</td>
+                    <td style="font-size: 12px; height: 10px; width: 10%;">'.utf8_encode($row[3]).'</td>  
+                    <td style="font-size: 12px; height: 10px; width: 15%;">'.utf8_encode($row[4]).'</td>
+                    <td style="font-size: 12px; height: 10px; width: 15%;">'.($row[5]).'</td>
                     <td style="font-size: 12px; height: 10px; width: 7%;">'.utf8_encode($row[6]).'</td>';      
             } else {
                 echo '<tr>
@@ -57,7 +58,7 @@ class Alicel1Model {
                 echo '<td style="font-size: 12px; height: 10px; width: 12%;">'.utf8_encode($row[2]).'</td>
                     <td style="font-size: 12px; height: 10px; width: 13%;">'.utf8_encode($row[3]).'</td>
                     <td style="font-size: 12px; height: 10px; width: 10%;">'.utf8_encode($row[4]).'</td>  
-                    <td style="font-size: 12px; height: 10px; width: 15%;">'.utf8_encode($row[5]).'</td>                  
+                    <td style="font-size: 12px; height: 10px; width: 15%;">'.($row[5]).'</td>                  
                     <td style="font-size: 12px; height: 10px; width: 7%;">'.utf8_encode($row[6]).'</td>';  
             }        
             
@@ -69,7 +70,7 @@ class Alicel1Model {
                                 <i class="ace-icon fa fa-pencil bigger-120" onclick="editar('.$row[0].');"></i>
                             </span>
                         </a>';
-            if ($row[8] == 1){
+            if ($row[8] == 0){
                 echo    '<a href="#" style="margin-right:10px;" class="tooltip-error" data-rel="tooltip" title="Eliminar">
                             <span class="red">
                                 <i class="ace-icon fa fa-trash-o bigger-180" onclick="eliminar('.$row[0].',0);"></i>

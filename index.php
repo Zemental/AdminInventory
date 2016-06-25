@@ -74,7 +74,8 @@
 	</div>
 
 	<div class="not-a-member">
-		SGI Admin &copy; Systems 2016
+		SGI Admin &copy; Systems 2016 
+		<p class="text-center" style="font-size:12px;">Contacto: #938254410 | ealfarogo@gmail.com</p>		
 	</div>
 
 <!-- Pixel Admin's javascripts -->

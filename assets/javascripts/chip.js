@@ -156,7 +156,14 @@ function editar(codigo){
             $("#icc").val(objeto[1]);
             $("#numero").val(objeto[2]);
             $("#operadora").val(objeto[3]);
-            $("#precio").val(objeto[4]); 
+            $("#precio").val(objeto[4]);
+            document.getElementById('codigo').disabled=false;
+            document.getElementById('icc').disabled=false;
+            document.getElementById('numero').disabled=false;
+            document.getElementById('operadora').disabled=false;
+            document.getElementById('precio').disabled=false; 
+            document.getElementById('registrarChip').style.display = 'inline';
+            document.getElementById('cancelarChip').style.display = 'inline'; 
         },
         error: function(data){
 
@@ -191,6 +198,73 @@ function eliminar(codigo, estado){
         }
 
     }
+
+}
+
+function mostrador(codigo, mostrar){
+    if (mostrar == 1){
+        var mostrar = 'M';
+       var respuesta = confirm('¿Desea COLOCAR EN MOSTRADOR el chip?');
+    } else {
+        var mostrar = 'A';
+        var respuesta = confirm('¿Desea REGRESAR AL ALMACEN el chip?');
+    }
+    
+    if (respuesta == true) {
+        //alert('Acepto');
+        var opcion = 'mostrador_chip';
+
+        $.ajax({
+            type: 'POST',
+            data:'opcion='+opcion+'&codigo='+codigo+'&mostrar='+mostrar,
+            url: '../controllers/controlChip/chipController.php',
+            success: function(data){                
+                mostrarChips();
+            },
+            error: function(data){
+                $('#cuerpoChips').html(respuesta);
+            }
+        });
+    } else {
+        if (respuesta == false) {
+            mostrarChips();
+        }
+
+    }
+
+}
+
+function verChip(codigo){
+    $('#cabeceraRegistro').html(".:: Datos Chip ::.");
+    
+    $('#modalChip').modal({
+        show:true,
+        backdrop:'static'
+    });
+
+    var opcion = 'recuperar_datos';
+    $.ajax({
+        type: 'POST',
+        data:'opcion='+opcion+'&codigo='+codigo,
+        url: '../controllers/controlChip/chipController.php',
+        success: function(data){
+            objeto=JSON.parse(data);
+            $("#codigo").val(objeto[0]);            
+            $("#icc").val(objeto[1]);
+            $("#numero").val(objeto[2]);
+            $("#operadora").val(objeto[3]);
+            $("#precio").val(objeto[4]);           
+            document.getElementById('codigo').disabled=true;
+            document.getElementById('numero').disabled=true;
+            document.getElementById('operadora').disabled=true;
+            document.getElementById('precio').disabled=true;            
+            document.getElementById('registrarChips').style.display = 'none';
+            document.getElementById('cancelarChip').style.display = 'none';
+        },
+        error: function(data){
+
+        }
+    });   
 
 }
 
