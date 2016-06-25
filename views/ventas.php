@@ -185,7 +185,7 @@
                                 <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">SUCURSAL</th>
                                 <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">RESPONSABLE</th>
                                 <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">FECHA DE VENTA</th>
-                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">CANTIDAD</th>
+                                <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">IMPORTE TOTAL (S/.)</th>
                                 <th style="text-align: center; font-size: 11px; height: 10px; width: 10%;">OPERACIONES</th>
                             </tr>
                         </thead>
