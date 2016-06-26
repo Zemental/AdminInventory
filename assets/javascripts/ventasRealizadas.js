@@ -231,9 +231,8 @@ function agregarDetalleEnvio() {
             precioVenta.push(precioUnitario);
             importeVenta.push(importe);
             contador++;
-            montoTotal = montoTotal + importe;
-            montoParcial = 0.18*(montoTotal);
-            montoNeto = montoTotal + montoParcial;
+            montoTotal = montoTotal + importe;            
+            montoNeto = montoTotal;
 
             var documento = document.getElementById('param_documento').value;
             if (documento == 'B') {            
@@ -280,8 +279,7 @@ function agregarDetalleEnvio() {
             importeVenta.push(importe);
             contador = contador + 1;
             montoTotal = montoTotal + importe;
-            montoParcial = 0.18*(montoTotal);
-            montoNeto = montoTotal + montoParcial;
+            montoNeto = montoTotal;
 
             var documento = document.getElementById('param_documento').value;
             if (documento == 'B') {            
@@ -328,9 +326,8 @@ function agregarDetalleEnvio() {
             importeVenta.push(importe);
             contador = contador + parseFloat(cantidad);
 
-            montoTotal = montoTotal + importe;
-            montoParcial = 0.18*(montoTotal);
-            montoNeto = montoTotal + montoParcial;
+            montoTotal = montoTotal + importe;        
+            montoNeto = montoTotal;
 
             var documento = document.getElementById('param_documento').value;
             if (documento == 'B') {            
@@ -378,8 +375,7 @@ function agregarDetalleEnvio() {
             contador = contador + parseFloat(cantidad);
 
             montoTotal = montoTotal + importe;
-            montoParcial = 0.18*(montoTotal);
-            montoNeto = montoTotal + montoParcial;
+            montoNeto = montoTotal;
 
             var documento = document.getElementById('param_documento').value;
             if (documento == 'B') {            
